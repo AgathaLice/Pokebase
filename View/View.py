@@ -1,12 +1,12 @@
-from TelaInsercao import TelaInsercao
-from TelaListagem import TelaListagem
-from TelaMenu import TelaMenu
-from TelaTutorial import TelaTutorial
-from TelaVisualizacao import TelaVisualizacao
-
-import tkinter as tk #TODO Lembra que isso vai ser o TkCustom depois
+from Telas import TelaInsercao
+from Telas import TelaListagem
+from Telas import TelaMenu
+from Telas import TelaTutorial
+from Telas import TelaVisualizacao
 
 from Controller import Controller
+
+import tkinter as tk #TODO Lembra que isso vai ser o TkCustom depois
 
 class View():
     
