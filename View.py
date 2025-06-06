@@ -1,6 +1,7 @@
 
-import sys
 from Controller import Controller
+
+from PIL import ImageTk, Image
 
 import tkinter as tk #TODO Lembra que isso vai ser o TkCustom depois
 
@@ -10,6 +11,10 @@ class View():
         self.root = tk.Tk()
         
         self.controller = Controller(self)
+        
+        backgroundStr = "C:\\Users\\migue\\Documents\\GitHub\\Pokebase\\BackgroundClaro.png"
+        background = Image.open(backgroundStr)
+        self.tkBg = ImageTk.PhotoImage(background)
         
         self.inicia()
         
@@ -30,46 +35,71 @@ class View():
         self.root.columnconfigure(0, weight=1)
         self.root.state("zoomed")
         
+        self.menu = self.telaMenu(self.root)
+        self.insercao = self.telaInsercao(self.root)
+        self.listagem = self.telaListagem(self.root)
+        self.visualizacao = self.telaVisualizacao(self.root)
+        self.tutorial = self.telaTutorial(self.root)
+        
+        self.menu.tkraise()
+    
+    
+    def telaMenu(self, root):
         menu = tk.Frame(self.root)
         menu.grid(row=12,
                   column=12,
                   rowspan=12,
                   columnspan=12,
                   sticky='nsew')
+        self.bgLabel = tk.Label(self.root, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
         
-        
+        return menu
+    
+    def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
         insercao.grid(row=12,
                   column=12,
                   rowspan=12,
                   columnspan=12,
-                  sticky=tk.W+tk.E+tk.N+tk.S)
+                  sticky='nsew')
         
+        return insercao
+    
+    def telaListagem(self, root):
         listagem = tk.Frame(self.root)
         listagem.grid(row=12,
                   column=12,
                   rowspan=12,
                   columnspan=12,
-                  sticky=tk.W+tk.E+tk.N+tk.S)
+                  sticky='nsew')
         
+        return listagem
+    
+    def telaVisualizacao(self, root):
         visualizacao = tk.Frame(self.root)
         visualizacao.grid(row=12,
                   column=12,
                   rowspan=12,
                   columnspan=12,
-                  sticky=tk.W+tk.E+tk.N+tk.S)
+                  sticky='nsew')
         
-        turorial = tk.Frame(self.root)
-        turorial.grid(row=12,
+        return visualizacao
+    
+    def telaTutorial(self, root):
+        tutorial = tk.Frame(self.root)
+        tutorial.grid(row=12,
                   column=12,
                   rowspan=12,
                   columnspan=12,
-                  sticky=tk.W+tk.E+tk.N+tk.S)
+                  sticky='nsew')
         
-        
-        menu.tkraise()
-
-
-"""
-
-"""
+        return tutorial
+    
+    
+    def levantarTela(self, tela):
+        self.tela.tkraise()

@@ -1,22 +1,17 @@
 import tkinter as tk
 
-window = tk.Tk()
+root = tk.Tk()
+root.wm_title("Title:D")
 
-# Configure window to expand
-window.rowconfigure(0, weight=1)
-window.columnconfigure(0, weight=1)
+root.geometry('{}x{}'.format(500, 300))
 
-# Create a frame to hold the grid
-frame = tk.Frame(window)
-frame.grid(row=0, column=0, sticky='nsew')
+##photo = PhotoImage(file="spaz.gif")
+label = tk.Label(root, text="Label 1")
+label.grid(row=1, column=1)
 
-# Configure frame to expand
-frame.rowconfigure(0, weight=1)
-frame.columnconfigure(0, weight=1)
+root.grid_columnconfigure(4, weight=1)
 
-# Create widgets within the grid
-label = tk.Label(frame, text="This label will expand to fill the window")
-label.grid(row=0, column=0, sticky='nsew')
+w = tk.Label(root, text="This label", fg="red", font=("Helvetica", 16))
+w.grid(row=5, column=20)
 
-# Run the Tkinter event loop
-window.mainloop()
+root.mainloop()
