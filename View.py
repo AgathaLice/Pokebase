@@ -16,6 +16,10 @@ class View():
         background = Image.open(backgroundStr)
         self.tkBg = ImageTk.PhotoImage(background)
         
+        pokebola = "C:\\Users\\migue\\Documents\\GitHub\\Pokebase\\IconeNormal.png"
+        self.icone = ImageTk.PhotoImage(Image.open(pokebola))
+        self.root.iconphoto(True, self.icone)
+        
         self.inicia()
         
         self.root.bind('<Escape>', self.sair)
@@ -29,7 +33,7 @@ class View():
     
     def inicia(self):
         #* Define a janela com as telas, instanciando e desenhando todas.
-        #! Chama cada tela, da última a primeira, dando RAISE na TELA DE MENU.
+        #! Chama cada tela, dando RAISE na TELA DE MENU.
         
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
@@ -41,7 +45,14 @@ class View():
         self.visualizacao = self.telaVisualizacao(self.root)
         self.tutorial = self.telaTutorial(self.root)
         
-        self.menu.tkraise()
+        self.bgLabel = tk.Label(self.root, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
+        
+        self.levantarTela(self.menu)
     
     
     def telaMenu(self, root):
@@ -51,12 +62,6 @@ class View():
                   rowspan=12,
                   columnspan=12,
                   sticky='nsew')
-        self.bgLabel = tk.Label(self.root, 
-                                image=self.tkBg)
-        self.bgLabel.place(x=0,
-                           y=0,
-                           relwidth=1,
-                           relheight=1)
         
         return menu
     
@@ -102,4 +107,4 @@ class View():
     
     
     def levantarTela(self, tela):
-        self.tela.tkraise()
+        tela.tkraise()
