@@ -8,6 +8,8 @@ if __name__ == "__main__":
 C:\\Users\\migue\\Documents\\GitHub\\Pokebase\\
 C:\\Users\\migue\\Documents\\GitHub\\Pokebase\\
 
+# python3 -m pip install --upgrade pip
+# python3 -m pip install --upgrade Pillow
 
 pip3 install customtkinter
 pip3 install customtkinter --upgrade
