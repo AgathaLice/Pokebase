@@ -6,16 +6,17 @@ from PIL import ImageTk, Image
 
 #TODO Telas tem um quadrado preto
 
-import customtkinter as tk
+import customtkinter as ctk
+import tkinter as tk
 
 class View():
 
     def __init__(self):
 
-        tk.set_appearance_mode("System")  # Modes: system (default), light, dark
-        tk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+        ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
+        ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
-        self.root = tk.CTk()
+        self.root = ctk.CTk()
 
         self.width = self.root.winfo_screenwidth()
         self.height = self.root.winfo_screenheight()
@@ -27,7 +28,7 @@ class View():
         background = Image.open(backgroundStr)
         self.tkBg = ImageTk.PhotoImage(background)'''
 
-        self.background = tk.CTkImage(light_image=Image.open("BackgroundClaro.png"),
+        self.background = ctk.CTkImage(light_image=Image.open("BackgroundClaro.png"),
                                   dark_image=Image.open("BackgroundClaro.png"),
                                   size=(self.width, self.height))
                                     #size=(1500, 1000)
@@ -66,14 +67,14 @@ class View():
         self.visualizacao = self.telaVisualizacao(self.root)
         self.tutorial = self.telaTutorial(self.root)
 
-        self.bgLabel = tk.CTkLabel(self.root,
+        self.bgLabel = ctk.CTkLabel(self.root,
                                    image=self.background)
         self.bgLabel.place(x=0,
                            y=0)
 
 
     def telaMenu(self, root):
-        menu = tk.CTkFrame(self.root)
+        menu = ctk.CTkFrame(self.root)
         menu.grid(row=12,
                   column=12,
                   rowspan=12,
@@ -83,7 +84,7 @@ class View():
         return menu
 
     def telaInsercao(self, root):
-        insercao = tk.CTkFrame(self.root)
+        insercao = ctk.CTkFrame(self.root)
         insercao.grid(row=12,
                   column=12,
                   rowspan=12,
@@ -93,7 +94,7 @@ class View():
         return insercao
 
     def telaListagem(self, root):
-        listagem = tk.CTkFrame(self.root)
+        listagem = ctk.CTkFrame(self.root)
         listagem.grid(row=12,
                   column=12,
                   rowspan=12,
@@ -103,7 +104,7 @@ class View():
         return listagem
 
     def telaVisualizacao(self, root):
-        visualizacao = tk.CTkFrame(self.root)
+        visualizacao = ctk.CTkFrame(self.root)
         visualizacao.grid(row=12,
                   column=12,
                   rowspan=12,
@@ -113,7 +114,7 @@ class View():
         return visualizacao
 
     def telaTutorial(self, root):
-        tutorial = tk.CTkFrame(self.root)
+        tutorial = ctk.CTkFrame(self.root)
         tutorial.grid(row=12,
                   column=12,
                   rowspan=12,
