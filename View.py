@@ -35,15 +35,14 @@ class View():
         #* Define a janela com as telas, instanciando e desenhando todas.
         #! Chama cada tela, dando RAISE na TELA DE MENU.
         
-        self.root.rowconfigure(0, weight=1)
-        self.root.columnconfigure(0, weight=1)
         self.root.state("zoomed")
         
         self.menu = self.telaMenu(self.root)
+        '''
         self.insercao = self.telaInsercao(self.root)
         self.listagem = self.telaListagem(self.root)
         self.visualizacao = self.telaVisualizacao(self.root)
-        self.tutorial = self.telaTutorial(self.root)
+        self.tutorial = self.telaTutorial(self.root)'''
         
         self.bgLabel = tk.Label(self.root, 
                                 image=self.tkBg)
@@ -56,55 +55,64 @@ class View():
     
     
     def telaMenu(self, root):
-        menu = tk.Frame(self.root)
-        menu.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
-                  sticky='nsew')
+        menu = tk.Frame(self.root, background='pink')
+        menu.pack()
+        
+        um = tk.Label(menu, text="1")
+        dois = tk.Label(menu, text="2")
+        tres = tk.Label(menu, text="3")
+        quatro = tk.Label(menu, text="4")
+        um.grid(row=0,
+               column=0)
+        dois.grid(row=0,
+               column=1)
+        tres.grid(row=0,
+               column=2)
+        quatro.grid(row=0,
+               column=3)
         
         return menu
-    
+    '''
     def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
-        insercao.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        insercao.grid(row=0,
+                  column=0,
+                  rowspan=11,
+                  columnspan=11,
                   sticky='nsew')
         
         return insercao
     
     def telaListagem(self, root):
         listagem = tk.Frame(self.root)
-        listagem.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        listagem.grid(row=0,
+                  column=0,
+                  rowspan=11,
+                  columnspan=11,
                   sticky='nsew')
         
         return listagem
     
     def telaVisualizacao(self, root):
         visualizacao = tk.Frame(self.root)
-        visualizacao.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        visualizacao.grid(row=0,
+                  column=0,
+                  rowspan=11,
+                  columnspan=11,
                   sticky='nsew')
         
         return visualizacao
     
     def telaTutorial(self, root):
         tutorial = tk.Frame(self.root)
-        tutorial.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        tutorial.grid(row=0,
+                  column=0,
+                  rowspan=11,
+                  columnspan=11,
                   sticky='nsew')
         
         return tutorial
-    
+    '''
     
     def levantarTela(self, tela):
         tela.tkraise()
