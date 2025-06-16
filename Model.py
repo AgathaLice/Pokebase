@@ -3,9 +3,9 @@ import sys
 
 class Model():
     
-    def responder():
+    def responder(self):
         print("Model respondeu")
-        return
+        return 1
     
     def sair():
         sys.exit()
