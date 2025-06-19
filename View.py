@@ -1,7 +1,7 @@
 
 from Controller import Controller
 
-from PIL import ImageTk, Image
+from PIL import Image
 #TODO remover imports
 
 #TODO Telas tem um quadrado preto

@@ -5,7 +5,7 @@ class Model():
     
     def responder():
         print("Model respondeu")
-        return
+        return 1
     
     def sair():
         sys.exit()
