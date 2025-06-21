@@ -3,10 +3,10 @@ import sys
 
 class Model():
     
-    def responder():
+    def responder(self):
         print("Model respondeu")
         return 1
     
-    def sair():
+    def sair(self):
         sys.exit()
     

@@ -24,13 +24,10 @@ class View():
 
         self.controller = Controller(self)
 
-        '''backgroundStr = "BackgroundClaro.png"
-        background = Image.open(backgroundStr)
-        self.tkBg = ImageTk.PhotoImage(background)'''
-
         self.background = ctk.CTkImage(light_image=Image.open("BackgroundClaro.png"),
                                   dark_image=Image.open("BackgroundClaro.png"),
-                                  size=(self.width, self.height))
+                                  size=(self.width, self.height)) 
+        #! Fix: width é um pouco demais, diminuir para imagem não ficar esticada horizontalmente
                                     #size=(1500, 1000)
 
 
@@ -53,7 +50,7 @@ class View():
 
 
     def sair(self, evento=None):
-        Controller.sair()
+        self.controller.sair()
 
 
     def inicia(self):
@@ -67,59 +64,109 @@ class View():
         self.visualizacao = self.telaVisualizacao(self.root)
         self.tutorial = self.telaTutorial(self.root)
 
-        self.bgLabel = ctk.CTkLabel(self.root,
+        bgLabel = ctk.CTkLabel(self.root,
                                    image=self.background)
-        self.bgLabel.place(x=0,
+        bgLabel.place(x=0,
                            y=0)
+        
+        self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(0, weight=1)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
     def telaMenu(self, root):
         menu = ctk.CTkFrame(self.root)
-        menu.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        menu.grid(row=0,
+                  column=0,
                   sticky='nsew')
+        
+        menu.columnconfigure([0, 2], weight=1)
+        menu.rowconfigure([0, 2], weight=1) #todo apenas colunas. Verificar figma para configuração coreta, desenhe
+        menu.columnconfigure(1, weight=1)
+        menu.rowconfigure(1, weight=1) #todo apenas colunas. Verificar figma para configuração coreta, desenhe
+        
+        bgLabel = ctk.CTkLabel(menu,
+                                   image=self.background)
+        bgLabel.place(x=0,
+                           y=0)
+        
+        botao = ctk.CTkButton(menu, text="Botão Exemplo")
+        botao.grid(row=1,
+                   column=1,
+                   sticky='nsew')
 
         return menu
 
     def telaInsercao(self, root):
         insercao = ctk.CTkFrame(self.root)
-        insercao.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        insercao.grid(row=0,
+                  column=0,
                   sticky='nsew')
+        
+        insercao.columnconfigure(0, weight=1)
+        insercao.rowconfigure(0, weight=1)
+        
+        bgLabel = ctk.CTkLabel(insercao,
+                                   image=self.background)
+        bgLabel.place(x=0,
+                           y=0)
 
         return insercao
 
     def telaListagem(self, root):
         listagem = ctk.CTkFrame(self.root)
-        listagem.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        listagem.grid(row=0,
+                  column=0,
                   sticky='nsew')
+        
+        listagem.columnconfigure(0, weight=1)
+        listagem.rowconfigure(0, weight=1)
+        
+        bgLabel = ctk.CTkLabel(listagem,
+                                   image=self.background)
+        bgLabel.place(x=0,
+                           y=0)
 
         return listagem
 
     def telaVisualizacao(self, root):
         visualizacao = ctk.CTkFrame(self.root)
-        visualizacao.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        visualizacao.grid(row=0,
+                  column=0,
                   sticky='nsew')
+        
+        visualizacao.columnconfigure(0, weight=1)
+        visualizacao.rowconfigure(0, weight=1)
+        
+        bgLabel = ctk.CTkLabel(visualizacao,
+                                   image=self.background)
+        bgLabel.place(x=0,
+                           y=0)
 
         return visualizacao
 
     def telaTutorial(self, root):
         tutorial = ctk.CTkFrame(self.root)
-        tutorial.grid(row=12,
-                  column=12,
-                  rowspan=12,
-                  columnspan=12,
+        tutorial.grid(row=0,
+                  column=0,
                   sticky='nsew')
+        
+        tutorial.columnconfigure(0, weight=1)
+        tutorial.rowconfigure(0, weight=1)
+        
+        bgLabel = ctk.CTkLabel(tutorial,
+                                   image=self.background)
+        bgLabel.place(x=0,
+                           y=0)
 
         return tutorial
 
