@@ -65,22 +65,12 @@ class View():
         self.tutorial = self.telaTutorial(self.root)
 
         bgLabel = ctk.CTkLabel(self.root,
-                                   image=self.background)
+                               image=self.background)
         bgLabel.place(x=0,
-                           y=0)
+                      y=0)
         
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
 
     def telaMenu(self, root):
@@ -89,20 +79,50 @@ class View():
                   column=0,
                   sticky='nsew')
         
-        menu.columnconfigure([0, 2], weight=1)
-        menu.rowconfigure([0, 2], weight=1) #todo apenas colunas. Verificar figma para configuração coreta, desenhe
-        menu.columnconfigure(1, weight=1)
-        menu.rowconfigure(1, weight=1) #todo apenas colunas. Verificar figma para configuração coreta, desenhe
-        
         bgLabel = ctk.CTkLabel(menu,
-                                   image=self.background)
+                               image=self.background)
         bgLabel.place(x=0,
-                           y=0)
+                      y=0)
         
-        botao = ctk.CTkButton(menu, text="Botão Exemplo")
-        botao.grid(row=1,
-                   column=1,
-                   sticky='nsew')
+        menu.columnconfigure([0, 2], weight=1)
+        menu.columnconfigure(1, weight=1)
+        menu.rowconfigure(0, weight=3)
+        menu.rowconfigure([1, 3, 4], weight=2)
+        menu.rowconfigure(2, weight=1)
+        
+        novoPoke = ctk.CTkButton(menu,
+                                 height=70,
+                                 width=450,
+                                 corner_radius=40,
+                                 text="Novo Pokémon")
+        ultimoPoke = ctk.CTkButton(menu,
+                                   height=70,
+                                   width=450,
+                                   corner_radius=40,
+                                   text="Último Pokémon")
+        listaPoke = ctk.CTkButton(menu,
+                                  height=70,
+                                  width=450,
+                                  corner_radius=40,
+                                  text="Lista dos Pokémons")
+        tutorial = ctk.CTkButton(menu,
+                                 height=70,
+                                 width=450,
+                                 corner_radius=40,
+                                 text="Tutorial")
+        
+        novoPoke.grid(row=1,
+                      column=1,
+                      sticky='n')
+        ultimoPoke.grid(row=1,
+                      column=1,
+                      sticky='s')
+        listaPoke.grid(row=3,
+                      column=1,
+                      sticky='n')
+        tutorial.grid(row=3,
+                      column=1,
+                      sticky='s')
 
         return menu
 
