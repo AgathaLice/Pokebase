@@ -48,7 +48,8 @@ class View():
         self.visualizacao = self.telaVisualizacao(self.root)
         self.tutorial = self.telaTutorial(self.root)
 
-        self.levantarTela(self.insercao)
+        self.levantarTela(self.insercao) #! Estou trabalhando nessa tela atualmente.
+        #todo Vai ser a tela de menu no futuro.
     
     
     def telaMenu(self, root):
@@ -70,13 +71,17 @@ class View():
         menu.rowconfigure([1, 2], weight=1)
         
         novoPoke = tk.Button(menu,
-                             text="Novo Pokémon")
+                             text="Novo Pokémon",
+                             command=lambda: self.levantarTela(self.insercao))
         ultimoPoke = tk.Button(menu,
-                               text="Último Pokémon")
+                               text="Último Pokémon",
+                               command=lambda: self.levantarTela(self.visualizacao))
         listaPoke = tk.Button(menu,
-                              text="Lista dos Pokémons")
+                              text="Lista dos Pokémons",
+                              command=lambda: self.levantarTela(self.listagem))
         tutorial = tk.Button(menu,
-                             text="Tutorial")
+                             text="Tutorial",
+                             command=lambda: self.levantarTela(self.tutorial))
         
         novoPoke.grid(row=1,
                       column=1,
@@ -117,13 +122,13 @@ class View():
         listagem.grid(row=0,
                   column=0,
                   sticky='nsew')
-        
+        '''
         self.bgLabel = tk.Label(listagem, 
                                 image=self.tkBg)
         self.bgLabel.place(x=0,
                            y=0,
                            relwidth=1,
-                           relheight=1)
+                           relheight=1)'''
         
         return listagem
     
