@@ -3,8 +3,8 @@ from Controller import Controller
 
 from PIL import ImageTk, Image
 
-import tkinter as tk #TODO Lembra que isso vai ser o TkCustom depois
-#TODO Refaz por weight
+import tkinter as tk
+#TODO -> Refazer o design das telas de dados no figma
 
 class View():
     
@@ -12,23 +12,18 @@ class View():
         self.root = tk.Tk()
         
         self.controller = Controller(self)
-
-        self.grids = [i for i in range(12)]
         
-        self.backgroundStr = "BackgroundClaro.png"
+        self.backgroundStr = "Imagens\\BackgroundClaro.png"
         self.background = Image.open(self.backgroundStr)
         self.tkBg = ImageTk.PhotoImage(self.background)
         
-        pokebola = "IconeNormal.png"
+        pokebola = "Imagens\\IconeNormal.png"
         self.icone = ImageTk.PhotoImage(Image.open(pokebola))
         self.root.iconphoto(True, self.icone)
         
-        self.root.grid_rowconfigure(0, 
-                                    weight=1, 
-                                    uniform=True)
-        self.root.grid_columnconfigure(0, 
-                                       weight=1, 
-                                       uniform=True)
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+        
 
         self.inicia()
         
@@ -48,94 +43,122 @@ class View():
         self.root.state("zoomed")
         
         self.menu = self.telaMenu(self.root)
-        '''
         self.insercao = self.telaInsercao(self.root)
         self.listagem = self.telaListagem(self.root)
         self.visualizacao = self.telaVisualizacao(self.root)
-        self.tutorial = self.telaTutorial(self.root)'''
-        
-        
-        
-        self.levantarTela(self.menu)
-        print(self.grids)
+        self.tutorial = self.telaTutorial(self.root)
+
+        self.levantarTela(self.insercao)
     
     
     def telaMenu(self, root):
         menu = tk.Frame(self.root)
-        menu.grid(row=0, 
-                  column=0, 
-                  sticky="nsew")
-
-        menu.grid_rowconfigure(self.grids, weight=1, uniform=True)
-        menu.grid_columnconfigure(self.grids, weight=1, uniform=True)
-
+        menu.grid(row=0,
+                  column=0,
+                  sticky='nsew')
+        
         self.bgLabel = tk.Label(menu, 
                                 image=self.tkBg)
         self.bgLabel.place(x=0,
                            y=0,
                            relwidth=1,
                            relheight=1)
-
-        eC = tk.Frame(menu, background='yellow', height=10, width=10)
-        dC = tk.Frame(menu, background='green', height=10, width=10)
-        dB = tk.Frame(menu, background='blue', height=10, width=10)
-        eB = tk.Frame(menu, background='pink', height=10, width=10)
-
-        eC.grid(row=0, column=0, columnspan=11, sticky='nsew')
-        dC.grid(row=0, column=11, rowspan=11, sticky='nsew')
-        dB.grid(row=11, column=1, columnspan=11, sticky='nsew')
-        eB.grid(row=1, column=0, rowspan=11, sticky='nsew')
         
-        novoPokemon = tk.Button(menu,
-                                text="Novo Pokémon",
-                                command=self.chamarController)
-        novoPokemon.grid(row=3,
-                         column=4,
-                         columnspan=4,
-                         sticky='nsew')
+        menu.columnconfigure([0, 2], weight=1)
+        menu.columnconfigure(1, weight=1)
+        menu.rowconfigure([0, 3], weight=3)
+        menu.rowconfigure([1, 2], weight=1)
         
+        novoPoke = tk.Button(menu,
+                             text="Novo Pokémon")
+        ultimoPoke = tk.Button(menu,
+                               text="Último Pokémon")
+        listaPoke = tk.Button(menu,
+                              text="Lista dos Pokémons")
+        tutorial = tk.Button(menu,
+                             text="Tutorial")
+        
+        novoPoke.grid(row=1,
+                      column=1,
+                      sticky='n')
+        ultimoPoke.grid(row=1,
+                      column=1,
+                      sticky='s',
+                      pady=125)
+        listaPoke.grid(row=2,
+                      column=1,
+                      sticky='n',
+                      pady=125)
+        tutorial.grid(row=2,
+                      column=1,
+                      sticky='s')
+
         return menu
-    '''
+    
+    
     def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
         insercao.grid(row=0,
                   column=0,
-                  rowspan=11,
-                  columnspan=11,
                   sticky='nsew')
         
+        self.bgLabel = tk.Label(insercao, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
+        
         return insercao
+    
     
     def telaListagem(self, root):
         listagem = tk.Frame(self.root)
         listagem.grid(row=0,
                   column=0,
-                  rowspan=11,
-                  columnspan=11,
                   sticky='nsew')
         
+        self.bgLabel = tk.Label(listagem, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
+        
         return listagem
+    
     
     def telaVisualizacao(self, root):
         visualizacao = tk.Frame(self.root)
         visualizacao.grid(row=0,
                   column=0,
-                  rowspan=11,
-                  columnspan=11,
                   sticky='nsew')
         
+        self.bgLabel = tk.Label(visualizacao, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
+        
         return visualizacao
+    
     
     def telaTutorial(self, root):
         tutorial = tk.Frame(self.root)
         tutorial.grid(row=0,
                   column=0,
-                  rowspan=11,
-                  columnspan=11,
                   sticky='nsew')
         
+        self.bgLabel = tk.Label(tutorial, 
+                                image=self.tkBg)
+        self.bgLabel.place(x=0,
+                           y=0,
+                           relwidth=1,
+                           relheight=1)
+        
         return tutorial
-    '''
+    
     
     def levantarTela(self, tela):
         tela.tkraise()
