@@ -123,6 +123,110 @@ class View():
         insercao.columnconfigure(2, weight=5)
         insercao.columnconfigure(3, weight=9)
         
+        voltarMenu = tk.Button(insercao,
+                               text="Voltar ao Menu")
+        
+        apelido = tk.Label(insercao, text="Apelido")
+        apelido_E = tk.Entry(insercao, width=100)
+        
+        nivel = tk.Label(insercao, text="Nível")
+        nivel_E = tk.Entry(insercao)
+        
+        nome = tk.Label(insercao, text="Nome")
+        nome_E = tk.Entry(insercao)
+        
+        tipoUm = tk.Label(insercao, text="Tipo 1")
+        tipoUm_E = tk.Entry(insercao)
+        
+        tipoDois = tk.Label(insercao, text="Tipo 2")
+        tipoDois_E = tk.Entry(insercao)
+        
+        genero = tk.Label(insercao, text="Gênero")
+        genero_CB = tk.Entry(insercao) #* Combobox
+        
+        nomeHabilidade = tk.Label(insercao,
+                                  text="Nome da Habilidade")
+        nomeHabilidade_E = tk.Entry(insercao)
+        
+        item = tk.Label(insercao, text="Item")
+        item_E = tk.Entry(insercao)
+        
+        natureza = tk.Label(insercao, text="Natureza")
+        natureza_CB = tk.Entry(insercao) #* Combobox
+        
+        descHabilidade = tk.Label(insercao,
+                                  text="Descrição da Habilidade")
+        descHabilidade_Txt = tk.Entry(insercao) #? Text entry
+        
+        nomePoder = tk.Label(insercao, text="Nome do Poder")
+        nomePoder_E = tk.Entry(insercao)
+        
+        danoPoder = tk.Label(insercao, text="Dano")
+        danoPoder_E = tk.Entry(insercao)
+        
+        tipoPoder = tk.Label(insercao, text="Tipo")
+        tipoPoder_E = tk.Entry(insercao)
+        
+        pp = tk.Label(insercao, text="PP")
+        pp_E = tk.Entry(insercao)
+        
+        tipoDeDano = tk.Label(insercao, text="ATK ou SP.ATK")
+        tipoDeDano_CB = tk.Entry(insercao) #* Combobox
+        
+        descPoder = tk.Label(insercao,
+                             text="Descrição e Observações do Poder")
+        descPoder_Txt = tk.Entry(insercao) #? Text entry
+        
+        tags = tk.Label(insercao, text="Tags")
+        tags_CB = tk.Entry(insercao)
+        salvarInfo_E = tk.Button(insercao,
+                               text="Salvar Informações")
+        
+        iv = tk.Label(insercao, text="IV's")
+        ev = tk.Label(insercao, text="EV's")
+        
+        hp = tk.Label(insercao, text="Pontos de Vida")
+        hp_E = tk.Entry(insercao)
+        hpIV_E = tk.Entry(insercao)
+        hpEV_E = tk.Entry(insercao)
+        
+        atk = tk.Label(insercao, text="Ataque")
+        atk_E = tk.Entry(insercao)
+        atkIV_E = tk.Entry(insercao)
+        atkEV_E = tk.Entry(insercao)
+        
+        defs = tk.Label(insercao, text="Defesa")
+        defs_E = tk.Entry(insercao)
+        defsIV_E = tk.Entry(insercao)
+        defsEV_E = tk.Entry(insercao)
+        
+        spAtk = tk.Label(insercao, text="Ataque Especial")
+        spAtk_E = tk.Entry(insercao)
+        spAtkIV_E = tk.Entry(insercao)
+        spAtkEV_E = tk.Entry(insercao)
+        
+        spDefs = tk.Label(insercao, text="Defesa Especial")
+        spDefs_E = tk.Entry(insercao)
+        spDefsIV_E = tk.Entry(insercao)
+        spDefsEV_E = tk.Entry(insercao)
+        
+        spd = tk.Label(insercao, text="Velocidade")
+        spd_E = tk.Entry(insercao)
+        spdIV_E = tk.Entry(insercao)
+        spdEV_E = tk.Entry(insercao)
+        
+        
+        voltarMenu.grid(row=1,
+                        column=1,
+                        sticky='nw')
+        apelido.grid(row=1,
+                     column=2,
+                     sticky='nw')
+        apelido_E.grid(row=1,
+                       column=2,
+                       columnspan=3,
+                       sticky='nw')
+        
         return insercao
     
     

@@ -3,15 +3,15 @@ import tkinter as tk
 root = tk.Tk()
 root.wm_title("Title:D")
 
-root.geometry('{}x{}'.format(500, 300))
+root.columnconfigure([0, 2], weight=1)
+root.columnconfigure(1, weight=4)
+root.rowconfigure([0, 1, 2], weight=1)
 
-##photo = PhotoImage(file="spaz.gif")
-label = tk.Label(root, text="Label 1")
-label.grid(row=1, column=1)
+f = tk.Frame(root)
+f.grid(row=0, column=0, columnspan=2)
 
-root.grid_columnconfigure(4, weight=1)
-
-w = tk.Label(root, text="This label", fg="red", font=("Helvetica", 16))
-w.grid(row=5, column=20)
-
+a = tk.Label(f, text='ablulbe')
+a.pack(side='top')
+ab = tk.Entry(f)
+ab.pack(side='right')
 root.mainloop()
