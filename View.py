@@ -114,6 +114,15 @@ class View():
                            relwidth=1,
                            relheight=1)
         
+        insercao.rowconfigure([0, 2, 7], weight=1)
+        insercao.rowconfigure([1, 3, 6], weight=2)
+        insercao.rowconfigure(4, weight=3)
+        insercao.rowconfigure(5, weight=8)
+        insercao.columnconfigure([0, 4], weight=1)
+        insercao.columnconfigure(1, weight=4)
+        insercao.columnconfigure(2, weight=5)
+        insercao.columnconfigure(3, weight=9)
+        
         return insercao
     
     
@@ -122,13 +131,13 @@ class View():
         listagem.grid(row=0,
                   column=0,
                   sticky='nsew')
-        '''
+        
         self.bgLabel = tk.Label(listagem, 
                                 image=self.tkBg)
         self.bgLabel.place(x=0,
                            y=0,
                            relwidth=1,
-                           relheight=1)'''
+                           relheight=1)
         
         return listagem
     
