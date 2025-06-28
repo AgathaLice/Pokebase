@@ -114,73 +114,230 @@ class View():
                            relwidth=1,
                            relheight=1)
         
-        insercao.rowconfigure([0, 2, 7], weight=1)
-        insercao.rowconfigure([1, 3, 6], weight=2)
-        insercao.rowconfigure(4, weight=3)
-        insercao.rowconfigure(5, weight=8)
-        insercao.columnconfigure([0, 4], weight=1)
-        insercao.columnconfigure(1, weight=4)
-        insercao.columnconfigure(2, weight=5)
-        insercao.columnconfigure(3, weight=9)
+        insercao.rowconfigure([1, 11], weight=1)
+        insercao.rowconfigure([0, 2, 4, 3, 5, 6, 7, 8], weight=2)
+        insercao.rowconfigure(10, weight=4)
+        insercao.rowconfigure(9, weight=11)
+        insercao.columnconfigure([1, 7], weight=1)
+        insercao.columnconfigure(3, weight=2)
+        insercao.columnconfigure([2, 4, 5], weight=3)
+        insercao.columnconfigure([0, 6], weight=4)
+
         
         voltarMenu = tk.Button(insercao,
                                text="Voltar ao Menu")
+    
+        frameApelido = tk.Frame(insercao, background='pink')
+        frameApelido.grid(row=0,
+                        column=2,
+                        columnspan=5,
+                        sticky='ns',
+                        pady=(30, 0))
+        apelido = tk.Label(frameApelido,
+                           text="Apelido",
+                           font=('Yu Gothic UI Semibold', 16))
+        apelido_E = tk.Entry(frameApelido,
+                             width=40,
+                             font=('Yu Gothic UI Semibold', 16))
         
-        apelido = tk.Label(insercao, text="Apelido")
-        apelido_E = tk.Entry(insercao, width=100)
+        frameNivel = tk.Frame(insercao, background='darkblue')
+        frameNivel.grid(row=0,
+                        column=7,
+                        sticky='nse',
+                        padx=(0, 60),
+                        pady=(30, 0))
+        nivel = tk.Label(frameNivel,
+                         text="Nível",
+                         font=('Yu Gothic UI Semibold', 16))
+        nivel_E = tk.Entry(frameNivel,
+                           width=3,
+                           font=('Yu Gothic UI Semibold', 16))
         
-        nivel = tk.Label(insercao, text="Nível")
-        nivel_E = tk.Entry(insercao)
+        frameNome = tk.Frame(insercao, background='yellow')
+        frameNome.grid(row=1,
+                        column=4,
+                        columnspan=6,
+                        sticky='nse',
+                        padx=(0, 60))
+        nome = tk.Label(frameNome,
+                        text="Nome",
+                        font=('Yu Gothic UI Semibold', 16))
+        nome_E = tk.Entry(frameNome,
+                          width=12,
+                          font=('Yu Gothic UI Semibold', 16))
         
-        nome = tk.Label(insercao, text="Nome")
-        nome_E = tk.Entry(insercao)
+        frameTipoUm = tk.Frame(insercao, background='blue')
+        frameTipoUm.grid(row=2,
+                        column=0,
+                        sticky='nw',
+                        padx=(60, 0))
+        tipoUm = tk.Label(frameTipoUm,
+                          text="Tipo 1",
+                          font=('Yu Gothic UI Semibold', 16))
+        tipoUm_CB = tk.Entry(frameTipoUm, width=8) #* Combobox
         
-        tipoUm = tk.Label(insercao, text="Tipo 1")
-        tipoUm_E = tk.Entry(insercao)
+        frameTipoDois = tk.Frame(insercao, background='darkblue')
         
-        tipoDois = tk.Label(insercao, text="Tipo 2")
-        tipoDois_E = tk.Entry(insercao)
+        tipoDois = tk.Label(frameTipoDois,
+                            text="Tipo 2",
+                            font=('Yu Gothic UI Semibold', 16))
+        tipoDois_CB = tk.Entry(frameTipoDois, width=8) #* Combobox
+        frameTipoDois.grid(row=3,
+                        column=0,
+                        sticky='nw',
+                        padx=(60, 0))
+        frameGenero = tk.Frame(insercao, background='red')
+        frameGenero.grid(row=2,
+                         column=1, #!funciona com a coluna 1
+                         rowspan=3,
+                         columnspan=2,
+                         sticky='nw')
+        genero = tk.Label(frameGenero,
+                          text="Gênero",
+                          font=('Yu Gothic UI Semibold', 16))
+        genero_CB = tk.Entry(frameGenero, width=9) #* Combobox
         
-        genero = tk.Label(insercao, text="Gênero")
-        genero_CB = tk.Entry(insercao) #* Combobox
+        frameNomeHabilidade = tk.Frame(insercao, background='grey')
+        frameNomeHabilidade.grid(row=2,
+                        column=4,
+                        columnspan=6,
+                        sticky='nsew',
+                        padx=(0, 60))
+        nomeHabilidade = tk.Label(frameNomeHabilidade,
+                                  text="Nome da Habilidade",
+                                  font=('Yu Gothic UI Semibold', 16))
+        nomeHabilidade_E = tk.Entry(frameNomeHabilidade,
+                                    width=30,
+                                    font=('Yu Gothic UI Semibold', 16))
         
-        nomeHabilidade = tk.Label(insercao,
-                                  text="Nome da Habilidade")
-        nomeHabilidade_E = tk.Entry(insercao)
+        frameItem = tk.Frame(insercao, background='pink')
+        frameItem.grid(row=4,
+                    column=0,
+                    columnspan=2,
+                    sticky='nwe',
+                    padx=(60, 0))
+        item = tk.Label(frameItem,
+                        text="Item",
+                        font=('Yu Gothic UI Semibold', 16))
+        item_E = tk.Entry(frameItem,
+                          width=16,
+                          font=('Yu Gothic UI Semibold', 16))
         
-        item = tk.Label(insercao, text="Item")
-        item_E = tk.Entry(insercao)
+        frameNatureza = tk.Frame(insercao, background='grey')
+        frameNatureza.grid(row=5,
+                        column=0,
+                        columnspan=2,
+                        sticky='nwe',
+                        padx=(60, 0))
+        natureza = tk.Label(frameNatureza,
+                            text="Natureza",
+                            font=('Yu Gothic UI Semibold', 16))
+        natureza_CB = tk.Entry(frameNatureza, width=30) #* Combobox
         
-        natureza = tk.Label(insercao, text="Natureza")
-        natureza_CB = tk.Entry(insercao) #* Combobox
+        frameDescHabilidade = tk.Frame(insercao, background='lightgreen')
+        frameDescHabilidade.grid(row=3,
+                                 column=4,
+                                 rowspan=4,
+                                 columnspan=6,
+                                 sticky='nsew',
+                                 padx=(0, 60))
+        descHabilidade = tk.Label(frameDescHabilidade,
+                                  text="Descrição da Habilidade",
+                                  font=('Yu Gothic UI Semibold', 16))
+        descHabilidade_Txt = tk.Text(frameDescHabilidade,
+                                     width=64,
+                                     height=4,
+                                     font=('Yu Gothic UI Semibold', 15)) #? Text entry
         
-        descHabilidade = tk.Label(insercao,
-                                  text="Descrição da Habilidade")
-        descHabilidade_Txt = tk.Entry(insercao) #? Text entry
+        framePoder = tk.Frame(insercao, background='yellow')
+        framePoder.grid(row=6,
+                        column=0,
+                        columnspan=2,
+                        sticky='nwe',
+                        padx=(60, 0))
+        nomePoder = tk.Label(framePoder,
+                             text="Nome do Poder",
+                             font=('Yu Gothic UI Semibold', 16))
+        nomePoder_E = tk.Entry(framePoder,
+                               width=16,
+                               font=('Yu Gothic UI Semibold', 16))
         
-        nomePoder = tk.Label(insercao, text="Nome do Poder")
-        nomePoder_E = tk.Entry(insercao)
+        framePoderStats = tk.Frame(insercao, background='red')
+        framePoderStats.grid(row=7,
+                        column=0,
+                        columnspan=2,
+                        sticky='nsew',
+                        padx=(60, 0))
+        danoPoder = tk.Label(framePoderStats,
+                             text="Dano",
+                             font=('Yu Gothic UI Semibold', 16))
+        danoPoder_E = tk.Entry(framePoderStats,
+                               width=3,
+                               font=('Yu Gothic UI Semibold', 16))
+        '''
+        frameTipoPoder = tk.Frame(insercao, background='grey')
+        frameTipoPoder.grid(row=7,
+                        column=1,
+                        sticky='nsew')'''
+        tipoPoder = tk.Label(framePoderStats,
+                             text="Tipo",
+                             font=('Yu Gothic UI Semibold', 16))
+        tipoPoder_CB = tk.Entry(framePoderStats, width=8) #? Combobox
         
-        danoPoder = tk.Label(insercao, text="Dano")
-        danoPoder_E = tk.Entry(insercao)
+        '''framePoderPP = tk.Frame(insercao, background='black')
+        framePoderPP.grid(row=7,
+                        column=2,
+                        sticky='nsew')'''
+        pp = tk.Label(framePoderStats,
+                      text="PP",
+                      font=('Yu Gothic UI Semibold', 16))
+        pp_E = tk.Entry(framePoderStats,
+                        width=2,
+                        font=('Yu Gothic UI Semibold', 16))
         
-        tipoPoder = tk.Label(insercao, text="Tipo")
-        tipoPoder_E = tk.Entry(insercao)
+        frameTipoDanoPoder = tk.Frame(insercao, background='green')
+        frameTipoDanoPoder.grid(row=8,
+                        column=0,
+                        columnspan=2,
+                        sticky='nsew',
+                        padx=(60, 0))
+        tipoDeDano = tk.Label(frameTipoDanoPoder,
+                              text="ATK ou SP.ATK",
+                              font=('Yu Gothic UI Semibold', 16))
+        tipoDeDano_CB = tk.Entry(frameTipoDanoPoder, width=6) #* Combobox
         
-        pp = tk.Label(insercao, text="PP")
-        pp_E = tk.Entry(insercao)
+        frameDescPoder = tk.Frame(insercao, background='blue')
+        frameDescPoder.grid(row=9,
+                        column=0,
+                        columnspan=2,
+                        sticky='nsew',
+                        padx=(60, 0))
+        descPoder = tk.Label(frameDescPoder,
+                             text="Descrição e Observações do Poder",
+                             font=('Yu Gothic UI Semibold', 16))
+        descPoder_Txt = tk.Text(frameDescPoder,
+                                width=50,
+                                height=7,
+                                font=('Yu Gothic UI Semibold', 15)) #? Text entry
         
-        tipoDeDano = tk.Label(insercao, text="ATK ou SP.ATK")
-        tipoDeDano_CB = tk.Entry(insercao) #* Combobox
+        frameTags = tk.Frame(insercao, background='pink')
+        frameTags.grid(row=10,
+                       column=0,
+                       columnspan=1,
+                       sticky='nse',
+                       pady=(0, 30))
+        tags = tk.Label(frameTags,
+                        text="Tags",
+                        font=('Yu Gothic UI Semibold', 16))
+        tags_CB = tk.Entry(frameTags, width=30)
         
-        descPoder = tk.Label(insercao,
-                             text="Descrição e Observações do Poder")
-        descPoder_Txt = tk.Entry(insercao) #? Text entry
         
-        tags = tk.Label(insercao, text="Tags")
-        tags_CB = tk.Entry(insercao)
-        salvarInfo_E = tk.Button(insercao,
-                               text="Salvar Informações")
+        frameStats = tk.Frame(insercao, background='pink')
+        frameStats.grid(row=5,
+                        column=3,
+                        rowspan=9,
+                        columnspan=6,
+                        sticky='nw')
         
         iv = tk.Label(insercao, text="IV's")
         ev = tk.Label(insercao, text="EV's")
@@ -215,17 +372,75 @@ class View():
         spdIV_E = tk.Entry(insercao)
         spdEV_E = tk.Entry(insercao)
         
+        frameSalvar = tk.Frame(insercao, background='yellow')
+        frameSalvar.grid(row=10,
+                        column=5,
+                        columnspan=6,
+                        sticky='nsw',
+                        pady=(0, 30))
+        salvarInfo = tk.Button(frameSalvar,
+                               text="Salvar Informações")
         
-        voltarMenu.grid(row=1,
-                        column=1,
-                        sticky='nw')
-        apelido.grid(row=1,
-                     column=2,
-                     sticky='nw')
-        apelido_E.grid(row=1,
-                       column=2,
-                       columnspan=3,
-                       sticky='nw')
+        voltarMenu.grid(row=0,
+                        column=0,
+                        columnspan=1,
+                        sticky='nsw',
+                        padx=(60, 0),
+                        pady=(30, 0))
+        
+        apelido.pack(side='left', anchor='nw')
+        apelido_E.pack(side='left', anchor='nw')
+        
+        nivel.pack(side='left', anchor='ne')
+        nivel_E.pack(side='left', anchor='ne')
+        
+        nome.pack(side='left', anchor='ne')
+        nome_E.pack(side='left', anchor='ne')
+        
+        tipoUm.pack(side='left', anchor='w')
+        tipoUm_CB.pack(side='left', anchor='w')
+        tipoDois.pack(side='left', anchor='w')
+        tipoDois_CB.pack(side='left', anchor='w')
+        
+        genero.pack(side='top', anchor='nw')
+        genero_CB.pack(side='top', anchor='nw')
+        
+        nomeHabilidade.pack(side='left', anchor='ne')
+        nomeHabilidade_E.pack(side='left', anchor='ne')
+        
+        item.pack(side='left', anchor='w')
+        item_E.pack(side='left', anchor='w')
+        
+        natureza.pack(side='left', anchor='w')
+        natureza_CB.pack(side='left', anchor='w')
+        
+        descHabilidade.pack(side='top', anchor='center')
+        descHabilidade_Txt.pack(side='top', anchor='center')
+        
+        nomePoder.pack(side='left', anchor='nw')
+        nomePoder_E.pack(side='left', anchor='nw')
+        
+        danoPoder.pack(side='left', anchor='nw')
+        danoPoder_E.pack(side='left', anchor='nw')
+        
+        tipoPoder.pack(side='left', anchor='nw')
+        tipoPoder_CB.pack(side='left', anchor='nw')
+        
+        pp.pack(side='left', anchor='nw')
+        pp_E.pack(side='left', anchor='nw')
+        
+        tipoDeDano.pack(side='left', anchor='nw')
+        tipoDeDano_CB.pack(side='left', anchor='nw')
+        
+        descPoder.pack(side='top', anchor='center')
+        descPoder_Txt.pack(side='top', anchor='center')
+        
+        tags.pack(side='left', anchor='nw')
+        tags_CB.pack(side='left', anchor='nw')
+        
+        
+        
+        salvarInfo.pack(anchor='se')
         
         return insercao
     

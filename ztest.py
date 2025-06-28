@@ -1,17 +1,12 @@
 import tkinter as tk
 
-root = tk.Tk()
-root.wm_title("Title:D")
+class MyApp():
+    def __init__(self):
+        self.root = tk.Tk()
+        l1 = tk.Label(self.root, text="Hello")
+        l2 = tk.Label(self.root, text="World")
+        l1.grid(row=0, column=0, padx=(100, 10))
+        l2.grid(row=1, column=0, padx=(10, 100)) 
 
-root.columnconfigure([0, 2], weight=1)
-root.columnconfigure(1, weight=4)
-root.rowconfigure([0, 1, 2], weight=1)
-
-f = tk.Frame(root)
-f.grid(row=0, column=0, columnspan=2)
-
-a = tk.Label(f, text='ablulbe')
-a.pack(side='top')
-ab = tk.Entry(f)
-ab.pack(side='right')
-root.mainloop()
+app = MyApp()
+app.root.mainloop()
