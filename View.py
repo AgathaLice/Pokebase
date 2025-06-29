@@ -114,276 +114,373 @@ class View():
                            relwidth=1,
                            relheight=1)
         
-        insercao.rowconfigure([1, 11], weight=1)
-        insercao.rowconfigure([0, 2, 4, 3, 5, 6, 7, 8], weight=2)
-        insercao.rowconfigure(10, weight=4)
-        insercao.rowconfigure(9, weight=11)
-        insercao.columnconfigure([1, 7], weight=1)
-        insercao.columnconfigure(3, weight=2)
-        insercao.columnconfigure([2, 4, 5], weight=3)
-        insercao.columnconfigure([0, 6], weight=4)
-
+        insercao.rowconfigure([0, 1, 2, 3, 4,
+                               5, 6, 7, 8, 9,
+                               10, 11, 12, 13,
+                               14, 15, 16, 17,
+                               18],
+                              weight=1)
+        insercao.rowconfigure(19, weight=2)
+        insercao.columnconfigure(0, weight=9)
+        insercao.columnconfigure(1, weight=11)
         
         voltarMenu = tk.Button(insercao,
                                text="Voltar ao Menu")
     
+        infoSize = 20
+        
         frameApelido = tk.Frame(insercao, background='pink')
         frameApelido.grid(row=0,
-                        column=2,
-                        columnspan=5,
-                        sticky='ns',
+                        column=1,
+                        sticky='nw',
                         pady=(30, 0))
         apelido = tk.Label(frameApelido,
                            text="Apelido",
-                           font=('Yu Gothic UI Semibold', 16))
+                           font=('Yu Gothic UI Semibold', infoSize))
         apelido_E = tk.Entry(frameApelido,
                              width=40,
-                             font=('Yu Gothic UI Semibold', 16))
+                             font=('Yu Gothic UI Semibold', infoSize))
         
         frameNivel = tk.Frame(insercao, background='darkblue')
         frameNivel.grid(row=0,
-                        column=7,
-                        sticky='nse',
+                        column=1,
+                        sticky='ne',
                         padx=(0, 60),
                         pady=(30, 0))
         nivel = tk.Label(frameNivel,
                          text="Nível",
-                         font=('Yu Gothic UI Semibold', 16))
+                         font=('Yu Gothic UI Semibold', infoSize))
         nivel_E = tk.Entry(frameNivel,
                            width=3,
-                           font=('Yu Gothic UI Semibold', 16))
+                           font=('Yu Gothic UI Semibold', infoSize))
+        
+        frameGenero = tk.Frame(insercao, background='red')
+        frameGenero.grid(row=1,
+                         column=0,
+                         sticky='ne',
+                         padx=50)
+        genero = tk.Label(frameGenero,
+                          text="Gênero",
+                          font=('Yu Gothic UI Semibold', infoSize))
+        genero_CB = tk.Entry(frameGenero, width=9) #* Combobox
         
         frameNome = tk.Frame(insercao, background='yellow')
-        frameNome.grid(row=1,
-                        column=4,
-                        columnspan=6,
-                        sticky='nse',
-                        padx=(0, 60))
+        frameNome.grid(row=2,
+                       column=0,
+                       sticky='ne',
+                       padx=50)
         nome = tk.Label(frameNome,
                         text="Nome",
-                        font=('Yu Gothic UI Semibold', 16))
+                        font=('Yu Gothic UI Semibold', infoSize))
         nome_E = tk.Entry(frameNome,
                           width=12,
-                          font=('Yu Gothic UI Semibold', 16))
+                          font=('Yu Gothic UI Semibold', infoSize))
         
         frameTipoUm = tk.Frame(insercao, background='blue')
-        frameTipoUm.grid(row=2,
+        frameTipoUm.grid(row=1,
                         column=0,
                         sticky='nw',
                         padx=(60, 0))
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
-                          font=('Yu Gothic UI Semibold', 16))
+                          font=('Yu Gothic UI Semibold', infoSize))
         tipoUm_CB = tk.Entry(frameTipoUm, width=8) #* Combobox
         
         frameTipoDois = tk.Frame(insercao, background='darkblue')
         
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
-                            font=('Yu Gothic UI Semibold', 16))
+                            font=('Yu Gothic UI Semibold', infoSize))
         tipoDois_CB = tk.Entry(frameTipoDois, width=8) #* Combobox
-        frameTipoDois.grid(row=3,
+        frameTipoDois.grid(row=2,
                         column=0,
                         sticky='nw',
                         padx=(60, 0))
-        frameGenero = tk.Frame(insercao, background='red')
-        frameGenero.grid(row=2,
-                         column=1, #!funciona com a coluna 1
-                         rowspan=3,
-                         columnspan=2,
-                         sticky='nw')
-        genero = tk.Label(frameGenero,
-                          text="Gênero",
-                          font=('Yu Gothic UI Semibold', 16))
-        genero_CB = tk.Entry(frameGenero, width=9) #* Combobox
         
         frameNomeHabilidade = tk.Frame(insercao, background='grey')
-        frameNomeHabilidade.grid(row=2,
-                        column=4,
-                        columnspan=6,
-                        sticky='nsew',
-                        padx=(0, 60))
+        frameNomeHabilidade.grid(row=1,
+                                 column=1,
+                                 sticky='nw',
+                                 padx=(0, 60))
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
-                                  font=('Yu Gothic UI Semibold', 16))
+                                  font=('Yu Gothic UI Semibold', infoSize))
         nomeHabilidade_E = tk.Entry(frameNomeHabilidade,
                                     width=30,
-                                    font=('Yu Gothic UI Semibold', 16))
+                                    font=('Yu Gothic UI Semibold', infoSize))
         
         frameItem = tk.Frame(insercao, background='pink')
-        frameItem.grid(row=4,
-                    column=0,
-                    columnspan=2,
-                    sticky='nwe',
-                    padx=(60, 0))
+        frameItem.grid(row=3,
+                       column=0,
+                       sticky='nw',
+                       padx=(60, 0))
         item = tk.Label(frameItem,
                         text="Item",
-                        font=('Yu Gothic UI Semibold', 16))
+                        font=('Yu Gothic UI Semibold', infoSize))
         item_E = tk.Entry(frameItem,
                           width=16,
-                          font=('Yu Gothic UI Semibold', 16))
+                          font=('Yu Gothic UI Semibold', infoSize))
         
         frameNatureza = tk.Frame(insercao, background='grey')
-        frameNatureza.grid(row=5,
-                        column=0,
-                        columnspan=2,
-                        sticky='nwe',
-                        padx=(60, 0))
+        frameNatureza.grid(row=4,
+                           column=0,
+                           sticky='nw',
+                           padx=(60, 0))
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
-                            font=('Yu Gothic UI Semibold', 16))
+                            font=('Yu Gothic UI Semibold', infoSize))
         natureza_CB = tk.Entry(frameNatureza, width=30) #* Combobox
         
         frameDescHabilidade = tk.Frame(insercao, background='lightgreen')
-        frameDescHabilidade.grid(row=3,
-                                 column=4,
-                                 rowspan=4,
-                                 columnspan=6,
-                                 sticky='nsew',
+        frameDescHabilidade.grid(row=2,
+                                 column=1,
+                                 rowspan=3,
                                  padx=(0, 60))
         descHabilidade = tk.Label(frameDescHabilidade,
                                   text="Descrição da Habilidade",
-                                  font=('Yu Gothic UI Semibold', 16))
+                                  font=('Yu Gothic UI Semibold', infoSize))
         descHabilidade_Txt = tk.Text(frameDescHabilidade,
-                                     width=64,
+                                     width=110,
                                      height=4,
-                                     font=('Yu Gothic UI Semibold', 15)) #? Text entry
+                                     font=('Yu Gothic UI Semibold', 10)) #? Text entry
         
         framePoder = tk.Frame(insercao, background='yellow')
-        framePoder.grid(row=6,
+        framePoder.grid(row=5,
                         column=0,
-                        columnspan=2,
-                        sticky='nwe',
+                        sticky='nw',
                         padx=(60, 0))
         nomePoder = tk.Label(framePoder,
                              text="Nome do Poder",
-                             font=('Yu Gothic UI Semibold', 16))
+                             font=('Yu Gothic UI Semibold', infoSize))
         nomePoder_E = tk.Entry(framePoder,
                                width=16,
-                               font=('Yu Gothic UI Semibold', 16))
+                               font=('Yu Gothic UI Semibold', infoSize))
         
         framePoderStats = tk.Frame(insercao, background='red')
-        framePoderStats.grid(row=7,
-                        column=0,
-                        columnspan=2,
-                        sticky='nsew',
-                        padx=(60, 0))
+        framePoderStats.grid(row=6,
+                             column=0,
+                             sticky='nw',
+                             padx=(60, 0))
         danoPoder = tk.Label(framePoderStats,
                              text="Dano",
-                             font=('Yu Gothic UI Semibold', 16))
+                             font=('Yu Gothic UI Semibold', infoSize))
         danoPoder_E = tk.Entry(framePoderStats,
                                width=3,
-                               font=('Yu Gothic UI Semibold', 16))
-        '''
-        frameTipoPoder = tk.Frame(insercao, background='grey')
-        frameTipoPoder.grid(row=7,
-                        column=1,
-                        sticky='nsew')'''
+                               font=('Yu Gothic UI Semibold', infoSize))
+        
         tipoPoder = tk.Label(framePoderStats,
                              text="Tipo",
-                             font=('Yu Gothic UI Semibold', 16))
+                             font=('Yu Gothic UI Semibold', infoSize))
         tipoPoder_CB = tk.Entry(framePoderStats, width=8) #? Combobox
         
-        '''framePoderPP = tk.Frame(insercao, background='black')
-        framePoderPP.grid(row=7,
-                        column=2,
-                        sticky='nsew')'''
         pp = tk.Label(framePoderStats,
                       text="PP",
-                      font=('Yu Gothic UI Semibold', 16))
+                      font=('Yu Gothic UI Semibold', infoSize))
         pp_E = tk.Entry(framePoderStats,
                         width=2,
-                        font=('Yu Gothic UI Semibold', 16))
+                        font=('Yu Gothic UI Semibold', infoSize))
         
         frameTipoDanoPoder = tk.Frame(insercao, background='green')
-        frameTipoDanoPoder.grid(row=8,
-                        column=0,
-                        columnspan=2,
-                        sticky='nsew',
-                        padx=(60, 0))
+        frameTipoDanoPoder.grid(row=7,
+                                column=0,
+                                sticky='nw',
+                                padx=(60, 0))
         tipoDeDano = tk.Label(frameTipoDanoPoder,
                               text="ATK ou SP.ATK",
-                              font=('Yu Gothic UI Semibold', 16))
+                              font=('Yu Gothic UI Semibold', infoSize))
         tipoDeDano_CB = tk.Entry(frameTipoDanoPoder, width=6) #* Combobox
         
         frameDescPoder = tk.Frame(insercao, background='blue')
-        frameDescPoder.grid(row=9,
-                        column=0,
-                        columnspan=2,
-                        sticky='nsew',
-                        padx=(60, 0))
+        frameDescPoder.grid(row=8,
+                            column=0,
+                            rowspan=10,
+                            sticky='n',
+                            padx=(60, 0))
         descPoder = tk.Label(frameDescPoder,
                              text="Descrição e Observações do Poder",
-                             font=('Yu Gothic UI Semibold', 16))
+                             font=('Yu Gothic UI Semibold', infoSize))
         descPoder_Txt = tk.Text(frameDescPoder,
                                 width=50,
-                                height=7,
-                                font=('Yu Gothic UI Semibold', 15)) #? Text entry
+                                height=9,
+                                font=('Yu Gothic UI Semibold', 12)) #? Text entry
         
         frameTags = tk.Frame(insercao, background='pink')
-        frameTags.grid(row=10,
+        frameTags.grid(row=18,
                        column=0,
-                       columnspan=1,
-                       sticky='nse',
-                       pady=(0, 30))
+                       sticky='nw',
+                       pady=(0, 30),
+                       padx=(60, 0))
         tags = tk.Label(frameTags,
                         text="Tags",
-                        font=('Yu Gothic UI Semibold', 16))
+                        font=('Yu Gothic UI Semibold', infoSize))
         tags_CB = tk.Entry(frameTags, width=30)
         
         
         frameStats = tk.Frame(insercao, background='pink')
-        frameStats.grid(row=5,
-                        column=3,
-                        rowspan=9,
-                        columnspan=6,
-                        sticky='nw')
+        frameStats.grid(row=4,
+                        column=1,
+                        rowspan=19,
+                        sticky='',
+                        pady=(0, 30),
+                        padx=(0, 60))
+        frameStats.rowconfigure([0, 1, 2, 3, 4, 5, 6], weight=1)
+        frameStats.columnconfigure([0, 1], weight=3)
+        frameStats.columnconfigure([2, 3], weight=2)
         
-        iv = tk.Label(insercao, text="IV's")
-        ev = tk.Label(insercao, text="EV's")
+        statsLabelSize = 25
+        statsEntrySize = 30
         
-        hp = tk.Label(insercao, text="Pontos de Vida")
-        hp_E = tk.Entry(insercao)
-        hpIV_E = tk.Entry(insercao)
-        hpEV_E = tk.Entry(insercao)
+        iv = tk.Label(frameStats,
+                      text="IV's",
+                      font=('Yu Gothic UI Semibold', statsLabelSize))
+        ev = tk.Label(frameStats,
+                      text="EV's",
+                      font=('Yu Gothic UI Semibold', statsLabelSize))
         
-        atk = tk.Label(insercao, text="Ataque")
-        atk_E = tk.Entry(insercao)
-        atkIV_E = tk.Entry(insercao)
-        atkEV_E = tk.Entry(insercao)
         
-        defs = tk.Label(insercao, text="Defesa")
-        defs_E = tk.Entry(insercao)
-        defsIV_E = tk.Entry(insercao)
-        defsEV_E = tk.Entry(insercao)
+        hp = tk.Label(frameStats,
+                      text="Pontos de Vida",
+                      font=('Yu Gothic UI Semibold', statsLabelSize))
+        hp_E = tk.Entry(frameStats,
+                        highlightthickness=1,
+                        font=('Yu Gothic UI Semibold', statsEntrySize),
+                        width=4)
+        hp_E.configure(highlightbackground="red",
+                       highlightcolor="red")
+        hpIV_E = tk.Entry(frameStats,
+                          highlightthickness=1,
+                          font=('Yu Gothic UI Semibold', statsEntrySize),
+                          width=4)
+        hpIV_E.configure(highlightbackground="red",
+                         highlightcolor="red")
+        hpEV_E = tk.Entry(frameStats,
+                          highlightthickness=1,
+                          font=('Yu Gothic UI Semibold', statsEntrySize),
+                          width=4)
+        hpEV_E.configure(highlightbackground="red",
+                         highlightcolor="red")
         
-        spAtk = tk.Label(insercao, text="Ataque Especial")
-        spAtk_E = tk.Entry(insercao)
-        spAtkIV_E = tk.Entry(insercao)
-        spAtkEV_E = tk.Entry(insercao)
+        atk = tk.Label(frameStats,
+                       text="Ataque",
+                       font=('Yu Gothic UI Semibold', statsLabelSize))
+        atk_E = tk.Entry(frameStats,
+                         highlightthickness=1,
+                         font=('Yu Gothic UI Semibold', statsEntrySize),
+                         width=4)
+        atk_E.configure(highlightbackground="red",
+                        highlightcolor="red")
+        atkIV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        atkIV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
+        atkEV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        atkEV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
         
-        spDefs = tk.Label(insercao, text="Defesa Especial")
-        spDefs_E = tk.Entry(insercao)
-        spDefsIV_E = tk.Entry(insercao)
-        spDefsEV_E = tk.Entry(insercao)
+        defs = tk.Label(frameStats,
+                        text="Defesa",
+                        font=('Yu Gothic UI Semibold', statsLabelSize))
+        defs_E = tk.Entry(frameStats,
+                          highlightthickness=1,
+                          font=('Yu Gothic UI Semibold', statsEntrySize),
+                          width=4)
+        defs_E.configure(highlightbackground="red",
+                         highlightcolor="red")
+        defsIV_E = tk.Entry(frameStats,
+                            highlightthickness=1,
+                            font=('Yu Gothic UI Semibold', statsEntrySize),
+                            width=4)
+        defsIV_E.configure(highlightbackground="red",
+                           highlightcolor="red")
+        defsEV_E = tk.Entry(frameStats,
+                            highlightthickness=1,
+                            font=('Yu Gothic UI Semibold', statsEntrySize),
+                            width=4)
+        defsEV_E.configure(highlightbackground="red",
+                           highlightcolor="red")
         
-        spd = tk.Label(insercao, text="Velocidade")
-        spd_E = tk.Entry(insercao)
-        spdIV_E = tk.Entry(insercao)
-        spdEV_E = tk.Entry(insercao)
+        spAtk = tk.Label(frameStats,
+                         text="Ataque Especial",
+                         font=('Yu Gothic UI Semibold', statsLabelSize))
+        spAtk_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        spAtk_E.configure(highlightbackground="red",
+                          highlightcolor="red")
+        spAtkIV_E = tk.Entry(frameStats,
+                             highlightthickness=1,
+                             font=('Yu Gothic UI Semibold', statsEntrySize),
+                             width=4)
+        spAtkIV_E.configure(highlightbackground="red",
+                            highlightcolor="red")
+        spAtkEV_E = tk.Entry(frameStats,
+                             highlightthickness=1,
+                             font=('Yu Gothic UI Semibold', statsEntrySize),
+                             width=4)
+        spAtkEV_E.configure(highlightbackground="red",
+                            highlightcolor="red")
+        
+        spDefs = tk.Label(frameStats,
+                          text="Defesa Especial",
+                          font=('Yu Gothic UI Semibold', statsLabelSize))
+        spDefs_E = tk.Entry(frameStats,
+                            highlightthickness=1,
+                            font=('Yu Gothic UI Semibold', statsEntrySize),
+                            width=4)
+        spDefs_E.configure(highlightbackground="red",
+                        highlightcolor="red")
+        spDefsIV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        spDefsIV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
+        spDefsEV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        spDefsEV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
+        
+        spd = tk.Label(frameStats,
+                       text="Velocidade",
+                       font=('Yu Gothic UI Semibold', statsLabelSize))
+        spd_E = tk.Entry(frameStats,
+                         highlightthickness=1,
+                         font=('Yu Gothic UI Semibold', statsEntrySize),
+                         width=4)
+        spd_E.configure(highlightbackground="red",
+                        highlightcolor="red")
+        spdIV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        spdIV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
+        spdEV_E = tk.Entry(frameStats,
+                           highlightthickness=1,
+                           font=('Yu Gothic UI Semibold', statsEntrySize),
+                           width=4)
+        spdEV_E.configure(highlightbackground="red",
+                          highlightcolor="red")
         
         frameSalvar = tk.Frame(insercao, background='yellow')
-        frameSalvar.grid(row=10,
-                        column=5,
-                        columnspan=6,
-                        sticky='nsw',
+        frameSalvar.grid(row=19,
+                        column=0,
+                        sticky='nw',
+                        padx=(60, 0),
                         pady=(0, 30))
         salvarInfo = tk.Button(frameSalvar,
                                text="Salvar Informações")
         
         voltarMenu.grid(row=0,
                         column=0,
-                        columnspan=1,
                         sticky='nsw',
                         padx=(60, 0),
                         pady=(30, 0))
@@ -402,8 +499,8 @@ class View():
         tipoDois.pack(side='left', anchor='w')
         tipoDois_CB.pack(side='left', anchor='w')
         
-        genero.pack(side='top', anchor='nw')
-        genero_CB.pack(side='top', anchor='nw')
+        genero.pack(side='left', anchor='nw')
+        genero_CB.pack(side='left', anchor='nw')
         
         nomeHabilidade.pack(side='left', anchor='ne')
         nomeHabilidade_E.pack(side='left', anchor='ne')
@@ -438,7 +535,90 @@ class View():
         tags.pack(side='left', anchor='nw')
         tags_CB.pack(side='left', anchor='nw')
         
+        iv.grid(row=0,
+                column=2,
+                sticky='sew')
+        ev.grid(row=0,
+                column=3,
+                sticky='sew')
         
+        hp.grid(row=1,
+                column=0,
+                sticky='nsew')
+        hp_E.grid(row=1,
+                  column=1,
+                  sticky='nsew')
+        hpIV_E.grid(row=1,
+                    column=2,
+                    sticky='nsew')
+        hpEV_E.grid(row=1,
+                    column=3,
+                    sticky='nsew')
+        
+        atk.grid(row=2,
+                column=0,
+                sticky='nsew')
+        atk_E.grid(row=2,
+                  column=1,
+                  sticky='nsew')
+        atkIV_E.grid(row=2,
+                    column=2,
+                    sticky='nsew')
+        atkEV_E.grid(row=2,
+                    column=3,
+                    sticky='nsew')
+        
+        defs.grid(row=3,
+                column=0,
+                sticky='nsew')
+        defs_E.grid(row=3,
+                  column=1,
+                  sticky='nsew')
+        defsIV_E.grid(row=3,
+                    column=2,
+                    sticky='nsew')
+        defsEV_E.grid(row=3,
+                    column=3,
+                    sticky='nsew')
+        
+        spAtk.grid(row=4,
+                column=0,
+                sticky='nsew')
+        spAtk_E.grid(row=4,
+                  column=1,
+                  sticky='nsew')
+        spAtkIV_E.grid(row=4,
+                    column=2,
+                    sticky='nsew')
+        spAtkEV_E.grid(row=4,
+                    column=3,
+                    sticky='nsew')
+        
+        spDefs.grid(row=5,
+                column=0,
+                sticky='nsew')
+        spDefs_E.grid(row=5,
+                  column=1,
+                  sticky='nsew')
+        spDefsIV_E.grid(row=5,
+                    column=2,
+                    sticky='nsew')
+        spDefsEV_E.grid(row=5,
+                    column=3,
+                    sticky='nsew')
+        
+        spd.grid(row=6,
+                column=0,
+                sticky='nsew')
+        spd_E.grid(row=6,
+                  column=1,
+                  sticky='nsew')
+        spdIV_E.grid(row=6,
+                    column=2,
+                    sticky='nsew')
+        spdEV_E.grid(row=6,
+                    column=3,
+                    sticky='nsew')
         
         salvarInfo.pack(anchor='se')
         
