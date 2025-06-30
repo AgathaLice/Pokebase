@@ -121,6 +121,7 @@ class View():
                            relwidth=1,
                            relheight=1)
 
+        #TODO -> Transformar os parâmetros em um dict
         infoSize = 20
         universalFont = 'Yu Gothic UI Semibold'
         corHighlight = "red"
@@ -158,7 +159,7 @@ class View():
                            highlightcolor=corHighlight,
                            background=corLabel)
         apelido_E = tk.Entry(frameApelido,
-                             width=40,
+                             width=33,
                              font=(universalFont,
                                    infoSize),
                              highlightthickness=2,
@@ -509,8 +510,8 @@ class View():
         frameStats.columnconfigure([2, 3],
                                    weight=2)
 
-        statsLabelSize = 25
-        statsEntrySize = 30
+        statsLabelSize = 22
+        statsEntrySize = 22
 
         iv = tk.Label(frameStats,
                       text="IV's",
@@ -1460,7 +1461,7 @@ class View():
 
 
         frameStats = tk.Frame(visualizacao)
-        frameStats.grid(row=4,
+        frameStats.grid(row=5,
                         column=1,
                         rowspan=19,
                         pady=(0, 30),
@@ -1468,11 +1469,13 @@ class View():
         frameStats.rowconfigure([0, 1, 2, 3, 4, 5, 6],
                                 weight=1)
         frameStats.columnconfigure([0, 1],
-                                   weight=3)
+                                   weight=7)
         frameStats.columnconfigure([2, 3],
-                                   weight=2)
+                                   weight=3)
+        frameStats.columnconfigure(4,
+                                   weight=9)
 
-        statsLabelSize = 25
+        statsLabelSize = 22
 
         iv = tk.Label(frameStats,
                       text="IV's",
@@ -1489,7 +1492,7 @@ class View():
         hp = tk.Label(frameStats,
                       text="Pontos de Vida",
                       font=(seeFont,
-                      statsLabelSize),
+                            statsLabelSize),
                       background=seeCorLabel)
         hp_I = tk.Label(frameStats,
                         highlightthickness=1,
@@ -1509,7 +1512,6 @@ class View():
                           highlightbackground="red",
                           highlightcolor="red",
                           background=seeCorLabel)
-
         hpEV_I = tk.Label(frameStats,
                           highlightthickness=1,
                           text="<<HP EV>>",
@@ -1519,6 +1521,15 @@ class View():
                           highlightbackground="red",
                           highlightcolor="red",
                           background=seeCorLabel)
+        hpTotal = tk.Label(frameStats,
+                           highlightthickness=1,
+                           text="<TOTAL>",
+                           font=(seeFont,
+                                 statsLabelSize),
+                           width=6,
+                           highlightbackground="red",
+                           highlightcolor="red",
+                           background=seeCorLabel)
 
         atk = tk.Label(frameStats,
                        text="Ataque",
@@ -1554,6 +1565,16 @@ class View():
                            highlightbackground="red",
                            highlightcolor="red",
                            background=seeCorLabel)
+        
+        atkTotal = tk.Label(frameStats,
+                            highlightthickness=1,
+                            text="<TOTAL>",
+                            font=(seeFont,
+                                  statsLabelSize),
+                            width=6,
+                            highlightbackground="red",
+                            highlightcolor="red",
+                            background=seeCorLabel)
 
         defs = tk.Label(frameStats,
                         text="Defesa",
@@ -1589,6 +1610,16 @@ class View():
                             highlightbackground="red",
                             highlightcolor="red",
                             background=seeCorLabel)
+        
+        defsTotal = tk.Label(frameStats,
+                             highlightthickness=1,
+                             text="<TOTAL>",
+                             font=(seeFont,
+                                   statsLabelSize),
+                             width=6,
+                             highlightbackground="red",
+                             highlightcolor="red",
+                             background=seeCorLabel)
 
         spAtk = tk.Label(frameStats,
                          text="Ataque Especial",
@@ -1624,6 +1655,16 @@ class View():
                              highlightbackground="red",
                              highlightcolor="red",
                              background=seeCorLabel)
+        
+        spAtkTotal = tk.Label(frameStats,
+                              highlightthickness=1,
+                              text="<TOTAL>",
+                              font=(seeFont,
+                                    statsLabelSize),
+                              width=6,
+                              highlightbackground="red",
+                              highlightcolor="red",
+                              background=seeCorLabel)
 
         spDefs = tk.Label(frameStats,
                           text="Defesa Especial",
@@ -1659,6 +1700,16 @@ class View():
                               highlightbackground="red",
                               highlightcolor="red",
                               background=seeCorLabel)
+        
+        spDefsTotal = tk.Label(frameStats,
+                               highlightthickness=1,
+                               text="<TOTAL>",
+                               font=(seeFont,
+                                     statsLabelSize),
+                               width=6,
+                               highlightbackground="red",
+                               highlightcolor="red",
+                               background=seeCorLabel)
 
         spd = tk.Label(frameStats,
                        text="Velocidade",
@@ -1694,6 +1745,16 @@ class View():
                            highlightbackground="red",
                            highlightcolor="red",
                            background=seeCorLabel)
+        
+        spdTotal = tk.Label(frameStats,
+                            highlightthickness=1,
+                            text="<TOTAL>",
+                            font=(seeFont,
+                                  statsLabelSize),
+                            width=6,
+                            highlightbackground="red",
+                            highlightcolor="red",
+                            background=seeCorLabel)
 
         frameSalvar = tk.Frame(visualizacao)
         frameSalvar.grid(row=19,
@@ -1813,6 +1874,9 @@ class View():
         hpEV_I.grid(row=1,
                     column=3,
                     sticky='nsew')
+        hpTotal.grid(row=1,
+                     column=4,
+                     sticky='nsew')
 
         atk.grid(row=2,
                  column=0,
@@ -1826,6 +1890,9 @@ class View():
         atkEV_I.grid(row=2,
                      column=3,
                      sticky='nsew')
+        atkTotal.grid(row=2,
+                      column=4,
+                      sticky='nsew')
 
         defs.grid(row=3,
                   column=0,
@@ -1839,6 +1906,9 @@ class View():
         defsEV_I.grid(row=3,
                       column=3,
                       sticky='nsew')
+        defsTotal.grid(row=3,
+                       column=4,
+                       sticky='nsew')
 
         spAtk.grid(row=4,
                    column=0,
@@ -1852,6 +1922,9 @@ class View():
         spAtkEV_I.grid(row=4,
                        column=3,
                        sticky='nsew')
+        spAtkTotal.grid(row=4,
+                        column=4,
+                        sticky='nsew')
 
         spDefs.grid(row=5,
                     column=0,
@@ -1865,6 +1938,9 @@ class View():
         spDefsEV_I.grid(row=5,
                         column=3,
                         sticky='nsew')
+        spDefsTotal.grid(row=5,
+                         column=4,
+                         sticky='nsew')
 
         spd.grid(row=6,
                  column=0,
@@ -1878,6 +1954,9 @@ class View():
         spdEV_I.grid(row=6,
                      column=3,
                      sticky='nsew')
+        spdTotal.grid(row=6,
+                      column=4,
+                      sticky='nsew')
 
         salvarInfo.pack(anchor='se')
 
