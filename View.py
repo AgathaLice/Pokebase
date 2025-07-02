@@ -28,7 +28,7 @@ class View():
 
         self.inicia()
 
-        self.root.bind('<Escape>', self.sair)
+        self.root.bind("<Escape>", self.sair)
 
         self.root.mainloop()
 
@@ -57,7 +57,7 @@ class View():
         menu = tk.Frame(self.root)
         menu.grid(row=0,
                   column=0,
-                  sticky='nsew')
+                  sticky="nsew")
 
         self.bgLabel = tk.Label(menu,
                                 image=self.tkBg)
@@ -90,18 +90,18 @@ class View():
 
         novoPoke.grid(row=1,
                       column=1,
-                      sticky='n')
+                      sticky="n")
         ultimoPoke.grid(row=1,
                       column=1,
-                      sticky='s',
+                      sticky="s",
                       pady=125)
         listaPoke.grid(row=2,
                       column=1,
-                      sticky='n',
+                      sticky="n",
                       pady=125)
         tutorial.grid(row=2,
                       column=1,
-                      sticky='s')
+                      sticky="s")
 
         return menu
 
@@ -112,7 +112,7 @@ class View():
         insercao = tk.Frame(self.root)
         insercao.grid(row=0,
                       column=0,
-                      sticky='nsew')
+                      sticky="nsew")
 
         self.bgLabel = tk.Label(insercao,
                                 image=self.tkBg)
@@ -123,7 +123,7 @@ class View():
 
         #TODO -> Transformar os parâmetros em um dict
         infoSize = 20
-        universalFont = 'Yu Gothic UI Semibold'
+        universalFont = "Yu Gothic UI Semibold"
         corHighlight = "red"
         corLabel = "white"
 
@@ -148,7 +148,7 @@ class View():
                                 background=corLabel)
         frameApelido.grid(row=0,
                           column=1,
-                          sticky='nw',
+                          sticky="nw",
                           pady=(30, 0))
         apelido = tk.Label(frameApelido,
                            text="Apelido",
@@ -170,7 +170,7 @@ class View():
                               background=corLabel)
         frameNivel.grid(row=0,
                         column=1,
-                        sticky='ne',
+                        sticky="ne",
                         padx=(0, 60),
                         pady=(30, 0))
         nivel = tk.Label(frameNivel,
@@ -193,7 +193,7 @@ class View():
                                background=corLabel)
         frameGenero.grid(row=2,
                          column=0,
-                         sticky='ne',
+                         sticky="ne",
                          padx=30)
         genero = tk.Label(frameGenero,
                           text="Gênero",
@@ -213,7 +213,7 @@ class View():
                              background=corLabel)
         frameNome.grid(row=1,
                        column=0,
-                       sticky='ne',
+                       sticky="ne",
                        padx=30)
         nome = tk.Label(frameNome,
                         text="Nome",
@@ -235,7 +235,7 @@ class View():
                                background=corLabel)
         frameTipoUm.grid(row=1,
                          column=0,
-                         sticky='nw',
+                         sticky="nw",
                          padx=(60, 0))
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
@@ -255,7 +255,7 @@ class View():
                                  background=corLabel)
         frameTipoDois.grid(row=2,
                            column=0,
-                           sticky='nw',
+                           sticky="nw",
                            padx=(60, 0))
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
@@ -275,7 +275,7 @@ class View():
                                        background=corLabel)
         frameNomeHabilidade.grid(row=1,
                                  column=1,
-                                 sticky='nw',
+                                 sticky="nw",
                                  padx=(0, 60))
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
@@ -297,7 +297,7 @@ class View():
                              background=corLabel)
         frameItem.grid(row=3,
                        column=0,
-                       sticky='nw',
+                       sticky="nw",
                        padx=(60, 0))
         item = tk.Label(frameItem,
                         text="Item",
@@ -319,7 +319,7 @@ class View():
                                  background=corLabel)
         frameNatureza.grid(row=4,
                            column=0,
-                           sticky='nw',
+                           sticky="nw",
                            padx=(60, 0))
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
@@ -361,7 +361,7 @@ class View():
                               background=corLabel)
         framePoder.grid(row=5,
                         column=0,
-                        sticky='nw',
+                        sticky="nw",
                         padx=(60, 0))
         nomePoder = tk.Label(framePoder,
                              text="Nome do Poder",
@@ -383,7 +383,7 @@ class View():
                                    background=corLabel)
         framePoderStats.grid(row=6,
                              column=0,
-                             sticky='nw',
+                             sticky="nw",
                              padx=(60, 0))
         danoPoder = tk.Label(framePoderStats,
                              text="Dano",
@@ -435,7 +435,7 @@ class View():
                                       background=corLabel)
         frameTipoDanoPoder.grid(row=7,
                                 column=0,
-                                sticky='nw',
+                                sticky="nw",
                                 padx=(60, 0))
         tipoDeDano = tk.Label(frameTipoDanoPoder,
                               text="ATK ou SP.ATK",
@@ -456,7 +456,7 @@ class View():
         frameDescPoder.grid(row=8,
                             column=0,
                             rowspan=10,
-                            sticky='n',
+                            sticky="n",
                             padx=(60, 0))
         descPoder = tk.Label(frameDescPoder,
                              text="Descrição e Observações do Poder",
@@ -478,7 +478,7 @@ class View():
                              background=corLabel)
         frameTags.grid(row=18,
                        column=0,
-                       sticky='nw',
+                       sticky="nw",
                        pady=(0, 30),
                        padx=(60, 0))
         tags = tk.Label(frameTags,
@@ -701,7 +701,7 @@ class View():
                                background=corLabel)
         frameSalvar.grid(row=19,
                          column=0,
-                         sticky='nw',
+                         sticky="nw",
                          padx=(60, 0),
                          pady=(0, 30))
         salvarInfo = tk.Button(frameSalvar,
@@ -709,180 +709,180 @@ class View():
 
         voltarMenu.grid(row=0,
                         column=0,
-                        sticky='nw',
+                        sticky="nw",
                         padx=(60, 0),
                         pady=(30, 0))
 
-        apelido.pack(side='left',
-                     anchor='nw')
-        apelido_E.pack(side='left',
-                       anchor='nw')
+        apelido.pack(side="left",
+                     anchor="nw")
+        apelido_E.pack(side="left",
+                       anchor="nw")
 
-        nivel.pack(side='left',
-                   anchor='ne')
-        nivel_E.pack(side='left',
-                     anchor='ne')
+        nivel.pack(side="left",
+                   anchor="ne")
+        nivel_E.pack(side="left",
+                     anchor="ne")
 
-        nome.pack(side='left',
-                  anchor='ne')
-        nome_E.pack(side='left',
-                    anchor='ne')
+        nome.pack(side="left",
+                  anchor="ne")
+        nome_E.pack(side="left",
+                    anchor="ne")
 
-        tipoUm.pack(side='left',
-                    anchor='w')
-        tipoUm_CB.pack(side='left',
-                       anchor='w')
-        tipoDois.pack(side='left',
-                      anchor='w')
-        tipoDois_CB.pack(side='left',
-                         anchor='w')
+        tipoUm.pack(side="left",
+                    anchor="w")
+        tipoUm_CB.pack(side="left",
+                       anchor="w")
+        tipoDois.pack(side="left",
+                      anchor="w")
+        tipoDois_CB.pack(side="left",
+                         anchor="w")
 
-        genero.pack(side='left',
-                    anchor='nw')
-        genero_CB.pack(side='left',
-                       anchor='nw')
+        genero.pack(side="left",
+                    anchor="nw")
+        genero_CB.pack(side="left",
+                       anchor="nw")
 
-        nomeHabilidade.pack(side='left',
-                            anchor='ne')
-        nomeHabilidade_E.pack(side='left',
-                              anchor='ne')
+        nomeHabilidade.pack(side="left",
+                            anchor="ne")
+        nomeHabilidade_E.pack(side="left",
+                              anchor="ne")
 
-        item.pack(side='left',
-                  anchor='w')
-        item_E.pack(side='left',
-                    anchor='w')
+        item.pack(side="left",
+                  anchor="w")
+        item_E.pack(side="left",
+                    anchor="w")
 
-        natureza.pack(side='left',
-                      anchor='w')
-        natureza_CB.pack(side='left',
-                         anchor='w')
+        natureza.pack(side="left",
+                      anchor="w")
+        natureza_CB.pack(side="left",
+                         anchor="w")
 
-        descHabilidade.pack(side='top',
-                            anchor='center')
-        descHabilidade_Txt.pack(side='top',
-                                anchor='center')
+        descHabilidade.pack(side="top",
+                            anchor="center")
+        descHabilidade_Txt.pack(side="top",
+                                anchor="center")
 
-        nomePoder.pack(side='left',
-                       anchor='nw')
-        nomePoder_E.pack(side='left',
-                         anchor='nw')
+        nomePoder.pack(side="left",
+                       anchor="nw")
+        nomePoder_E.pack(side="left",
+                         anchor="nw")
 
-        danoPoder.pack(side='left',
-                       anchor='nw')
-        danoPoder_E.pack(side='left',
-                         anchor='nw')
+        danoPoder.pack(side="left",
+                       anchor="nw")
+        danoPoder_E.pack(side="left",
+                         anchor="nw")
 
-        tipoPoder.pack(side='left',
-                       anchor='nw')
-        tipoPoder_CB.pack(side='left',
-                          anchor='nw')
+        tipoPoder.pack(side="left",
+                       anchor="nw")
+        tipoPoder_CB.pack(side="left",
+                          anchor="nw")
 
-        pp.pack(side='left',
-                anchor='nw')
-        pp_E.pack(side='left',
-                  anchor='nw')
+        pp.pack(side="left",
+                anchor="nw")
+        pp_E.pack(side="left",
+                  anchor="nw")
 
-        tipoDeDano.pack(side='left',
-                        anchor='nw')
-        tipoDeDano_CB.pack(side='left',
-                           anchor='nw')
+        tipoDeDano.pack(side="left",
+                        anchor="nw")
+        tipoDeDano_CB.pack(side="left",
+                           anchor="nw")
 
-        descPoder.pack(side='top',
-                       anchor='center')
-        descPoder_Txt.pack(side='top',
-                           anchor='center')
+        descPoder.pack(side="top",
+                       anchor="center")
+        descPoder_Txt.pack(side="top",
+                           anchor="center")
 
-        tags.pack(side='left',
-                  anchor='nw')
-        tags_CB.pack(side='left',
-                     anchor='nw')
+        tags.pack(side="left",
+                  anchor="nw")
+        tags_CB.pack(side="left",
+                     anchor="nw")
 
         iv.grid(row=0,
                 column=2,
-                sticky='sew')
+                sticky="sew")
         ev.grid(row=0,
                 column=3,
-                sticky='sew')
+                sticky="sew")
 
         hp.grid(row=1,
                 column=0,
-                sticky='nsew')
+                sticky="nsew")
         hp_E.grid(row=1,
                   column=1,
-                  sticky='nsew')
+                  sticky="nsew")
         hpIV_E.grid(row=1,
                     column=2,
-                    sticky='nsew')
+                    sticky="nsew")
         hpEV_E.grid(row=1,
                     column=3,
-                    sticky='nsew')
+                    sticky="nsew")
 
         atk.grid(row=2,
                  column=0,
-                 sticky='nsew')
+                 sticky="nsew")
         atk_E.grid(row=2,
                    column=1,
-                   sticky='nsew')
+                   sticky="nsew")
         atkIV_E.grid(row=2,
                      column=2,
-                     sticky='nsew')
+                     sticky="nsew")
         atkEV_E.grid(row=2,
                      column=3,
-                     sticky='nsew')
+                     sticky="nsew")
 
         defs.grid(row=3,
                   column=0,
-                  sticky='nsew')
+                  sticky="nsew")
         defs_E.grid(row=3,
                     column=1,
-                    sticky='nsew')
+                    sticky="nsew")
         defsIV_E.grid(row=3,
                       column=2,
-                      sticky='nsew')
+                      sticky="nsew")
         defsEV_E.grid(row=3,
                       column=3,
-                      sticky='nsew')
+                      sticky="nsew")
 
         spAtk.grid(row=4,
                    column=0,
-                   sticky='nsew')
+                   sticky="nsew")
         spAtk_E.grid(row=4,
                      column=1,
-                     sticky='nsew')
+                     sticky="nsew")
         spAtkIV_E.grid(row=4,
                        column=2,
-                       sticky='nsew')
+                       sticky="nsew")
         spAtkEV_E.grid(row=4,
                        column=3,
-                       sticky='nsew')
+                       sticky="nsew")
 
         spDefs.grid(row=5,
                     column=0,
-                    sticky='nsew')
+                    sticky="nsew")
         spDefs_E.grid(row=5,
                       column=1,
-                      sticky='nsew')
+                      sticky="nsew")
         spDefsIV_E.grid(row=5,
                         column=2,
-                        sticky='nsew')
+                        sticky="nsew")
         spDefsEV_E.grid(row=5,
                         column=3,
-                        sticky='nsew')
+                        sticky="nsew")
 
         spd.grid(row=6,
                  column=0,
-                 sticky='nsew')
+                 sticky="nsew")
         spd_E.grid(row=6,
                    column=1,
-                   sticky='nsew')
+                   sticky="nsew")
         spdIV_E.grid(row=6,
                      column=2,
-                     sticky='nsew')
+                     sticky="nsew")
         spdEV_E.grid(row=6,
                      column=3,
-                     sticky='nsew')
+                     sticky="nsew")
 
-        salvarInfo.pack(anchor='se')
+        salvarInfo.pack(anchor="se")
 
         return insercao
 
@@ -891,7 +891,7 @@ class View():
         listagem = tk.Frame(self.root)
         listagem.grid(row=0,
                   column=0,
-                  sticky='nsew')
+                  sticky="nsew")
 
         self.bgLabel = tk.Label(listagem,
                                 image=self.tkBg)
@@ -916,63 +916,63 @@ class View():
                                  weight=3)
 
         labelFontSize = 20
-        labelFont = 'Yu Gothic UI Semibold'
-        labelBg = 'white'
+        labelFont = "Yu Gothic UI Semibold"
+        labelBg = "white"
 
         nomePokeFrame = tk.Frame(listagem,
                                  background=labelBg)
         nomePokeFrame.grid(row=0,
                            column=0,
-                           sticky='nsew')
+                           sticky="nsew")
         nomePokeLabel = tk.Label(nomePokeFrame,
                                  text="Nome do Pokémon",
                                  font=(labelFont,
                                        labelFontSize),
                                  background=labelBg,
-                                 justify='center')
+                                 justify="center")
         nomePokeEntry = tk.Entry(nomePokeFrame,
                                  width=12,
                                  font=(labelFont,
                                        labelFontSize),
-                                 justify='center')
-        nomePokeLabel.pack(side='top')
-        nomePokeEntry.pack(side='top')
+                                 justify="center")
+        nomePokeLabel.pack(side="top")
+        nomePokeEntry.pack(side="top")
 
         apelidoPokeFrame = tk.Frame(listagem,
                                     background=labelBg)
         apelidoPokeFrame.grid(row=0,
                               column=1,
-                              sticky='nsew')
+                              sticky="nsew")
         apelidoPokeLabel = tk.Label(apelidoPokeFrame,
                                     text="Apelido do Pokémon",
                                     font=(labelFont,
                                           labelFontSize),
                                     background=labelBg,
-                                    justify='center')
+                                    justify="center")
         apelidoPokeEntry = tk.Entry(apelidoPokeFrame,
                                     width=40,
                                     font=(labelFont,
                                           labelFontSize),
-                                    justify='center')
-        apelidoPokeLabel.pack(side='top')
-        apelidoPokeEntry.pack(side='top')
+                                    justify="center")
+        apelidoPokeLabel.pack(side="top")
+        apelidoPokeEntry.pack(side="top")
 
         tagsPoke = ttk.Combobox(listagem,
                                 font=(labelFont,
                                       labelFontSize),
                                 state="readonly",
-                                justify='center')
+                                justify="center")
         tagsPoke.set(value="Tags")
         tagsPoke.grid(row=0,
                       column=2,
-                      sticky='nsew')
+                      sticky="nsew")
         #! Listagem dos Pokémons
         listaPokes = tk.Frame(listagem,
-                              background='black')
+                              background="black")
         listaPokes.grid(row=1,
                         column=0,
                         columnspan=3,
-                        sticky='nsew')
+                        sticky="nsew")
 
         listaPokes.columnconfigure(0,
                                    weight=13)
@@ -990,33 +990,33 @@ class View():
         for pokemon in pokemonsExemplo:
             nomePokeLista = tk.Label(listaPokes,
                                      text=pokemon[0],
-                                     justify='center',
+                                     justify="center",
                                      font=(labelFont,
                                            20))
             nomePokeLista.grid(row=rowAtual,
                                column=0,
-                               sticky='nsew')
+                               sticky="nsew")
             apelidoPokeLista = tk.Label(listaPokes,
                                         text=pokemon[1],
-                                        justify='center',
+                                        justify="center",
                                         font=(labelFont,
                                            20))
             apelidoPokeLista.grid(row=rowAtual,
                                   column=1,
-                                  sticky='nsew')
+                                  sticky="nsew")
             tagsPokeLista = tk.Label(listaPokes,
                                      text=pokemon[2],
-                                     justify='center',
+                                     justify="center",
                                      font=(labelFont,
                                            20))
             tagsPokeLista.grid(row=rowAtual,
                                column=2,
-                               sticky='nsew')
+                               sticky="nsew")
 
             radiosPokeLista = tk.Radiobutton(listaPokes)
             radiosPokeLista.grid(row=rowAtual,
                                  column=3,
-                                 sticky='nsew')
+                                 sticky="nsew")
             rowAtual += 1
 #?________________________________________________________________________________________
 
@@ -1025,32 +1025,32 @@ class View():
         botoesFrame.grid(row=2,
                          column=0,
                          columnspan=3,
-                         sticky='nsew')
+                         sticky="nsew")
         delTag = tk.Button(botoesFrame,
                                text="- Tag")
-        delTag.pack(side='left',
+        delTag.pack(side="left",
                     padx=(30, 15))
         addTag = tk.Button(botoesFrame,
                            text="+ Tag")
-        addTag.pack(side='left',
+        addTag.pack(side="left",
                     padx=15)
 
         novoPoke = tk.Button(botoesFrame,
                              text="Novo Pokémon",
                              command=lambda: self.chamarRaise(self.insercao))
-        novoPoke.pack(side='left',
+        novoPoke.pack(side="left",
                       padx=15)
 
         voltarMenu = tk.Button(botoesFrame,
                                text="Voltar ao Menu",
                                command=lambda: self.chamarRaise(self.menu))
-        voltarMenu.pack(side='left',
+        voltarMenu.pack(side="left",
                         padx=15)
 
         verPoke = tk.Button(botoesFrame,
                             text="Vizualizar Pokémon",
                             command=lambda: self.chamarRaise(self.visualizacao))
-        verPoke.pack(side='left',
+        verPoke.pack(side="left",
                      padx=15)
 
         return listagem
@@ -1060,7 +1060,7 @@ class View():
         visualizacao = tk.Frame(self.root)
         visualizacao.grid(row=0,
                           column=0,
-                          sticky='nsew')
+                          sticky="nsew")
 
         self.bgLabel = tk.Label(visualizacao,
                                 image=self.tkBg)
@@ -1070,7 +1070,7 @@ class View():
                            relheight=1)
 
         seeSize = 20
-        seeFont = 'Yu Gothic UI Semibold'
+        seeFont = "Yu Gothic UI Semibold"
 
         visualizacao.rowconfigure([0, 1, 2, 3, 4,
                                    5, 6, 7, 8, 9,
@@ -1095,7 +1095,7 @@ class View():
         frameApelido = tk.Frame(visualizacao)
         frameApelido.grid(row=0,
                           column=1,
-                          sticky='nw',
+                          sticky="nw",
                           pady=(30, 0))
         apelido = tk.Label(frameApelido,
                            text="Apelido",
@@ -1117,7 +1117,7 @@ class View():
         frameNivel = tk.Frame(visualizacao)
         frameNivel.grid(row=0,
                         column=1,
-                        sticky='ne',
+                        sticky="ne",
                         padx=(0, 60),
                         pady=(30, 0))
         nivel = tk.Label(frameNivel,
@@ -1140,7 +1140,7 @@ class View():
         frameGenero = tk.Frame(visualizacao)
         frameGenero.grid(row=2,
                          column=0,
-                         sticky='ne',
+                         sticky="ne",
                          padx=30)
         genero = tk.Label(frameGenero,
                           text="Gênero",
@@ -1162,7 +1162,7 @@ class View():
         frameNome = tk.Frame(visualizacao)
         frameNome.grid(row=1,
                        column=0,
-                       sticky='ne',
+                       sticky="ne",
                        padx=30)
         nome = tk.Label(frameNome,
                         text="Nome",
@@ -1184,7 +1184,7 @@ class View():
         frameTipoUm = tk.Frame(visualizacao)
         frameTipoUm.grid(row=1,
                          column=0,
-                         sticky='nw',
+                         sticky="nw",
                          padx=(60, 0))
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
@@ -1206,7 +1206,7 @@ class View():
         frameTipoDois = tk.Frame(visualizacao)
         frameTipoDois.grid(row=2,
                            column=0,
-                           sticky='nw',
+                           sticky="nw",
                            padx=(60, 0))
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
@@ -1228,7 +1228,7 @@ class View():
         frameNomeHabilidade = tk.Frame(visualizacao)
         frameNomeHabilidade.grid(row=1,
                                  column=1,
-                                 sticky='nw',
+                                 sticky="nw",
                                  padx=(0, 60))
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
@@ -1250,7 +1250,7 @@ class View():
         frameItem = tk.Frame(visualizacao)
         frameItem.grid(row=3,
                        column=0,
-                       sticky='nw',
+                       sticky="nw",
                        padx=(60, 0))
         item = tk.Label(frameItem,
                         text="Item",
@@ -1272,7 +1272,7 @@ class View():
         frameNatureza = tk.Frame(visualizacao)
         frameNatureza.grid(row=4,
                            column=0,
-                           sticky='nw',
+                           sticky="nw",
                            padx=(60, 0))
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
@@ -1316,7 +1316,7 @@ class View():
         framePoder = tk.Frame(visualizacao)
         framePoder.grid(row=5,
                         column=0,
-                        sticky='nw',
+                        sticky="nw",
                         padx=(60, 0))
         nomePoder = tk.Label(framePoder,
                              text="Nome do Poder",
@@ -1338,7 +1338,7 @@ class View():
         framePoderStats = tk.Frame(visualizacao)
         framePoderStats.grid(row=6,
                              column=0,
-                             sticky='nw',
+                             sticky="nw",
                              padx=(60, 0))
         danoPoder = tk.Label(framePoderStats,
                              text="Dano",
@@ -1394,7 +1394,7 @@ class View():
         frameTipoDanoPoder = tk.Frame(visualizacao)
         frameTipoDanoPoder.grid(row=7,
                                 column=0,
-                                sticky='nw',
+                                sticky="nw",
                                 padx=(60, 0))
         tipoDeDano = tk.Label(frameTipoDanoPoder,
                               text="ATK ou SP.ATK",
@@ -1417,7 +1417,7 @@ class View():
         frameDescPoder.grid(row=8,
                             column=0,
                             rowspan=10,
-                            sticky='n',
+                            sticky="n",
                             padx=(60, 0))
         descPoder = tk.Label(frameDescPoder,
                              text="Descrição e Observações do Poder",
@@ -1439,7 +1439,7 @@ class View():
         frameTags = tk.Frame(visualizacao)
         frameTags.grid(row=18,
                        column=0,
-                       sticky='nw',
+                       sticky="nw",
                        pady=(0, 30),
                        padx=(60, 0))
         tags = tk.Label(frameTags,
@@ -1759,7 +1759,7 @@ class View():
         frameSalvar = tk.Frame(visualizacao)
         frameSalvar.grid(row=19,
                          column=0,
-                         sticky='nw',
+                         sticky="nw",
                          padx=(60, 0),
                          pady=(0, 30))
         salvarInfo = tk.Button(frameSalvar,
@@ -1767,198 +1767,198 @@ class View():
 
         voltarMenu.grid(row=0,
                         column=0,
-                        sticky='nw',
+                        sticky="nw",
                         padx=(60, 0),
                         pady=(30, 0))
 
-        apelido.pack(side='left',
-                     anchor='nw')
-        apelido_I.pack(side='left',
-                       anchor='nw')
+        apelido.pack(side="left",
+                     anchor="nw")
+        apelido_I.pack(side="left",
+                       anchor="nw")
 
-        nivel.pack(side='left',
-                   anchor='ne')
-        nivel_I.pack(side='left',
-                     anchor='ne')
+        nivel.pack(side="left",
+                   anchor="ne")
+        nivel_I.pack(side="left",
+                     anchor="ne")
 
-        nome.pack(side='left',
-                  anchor='ne')
-        nome_I.pack(side='left',
-                    anchor='ne')
+        nome.pack(side="left",
+                  anchor="ne")
+        nome_I.pack(side="left",
+                    anchor="ne")
 
-        tipoUm.pack(side='left',
-                    anchor='w')
-        tipoUm_I.pack(side='left',
-                       anchor='w')
-        tipoDois.pack(side='left',
-                      anchor='w')
-        tipoDois_I.pack(side='left',
-                         anchor='w')
+        tipoUm.pack(side="left",
+                    anchor="w")
+        tipoUm_I.pack(side="left",
+                       anchor="w")
+        tipoDois.pack(side="left",
+                      anchor="w")
+        tipoDois_I.pack(side="left",
+                         anchor="w")
 
-        genero.pack(side='left',
-                    anchor='nw')
-        genero_I.pack(side='left',
-                       anchor='nw')
+        genero.pack(side="left",
+                    anchor="nw")
+        genero_I.pack(side="left",
+                       anchor="nw")
 
-        nomeHabilidade.pack(side='left',
-                            anchor='ne')
-        nomeHabilidade_I.pack(side='left',
-                              anchor='ne')
+        nomeHabilidade.pack(side="left",
+                            anchor="ne")
+        nomeHabilidade_I.pack(side="left",
+                              anchor="ne")
 
-        item.pack(side='left',
-                  anchor='w')
-        item_I.pack(side='left',
-                    anchor='w')
+        item.pack(side="left",
+                  anchor="w")
+        item_I.pack(side="left",
+                    anchor="w")
 
-        natureza.pack(side='left',
-                      anchor='w')
-        natureza_I.pack(side='left',
-                         anchor='w')
+        natureza.pack(side="left",
+                      anchor="w")
+        natureza_I.pack(side="left",
+                         anchor="w")
 
-        descHabilidade.pack(side='top',
-                            anchor='center')
-        descHabilidade_I.pack(side='top',
-                                anchor='center')
+        descHabilidade.pack(side="top",
+                            anchor="center")
+        descHabilidade_I.pack(side="top",
+                                anchor="center")
 
-        nomePoder.pack(side='left',
-                       anchor='nw')
-        nomePoder_I.pack(side='left',
-                         anchor='nw')
+        nomePoder.pack(side="left",
+                       anchor="nw")
+        nomePoder_I.pack(side="left",
+                         anchor="nw")
 
-        danoPoder.pack(side='left',
-                       anchor='nw')
-        danoPoder_I.pack(side='left',
-                         anchor='nw')
+        danoPoder.pack(side="left",
+                       anchor="nw")
+        danoPoder_I.pack(side="left",
+                         anchor="nw")
 
-        tipoPoder.pack(side='left',
-                       anchor='nw')
-        tipoPoder_I.pack(side='left',
-                          anchor='nw')
+        tipoPoder.pack(side="left",
+                       anchor="nw")
+        tipoPoder_I.pack(side="left",
+                          anchor="nw")
 
-        pp.pack(side='left',
-                anchor='nw')
-        pp_I.pack(side='left',
-                  anchor='nw')
+        pp.pack(side="left",
+                anchor="nw")
+        pp_I.pack(side="left",
+                  anchor="nw")
 
-        tipoDeDano.pack(side='left',
-                        anchor='nw')
-        tipoDeDano_I.pack(side='left',
-                           anchor='nw')
+        tipoDeDano.pack(side="left",
+                        anchor="nw")
+        tipoDeDano_I.pack(side="left",
+                           anchor="nw")
 
-        descPoder.pack(side='top',
-                       anchor='center')
-        descPoder_I.pack(side='top',
-                           anchor='center')
+        descPoder.pack(side="top",
+                       anchor="center")
+        descPoder_I.pack(side="top",
+                           anchor="center")
 
-        tags.pack(side='left',
-                  anchor='nw')
-        tags_I.pack(side='left',
-                     anchor='nw')
+        tags.pack(side="left",
+                  anchor="nw")
+        tags_I.pack(side="left",
+                     anchor="nw")
 
         iv.grid(row=0,
                 column=2,
-                sticky='sew')
+                sticky="sew")
         ev.grid(row=0,
                 column=3,
-                sticky='sew')
+                sticky="sew")
 
         hp.grid(row=1,
                 column=0,
-                sticky='nsew')
+                sticky="nsew")
         hp_I.grid(row=1,
                   column=1,
-                  sticky='nsew')
+                  sticky="nsew")
         hpIV_I.grid(row=1,
                     column=2,
-                    sticky='nsew')
+                    sticky="nsew")
         hpEV_I.grid(row=1,
                     column=3,
-                    sticky='nsew')
+                    sticky="nsew")
         hpTotal.grid(row=1,
                      column=4,
-                     sticky='nsew')
+                     sticky="nsew")
 
         atk.grid(row=2,
                  column=0,
-                 sticky='nsew')
+                 sticky="nsew")
         atk_I.grid(row=2,
                    column=1,
-                   sticky='nsew')
+                   sticky="nsew")
         atkIV_I.grid(row=2,
                      column=2,
-                     sticky='nsew')
+                     sticky="nsew")
         atkEV_I.grid(row=2,
                      column=3,
-                     sticky='nsew')
+                     sticky="nsew")
         atkTotal.grid(row=2,
                       column=4,
-                      sticky='nsew')
+                      sticky="nsew")
 
         defs.grid(row=3,
                   column=0,
-                  sticky='nsew')
+                  sticky="nsew")
         defs_I.grid(row=3,
                     column=1,
-                    sticky='nsew')
+                    sticky="nsew")
         defsIV_I.grid(row=3,
                       column=2,
-                      sticky='nsew')
+                      sticky="nsew")
         defsEV_I.grid(row=3,
                       column=3,
-                      sticky='nsew')
+                      sticky="nsew")
         defsTotal.grid(row=3,
                        column=4,
-                       sticky='nsew')
+                       sticky="nsew")
 
         spAtk.grid(row=4,
                    column=0,
-                   sticky='nsew')
+                   sticky="nsew")
         spAtk_I.grid(row=4,
                      column=1,
-                     sticky='nsew')
+                     sticky="nsew")
         spAtkIV_I.grid(row=4,
                        column=2,
-                       sticky='nsew')
+                       sticky="nsew")
         spAtkEV_I.grid(row=4,
                        column=3,
-                       sticky='nsew')
+                       sticky="nsew")
         spAtkTotal.grid(row=4,
                         column=4,
-                        sticky='nsew')
+                        sticky="nsew")
 
         spDefs.grid(row=5,
                     column=0,
-                    sticky='nsew')
+                    sticky="nsew")
         spDefs_I.grid(row=5,
                       column=1,
-                      sticky='nsew')
+                      sticky="nsew")
         spDefsIV_I.grid(row=5,
                         column=2,
-                        sticky='nsew')
+                        sticky="nsew")
         spDefsEV_I.grid(row=5,
                         column=3,
-                        sticky='nsew')
+                        sticky="nsew")
         spDefsTotal.grid(row=5,
                          column=4,
-                         sticky='nsew')
+                         sticky="nsew")
 
         spd.grid(row=6,
                  column=0,
-                 sticky='nsew')
+                 sticky="nsew")
         spd_I.grid(row=6,
                    column=1,
-                   sticky='nsew')
+                   sticky="nsew")
         spdIV_I.grid(row=6,
                      column=2,
-                     sticky='nsew')
+                     sticky="nsew")
         spdEV_I.grid(row=6,
                      column=3,
-                     sticky='nsew')
+                     sticky="nsew")
         spdTotal.grid(row=6,
                       column=4,
-                      sticky='nsew')
+                      sticky="nsew")
 
-        salvarInfo.pack(anchor='se')
+        salvarInfo.pack(anchor="se")
 
         return visualizacao
 
@@ -1967,7 +1967,7 @@ class View():
         tutorial = tk.Frame(self.root)
         tutorial.grid(row=0,
                   column=0,
-                  sticky='nsew')
+                  sticky="nsew")
 
         self.bgLabel = tk.Label(tutorial,
                                 image=self.tkBg)
