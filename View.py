@@ -107,7 +107,8 @@ class View():
 
     #todo -> Personalizar as entrys e labels para coincidir com as cores do programa
     #TODO -> Pronto em relação ao model. Ainda precisa adicionar a funcionalidade de salvar, etc.
-    #TODO -> Adicionar mais de um poder
+    #TODO -> Adicionar mais de um acao
+    #TODO -> Adicionar precisão
     def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
         insercao.grid(row=0,
@@ -122,10 +123,14 @@ class View():
                            relheight=1)
 
         #TODO -> Transformar os parâmetros em um dict
-        infoSize = 20
-        universalFont = "Yu Gothic UI Semibold"
-        corHighlight = "red"
         corLabel = "white"
+        argsPadraoInsercao = {
+              "font": ('Yu Gothic UI Semibold', 20),
+              "highlightthickness": 2,
+              "highlightbackground": "red",
+              "highlightcolor": "red",
+        }
+        argsFonte = {"font": ('Yu Gothic UI Semibold', 20)}
 
         insercao.rowconfigure([0, 1, 2, 3, 4,
                                5, 6, 7, 8, 9,
@@ -152,19 +157,11 @@ class View():
                           pady=(30, 0))
         apelido = tk.Label(frameApelido,
                            text="Apelido",
-                           font=(universalFont,
-                                 infoSize),
-                           highlightthickness=2,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight,
+                           **argsPadraoInsercao,
                            background=corLabel)
         apelido_E = tk.Entry(frameApelido,
                              width=33,
-                             font=(universalFont,
-                                   infoSize),
-                             highlightthickness=2,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight)
+                             **argsPadraoInsercao)
 
         frameNivel = tk.Frame(insercao,
                               background=corLabel)
@@ -175,19 +172,11 @@ class View():
                         pady=(30, 0))
         nivel = tk.Label(frameNivel,
                          text="Nível",
-                         font=(universalFont,
-                               infoSize),
-                         highlightthickness=2,
-                         highlightbackground=corHighlight,
-                         highlightcolor=corHighlight,
+                         **argsPadraoInsercao,
                          background=corLabel)
         nivel_E = tk.Entry(frameNivel,
                            width=3,
-                           font=(universalFont,
-                                 infoSize),
-                           highlightthickness=2,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao)
 
         frameGenero = tk.Frame(insercao,
                                background=corLabel)
@@ -197,16 +186,11 @@ class View():
                          padx=30)
         genero = tk.Label(frameGenero,
                           text="Gênero",
-                          font=(universalFont,
-                                infoSize),
-                          highlightthickness=2,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight,
+                          **argsPadraoInsercao,
                           background=corLabel)
         genero_CB = ttk.Combobox(frameGenero,
                                  width=9,
-                                 font=(universalFont,
-                                       infoSize),
+                                 **argsFonte,
                                  state="readonly")
 
         frameNome = tk.Frame(insercao,
@@ -217,19 +201,11 @@ class View():
                        padx=30)
         nome = tk.Label(frameNome,
                         text="Nome",
-                        font=(universalFont,
-                              infoSize),
-                        highlightthickness=2,
-                        highlightbackground=corHighlight,
-                        highlightcolor=corHighlight,
+                        **argsPadraoInsercao,
                         background=corLabel)
         nome_E = tk.Entry(frameNome,
                           width=12,
-                          font=(universalFont,
-                                infoSize),
-                          highlightthickness=2,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight)
+                          **argsPadraoInsercao)
 
         frameTipoUm = tk.Frame(insercao,
                                background=corLabel)
@@ -239,16 +215,11 @@ class View():
                          padx=(60, 0))
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
-                          font=(universalFont,
-                                infoSize),
-                          highlightthickness=2,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight,
+                          **argsPadraoInsercao,
                           background=corLabel)
         tipoUm_CB = ttk.Combobox(frameTipoUm,
                                  width=8,
-                                 font=(universalFont,
-                                       infoSize),
+                                 **argsFonte,
                                  state="readonly")
 
         frameTipoDois = tk.Frame(insercao,
@@ -259,16 +230,11 @@ class View():
                            padx=(60, 0))
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
-                            font=(universalFont,
-                                  infoSize),
-                            highlightthickness=2,
-                            highlightbackground=corHighlight,
-                            highlightcolor=corHighlight,
+                            **argsPadraoInsercao,
                             background=corLabel)
         tipoDois_CB = ttk.Combobox(frameTipoDois,
                                    width=8,
-                                   font=(universalFont,
-                                         infoSize),
+                                   **argsFonte,
                                    state="readonly")
 
         frameNomeHabilidade = tk.Frame(insercao,
@@ -279,19 +245,11 @@ class View():
                                  padx=(0, 60))
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
-                                  font=(universalFont,
-                                        infoSize),
-                                  highlightthickness=2,
-                                  highlightbackground=corHighlight,
-                                  highlightcolor=corHighlight,
+                                  **argsPadraoInsercao,
                                   background=corLabel)
         nomeHabilidade_E = tk.Entry(frameNomeHabilidade,
                                     width=30,
-                                    font=(universalFont,
-                                          infoSize),
-                                    highlightthickness=2,
-                                    highlightbackground=corHighlight,
-                                    highlightcolor=corHighlight)
+                                    **argsPadraoInsercao)
 
         frameItem = tk.Frame(insercao,
                              background=corLabel)
@@ -301,19 +259,11 @@ class View():
                        padx=(60, 0))
         item = tk.Label(frameItem,
                         text="Item",
-                        font=(universalFont,
-                              infoSize),
-                        highlightthickness=2,
-                        highlightbackground=corHighlight,
-                        highlightcolor=corHighlight,
+                        **argsPadraoInsercao,
                         background=corLabel)
         item_E = tk.Entry(frameItem,
                           width=16,
-                          font=(universalFont,
-                                infoSize),
-                          highlightthickness=2,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight)
+                          **argsPadraoInsercao)
 
         frameNatureza = tk.Frame(insercao,
                                  background=corLabel)
@@ -323,18 +273,18 @@ class View():
                            padx=(60, 0))
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
-                            font=(universalFont,
-                                  infoSize),
-                            highlightthickness=2,
-                            highlightbackground=corHighlight,
-                            highlightcolor=corHighlight,
+                            **argsPadraoInsercao,
                             background=corLabel)
         natureza_CB = ttk.Combobox(frameNatureza,
                                    width=30,
-                                   font=(universalFont,
-                                         infoSize),
+                                   **argsFonte,
                                    state="readonly")
-
+        argsDescHab = {
+              "font": ('Yu Gothic UI Semibold', 10),
+              "highlightthickness": 2,
+              "highlightbackground": "red",
+              "highlightcolor": "red",
+        }
         frameDescHabilidade = tk.Frame(insercao,
                                        background=corLabel)
         frameDescHabilidade.grid(row=2,
@@ -343,136 +293,93 @@ class View():
                                  padx=(0, 60))
         descHabilidade = tk.Label(frameDescHabilidade,
                                   text="Descrição da Habilidade",
-                                  font=(universalFont,
-                                        infoSize),
-                                  highlightthickness=2,
-                                  highlightbackground=corHighlight,
-                                  highlightcolor=corHighlight,
+                                  **argsPadraoInsercao,
                                   background=corLabel)
         descHabilidade_Txt = tk.Text(frameDescHabilidade,
                                      width=110,
                                      height=8,
-                                     font=(universalFont, 10),
-                                     highlightthickness=2,
-                                     highlightbackground=corHighlight,
-                                     highlightcolor=corHighlight)
+                                     **argsDescHab)
 
-        framePoder = tk.Frame(insercao,
+        frameAcao = tk.Frame(insercao,
                               background=corLabel)
-        framePoder.grid(row=5,
+        frameAcao.grid(row=5,
                         column=0,
                         sticky="nw",
                         padx=(60, 0))
-        nomePoder = tk.Label(framePoder,
-                             text="Nome do Poder",
-                             font=(universalFont,
-                                   infoSize),
-                             highlightthickness=2,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight,
+        nomeAcao = tk.Label(frameAcao,
+                             text="Nome da Ação",
+                             **argsPadraoInsercao,
                              background=corLabel)
-        nomePoder_E = tk.Entry(framePoder,
+        nomeAcao_E = tk.Entry(frameAcao,
                                width=16,
-                               font=(universalFont,
-                                     infoSize),
-                               highlightthickness=2,
-                               highlightbackground=corHighlight,
-                               highlightcolor=corHighlight)
+                               **argsPadraoInsercao)
 
-        framePoderStats = tk.Frame(insercao,
+        frameAcaoStats = tk.Frame(insercao,
                                    background=corLabel)
-        framePoderStats.grid(row=6,
+        frameAcaoStats.grid(row=6,
                              column=0,
                              sticky="nw",
                              padx=(60, 0))
-        danoPoder = tk.Label(framePoderStats,
+        danoAcao = tk.Label(frameAcaoStats,
                              text="Dano",
-                             font=(universalFont,
-                                   infoSize),
-                             highlightthickness=2,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight,
+                             **argsPadraoInsercao,
                              background=corLabel)
-        danoPoder_E = tk.Entry(framePoderStats,
+        danoAcao_E = tk.Entry(frameAcaoStats,
                                width=3,
-                               font=(universalFont,
-                                     infoSize),
-                               highlightthickness=2,
-                               highlightbackground=corHighlight,
-                               highlightcolor=corHighlight)
+                               **argsPadraoInsercao)
 
-        tipoPoder = tk.Label(framePoderStats,
+        tipoAcao = tk.Label(frameAcaoStats,
                              text="Tipo",
-                             font=(universalFont,
-                                   infoSize),
-                             highlightthickness=2,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight,
+                             **argsPadraoInsercao,
                              background=corLabel)
-        tipoPoder_CB = ttk.Combobox(framePoderStats,
+        tipoAcao_CB = ttk.Combobox(frameAcaoStats,
                                     width=8,
-                                    font=(universalFont,
-                                          infoSize),
+                                    **argsFonte,
                                     state="readonly")
 
-        pp = tk.Label(framePoderStats,
+        pp = tk.Label(frameAcaoStats,
                       text="PP",
-                      font=(universalFont,
-                            infoSize),
-                      highlightthickness=2,
-                      highlightbackground=corHighlight,
-                      highlightcolor=corHighlight,
+                      **argsPadraoInsercao,
                       background=corLabel)
-        pp_E = tk.Entry(framePoderStats,
+        pp_E = tk.Entry(frameAcaoStats,
                         width=2,
-                        font=(universalFont,
-                              infoSize),
-                        highlightthickness=2,
-                        highlightbackground=corHighlight,
-                        highlightcolor=corHighlight)
+                        **argsPadraoInsercao)
 
-        frameTipoDanoPoder = tk.Frame(insercao,
+        frameTipoDanoAcao = tk.Frame(insercao,
                                       background=corLabel)
-        frameTipoDanoPoder.grid(row=7,
+        frameTipoDanoAcao.grid(row=7,
                                 column=0,
                                 sticky="nw",
                                 padx=(60, 0))
-        tipoDeDano = tk.Label(frameTipoDanoPoder,
-                              text="ATK ou SP.ATK",
-                              font=(universalFont,
-                                    infoSize),
-                              highlightthickness=2,
-                              highlightbackground=corHighlight,
-                              highlightcolor=corHighlight,
+        tipoDeDano = tk.Label(frameTipoDanoAcao,
+                              text="ATK, SP.ATK ou Status?",
+                              **argsPadraoInsercao,
                               background=corLabel)
-        tipoDeDano_CB = ttk.Combobox(frameTipoDanoPoder,
+        tipoDeDano_CB = ttk.Combobox(frameTipoDanoAcao,
                                      width=6,
-                                     font=(universalFont,
-                                           infoSize),
+                                     **argsFonte,
                                      state="readonly")
-
-        frameDescPoder = tk.Frame(insercao,
+        
+        argsDescPod = {
+              "font": ('Yu Gothic UI Semibold', 12),
+              "highlightthickness": 2,
+              "highlightbackground": "red",
+              "highlightcolor": "red"}
+        frameDescAcao = tk.Frame(insercao,
                                   background=corLabel)
-        frameDescPoder.grid(row=8,
+        frameDescAcao.grid(row=8,
                             column=0,
                             rowspan=10,
                             sticky="n",
                             padx=(60, 0))
-        descPoder = tk.Label(frameDescPoder,
-                             text="Descrição e Observações do Poder",
-                             font=(universalFont,
-                                   infoSize),
-                             highlightthickness=2,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight,
+        descAcao = tk.Label(frameDescAcao,
+                             text="Descrição e Observações da Ação",
+                             **argsPadraoInsercao,
                              background=corLabel)
-        descPoder_Txt = tk.Text(frameDescPoder,
+        descAcao_Txt = tk.Text(frameDescAcao,
                                 width=50,
                                 height=9,
-                                font=(universalFont, 12),
-                                highlightthickness=2,
-                                highlightbackground=corHighlight,
-                                highlightcolor=corHighlight)
+                                **argsDescPod)
 
         frameTags = tk.Frame(insercao,
                              background=corLabel)
@@ -483,16 +390,11 @@ class View():
                        padx=(60, 0))
         tags = tk.Label(frameTags,
                         text="Tags",
-                        font=(universalFont,
-                              infoSize),
-                        highlightthickness=2,
-                        highlightbackground=corHighlight,
-                        highlightcolor=corHighlight,
+                        **argsPadraoInsercao,
                         background=corLabel)
         tags_CB = ttk.Combobox(frameTags,
                                width=30,
-                               font=(universalFont,
-                                     infoSize),
+                               **argsFonte,
                                state="readonly")
 
 
@@ -510,192 +412,109 @@ class View():
         frameStats.columnconfigure([2, 3],
                                    weight=2)
 
-        statsLabelSize = 22
-        statsEntrySize = 22
-
         iv = tk.Label(frameStats,
                       text="IV's",
-                      font=(universalFont,
-                      statsLabelSize),
+                      **argsPadraoInsercao,
                       background=corLabel)
         ev = tk.Label(frameStats,
                       text="EV's",
-                      font=(universalFont,
-                      statsLabelSize),
+                      **argsPadraoInsercao,
                       background=corLabel)
 
         hp = tk.Label(frameStats,
                       text="Pontos de Vida",
-                      font=(universalFont,
-                      statsLabelSize),
+                      **argsPadraoInsercao,
                       background=corLabel)
         hp_E = tk.Entry(frameStats,
-                        highlightthickness=1,
-                        font=(universalFont,
-                              statsEntrySize),
-                        width=4,
-                        highlightbackground=corHighlight,
-                        highlightcolor=corHighlight)
+                        **argsPadraoInsercao,
+                        width=4)
         hpIV_E = tk.Entry(frameStats,
-                          highlightthickness=1,
-                          font=(universalFont,
-                                statsEntrySize),
-                          width=4,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight)
+                          **argsPadraoInsercao,
+                          width=4)
 
         hpEV_E = tk.Entry(frameStats,
-                          highlightthickness=1,
-                          font=(universalFont,
-                                statsEntrySize),
-                          width=4,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight)
+                          **argsPadraoInsercao,
+                          width=4)
 
         atk = tk.Label(frameStats,
                        text="Ataque",
-                       font=(universalFont,
-                             statsLabelSize),
+                       **argsPadraoInsercao,
                        background=corLabel)
         atk_E = tk.Entry(frameStats,
-                         highlightthickness=1,
-                         font=(universalFont,
-                               statsEntrySize),
-                         width=4,
-                         highlightbackground=corHighlight,
-                         highlightcolor=corHighlight)
+                         **argsPadraoInsercao,
+                         width=4)
 
         atkIV_E = tk.Entry(frameStats,
-                           highlightthickness=1,
-                           font=(universalFont,
-                                 statsEntrySize),
-                           width=4,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao,
+                           width=4)
 
         atkEV_E = tk.Entry(frameStats,
-                           highlightthickness=1,
-                           font=(universalFont,
-                                 statsEntrySize),
-                           width=4,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao,
+                           width=4)
 
         defs = tk.Label(frameStats,
                         text="Defesa",
-                        font=(universalFont,
-                              statsLabelSize),
+                        **argsPadraoInsercao,
                         background=corLabel)
         defs_E = tk.Entry(frameStats,
-                          highlightthickness=1,
-                          font=(universalFont,
-                                statsEntrySize),
-                          width=4,
-                          highlightbackground=corHighlight,
-                          highlightcolor=corHighlight)
+                          **argsPadraoInsercao,
+                          width=4)
 
         defsIV_E = tk.Entry(frameStats,
-                            highlightthickness=1,
-                            font=(universalFont,
-                                  statsEntrySize),
-                            width=4,
-                            highlightbackground=corHighlight,
-                            highlightcolor=corHighlight)
+                            **argsPadraoInsercao,
+                            width=4)
 
         defsEV_E = tk.Entry(frameStats,
-                            highlightthickness=1,
-                            font=(universalFont,
-                                  statsEntrySize),
-                            width=4,
-                            highlightbackground=corHighlight,
-                            highlightcolor=corHighlight)
+                            **argsPadraoInsercao,
+                            width=4)
 
         spAtk = tk.Label(frameStats,
                          text="Ataque Especial",
-                         font=(universalFont,
-                               statsLabelSize),
+                         **argsPadraoInsercao,
                          background=corLabel)
         spAtk_E = tk.Entry(frameStats,
-                           highlightthickness=1,
-                           font=(universalFont,
-                                 statsEntrySize),
-                           width=4,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao,
+                           width=4)
 
         spAtkIV_E = tk.Entry(frameStats,
-                             highlightthickness=1,
-                             font=(universalFont,
-                                   statsEntrySize),
-                             width=4,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight)
+                             **argsPadraoInsercao,
+                             width=4)
 
         spAtkEV_E = tk.Entry(frameStats,
-                             highlightthickness=1,
-                             font=(universalFont,
-                                   statsEntrySize),
-                             width=4,
-                             highlightbackground=corHighlight,
-                             highlightcolor=corHighlight)
+                             **argsPadraoInsercao,
+                             width=4)
 
         spDefs = tk.Label(frameStats,
                           text="Defesa Especial",
-                          font=(universalFont,
-                                statsLabelSize),
+                          **argsPadraoInsercao,
                           background=corLabel)
         spDefs_E = tk.Entry(frameStats,
-                            highlightthickness=1,
-                            font=(universalFont,
-                                  statsEntrySize),
-                            width=4,
-                            highlightbackground=corHighlight,
-                            highlightcolor=corHighlight)
+                            **argsPadraoInsercao,
+                            width=4)
 
         spDefsIV_E = tk.Entry(frameStats,
-                              highlightthickness=1,
-                              font=(universalFont,
-                                    statsEntrySize),
-                              width=4,
-                              highlightbackground=corHighlight,
-                              highlightcolor=corHighlight)
+                              **argsPadraoInsercao,
+                              width=4)
 
         spDefsEV_E = tk.Entry(frameStats,
-                              highlightthickness=1,
-                              font=(universalFont,
-                                    statsEntrySize),
-                              width=4,
-                              highlightbackground=corHighlight,
-                              highlightcolor=corHighlight)
+                              **argsPadraoInsercao,
+                              width=4)
 
         spd = tk.Label(frameStats,
                        text="Velocidade",
-                       font=(universalFont,
-                             statsLabelSize),
+                       **argsPadraoInsercao,
                        background=corLabel)
         spd_E = tk.Entry(frameStats,
-                         highlightthickness=1,
-                         font=(universalFont,
-                               statsEntrySize),
-                         width=4,
-                         highlightbackground=corHighlight,
-                         highlightcolor=corHighlight)
+                         **argsPadraoInsercao,
+                         width=4)
 
         spdIV_E = tk.Entry(frameStats,
-                           highlightthickness=1,
-                           font=(universalFont,
-                                 statsEntrySize),
-                           width=4,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao,
+                           width=4)
 
         spdEV_E = tk.Entry(frameStats,
-                           highlightthickness=1,
-                           font=(universalFont,
-                                 statsEntrySize),
-                           width=4,
-                           highlightbackground=corHighlight,
-                           highlightcolor=corHighlight)
+                           **argsPadraoInsercao,
+                           width=4)
 
         frameSalvar = tk.Frame(insercao,
                                background=corLabel)
@@ -762,19 +581,19 @@ class View():
         descHabilidade_Txt.pack(side="top",
                                 anchor="center")
 
-        nomePoder.pack(side="left",
+        nomeAcao.pack(side="left",
                        anchor="nw")
-        nomePoder_E.pack(side="left",
+        nomeAcao_E.pack(side="left",
                          anchor="nw")
 
-        danoPoder.pack(side="left",
+        danoAcao.pack(side="left",
                        anchor="nw")
-        danoPoder_E.pack(side="left",
+        danoAcao_E.pack(side="left",
                          anchor="nw")
 
-        tipoPoder.pack(side="left",
+        tipoAcao.pack(side="left",
                        anchor="nw")
-        tipoPoder_CB.pack(side="left",
+        tipoAcao_CB.pack(side="left",
                           anchor="nw")
 
         pp.pack(side="left",
@@ -787,9 +606,9 @@ class View():
         tipoDeDano_CB.pack(side="left",
                            anchor="nw")
 
-        descPoder.pack(side="top",
+        descAcao.pack(side="top",
                        anchor="center")
-        descPoder_Txt.pack(side="top",
+        descAcao_Txt.pack(side="top",
                            anchor="center")
 
         tags.pack(side="left",
@@ -1069,8 +888,13 @@ class View():
                            relwidth=1,
                            relheight=1)
 
-        seeSize = 20
-        seeFont = "Yu Gothic UI Semibold"
+        argsPadraoVisualizacao = {
+              "font": ('Yu Gothic UI Semibold', 20),
+              "highlightthickness": 2,
+              "highlightbackground": "red",
+              "highlightcolor": "red",
+              "background": "white"
+        }
 
         visualizacao.rowconfigure([0, 1, 2, 3, 4,
                                    5, 6, 7, 8, 9,
@@ -1085,9 +909,6 @@ class View():
         visualizacao.columnconfigure(1,
                                      weight=11)
 
-        seeCorHighlight = "red"
-        seeCorLabel = "white"
-
         voltarMenu = tk.Button(visualizacao,
                                text="Voltar ao Menu",
                                command=lambda: self.chamarRaise(self.menu))
@@ -1099,20 +920,10 @@ class View():
                           pady=(30, 0))
         apelido = tk.Label(frameApelido,
                            text="Apelido",
-                           font=(seeFont,
-                                 seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                           **argsPadraoVisualizacao)
         apelido_I = tk.Label(frameApelido,
                              text="<<Apelido>>",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                             **argsPadraoVisualizacao)
 
         frameNivel = tk.Frame(visualizacao)
         frameNivel.grid(row=0,
@@ -1122,20 +933,10 @@ class View():
                         pady=(30, 0))
         nivel = tk.Label(frameNivel,
                          text="Nível",
-                         font=(seeFont,
-                               seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                         **argsPadraoVisualizacao)
         nivel_I = tk.Label(frameNivel,
                            text="<00>",
-                           font=(seeFont,
-                                 seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                           **argsPadraoVisualizacao)
 
         frameGenero = tk.Frame(visualizacao)
         frameGenero.grid(row=2,
@@ -1144,20 +945,10 @@ class View():
                          padx=30)
         genero = tk.Label(frameGenero,
                           text="Gênero",
-                          font=(seeFont,
-                                seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                          **argsPadraoVisualizacao)
         genero_I = tk.Label(frameGenero,
                                  text="<<Gênero>>",
-                                 font=(seeFont,
-                                       seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                 **argsPadraoVisualizacao)
 
         frameNome = tk.Frame(visualizacao)
         frameNome.grid(row=1,
@@ -1166,20 +957,10 @@ class View():
                        padx=30)
         nome = tk.Label(frameNome,
                         text="Nome",
-                        font=(seeFont,
-                              seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                        **argsPadraoVisualizacao)
         nome_I = tk.Label(frameNome,
                           text="<<Nome>>",
-                          font=(seeFont,
-                                seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                          **argsPadraoVisualizacao)
 
         frameTipoUm = tk.Frame(visualizacao)
         frameTipoUm.grid(row=1,
@@ -1188,20 +969,10 @@ class View():
                          padx=(60, 0))
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
-                          font=(seeFont,
-                                seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                          **argsPadraoVisualizacao)
         tipoUm_I = tk.Label(frameTipoUm,
                              text="<<Tipo Um>>",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                             **argsPadraoVisualizacao)
 
         frameTipoDois = tk.Frame(visualizacao)
         frameTipoDois.grid(row=2,
@@ -1210,20 +981,10 @@ class View():
                            padx=(60, 0))
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
-                            font=(seeFont,
-                                  seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                            **argsPadraoVisualizacao)
         tipoDois_I = tk.Label(frameTipoDois,
                                    text="<<Tipo Dois>>",
-                                   font=(seeFont,
-                                         seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                   **argsPadraoVisualizacao)
 
         frameNomeHabilidade = tk.Frame(visualizacao)
         frameNomeHabilidade.grid(row=1,
@@ -1232,20 +993,10 @@ class View():
                                  padx=(0, 60))
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
-                                  font=(seeFont,
-                                        seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                  **argsPadraoVisualizacao)
         nomeHabilidade_I = tk.Label(frameNomeHabilidade,
                                     text="<<Nome da Habilidade>>",
-                                    font=(seeFont,
-                                          seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                    **argsPadraoVisualizacao)
 
         frameItem = tk.Frame(visualizacao)
         frameItem.grid(row=3,
@@ -1254,20 +1005,10 @@ class View():
                        padx=(60, 0))
         item = tk.Label(frameItem,
                         text="Item",
-                        font=(seeFont,
-                              seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                        **argsPadraoVisualizacao)
         item_I = tk.Label(frameItem,
                           text="<<Item>>",
-                          font=(seeFont,
-                                seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                          **argsPadraoVisualizacao)
 
         frameNatureza = tk.Frame(visualizacao)
         frameNatureza.grid(row=4,
@@ -1276,21 +1017,18 @@ class View():
                            padx=(60, 0))
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
-                            font=(seeFont,
-                                  seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                            **argsPadraoVisualizacao)
         natureza_I = tk.Label(frameNatureza,
                               text="<<Natureza>>",
-                              font=(seeFont,
-                                  seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                              **argsPadraoVisualizacao)
 
+        argsDescVisualizacao = {
+                "font": ('Yu Gothic UI Semibold', 10),
+                "highlightthickness": 2,
+                "highlightbackground": "red",
+                "highlightcolor": "red",
+                "background": "white"
+        }
         frameDescHabilidade = tk.Frame(visualizacao)
         frameDescHabilidade.grid(row=2,
                                  column=1,
@@ -1298,143 +1036,75 @@ class View():
                                  padx=(0, 60))
         descHabilidade = tk.Label(frameDescHabilidade,
                                   text="Descrição da Habilidade",
-                                  font=(seeFont,
-                                        seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                  **argsPadraoVisualizacao)
         descHabilidade_I = tk.Label(frameDescHabilidade,
                                      text="<<Descrição da Habilidade>>",
                                      height=8,
-                                     font=(seeFont, 10),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel) #TODO -> label de múltiplas linhas
+                                     **argsDescVisualizacao) #TODO -> label de múltiplas linhas
 
-        framePoder = tk.Frame(visualizacao)
-        framePoder.grid(row=5,
+        frameAcao = tk.Frame(visualizacao)
+        frameAcao.grid(row=5,
                         column=0,
                         sticky="nw",
                         padx=(60, 0))
-        nomePoder = tk.Label(framePoder,
-                             text="Nome do Poder",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        nomePoder_I = tk.Label(framePoder,
-                               text="<<Nome do Poder>>",
-                               font=(seeFont,
-                                     seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+        nomeAcao = tk.Label(frameAcao,
+                             text="Nome da Ação",
+                             **argsPadraoVisualizacao)
+        nomeAcao_I = tk.Label(frameAcao,
+                               text="<<Nome da Ação>>",
+                               **argsPadraoVisualizacao)
 
-        framePoderStats = tk.Frame(visualizacao)
-        framePoderStats.grid(row=6,
+        frameAcaoStats = tk.Frame(visualizacao)
+        frameAcaoStats.grid(row=6,
                              column=0,
                              sticky="nw",
                              padx=(60, 0))
-        danoPoder = tk.Label(framePoderStats,
+        danoAcao = tk.Label(frameAcaoStats,
                              text="Dano",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        danoPoder_I = tk.Label(framePoderStats,
+                             **argsPadraoVisualizacao)
+        danoAcao_I = tk.Label(frameAcaoStats,
                                text="<00>",
-                               font=(seeFont,
-                                     seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                               **argsPadraoVisualizacao)
 
-        tipoPoder = tk.Label(framePoderStats,
+        tipoAcao = tk.Label(frameAcaoStats,
                              text="Tipo",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        tipoPoder_I = tk.Label(framePoderStats,
+                             **argsPadraoVisualizacao)
+        tipoAcao_I = tk.Label(frameAcaoStats,
                                text="<Tipo>",
-                               font=(seeFont,
-                                     seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                               **argsPadraoVisualizacao)
 
-        pp = tk.Label(framePoderStats,
+        pp = tk.Label(frameAcaoStats,
                       text="PP",
-                      font=(seeFont,
-                            seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        pp_I = tk.Label(framePoderStats,
+                      **argsPadraoVisualizacao)
+        pp_I = tk.Label(frameAcaoStats,
                         text="<PP>",
-                        font=(seeFont,
-                              seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                        **argsPadraoVisualizacao)
 
-        frameTipoDanoPoder = tk.Frame(visualizacao)
-        frameTipoDanoPoder.grid(row=7,
-                                column=0,
-                                sticky="nw",
-                                padx=(60, 0))
-        tipoDeDano = tk.Label(frameTipoDanoPoder,
-                              text="ATK ou SP.ATK",
-                              font=(seeFont,
-                                    seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        tipoDeDano_I = tk.Label(frameTipoDanoPoder,
+        frameTipoDanoAcao = tk.Frame(visualizacao)
+        frameTipoDanoAcao.grid(row=7,
+                               column=0,
+                               sticky="nw",
+                               padx=(60, 0))
+        tipoDeDano = tk.Label(frameTipoDanoAcao,
+                              text="ATK, SP.ATK ou Status?",
+                              **argsPadraoVisualizacao)
+        tipoDeDano_I = tk.Label(frameTipoDanoAcao,
                                 text="<<Escalamento de Dano>>",
-                                font=(seeFont,
-                                      seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                                **argsPadraoVisualizacao)
 
-        frameDescPoder = tk.Frame(visualizacao)
-        frameDescPoder.grid(row=8,
-                            column=0,
-                            rowspan=10,
-                            sticky="n",
-                            padx=(60, 0))
-        descPoder = tk.Label(frameDescPoder,
-                             text="Descrição e Observações do Poder",
-                             font=(seeFont,
-                                   seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
-        descPoder_I = tk.Label(frameDescPoder,
-                               text="<<Nome>>",
-                               height=9,
-                               font=(seeFont, 12),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+        frameDescAcao = tk.Frame(visualizacao)
+        frameDescAcao.grid(row=8,
+                           column=0,
+                           rowspan=10,
+                           sticky="n",
+                           padx=(60, 0))
+        descAcao = tk.Label(frameDescAcao,
+                            text="Descrição e Observações da Ação",
+                            **argsPadraoVisualizacao)
+        descAcao_I = tk.Label(frameDescAcao,
+                              text="<<Nome>>",
+                              height=9,
+                              **argsPadraoVisualizacao)
 
         frameTags = tk.Frame(visualizacao)
         frameTags.grid(row=18,
@@ -1444,20 +1114,10 @@ class View():
                        padx=(60, 0))
         tags = tk.Label(frameTags,
                         text="Tags",
-                        font=(seeFont,
-                              seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                        **argsPadraoVisualizacao)
         tags_I = tk.Label(frameTags,
                           text="<<Tags>>",
-                          font=(seeFont,
-                                seeSize),
-                           highlightthickness=2,
-                           highlightbackground=seeCorHighlight,
-                           highlightcolor=seeCorHighlight,
-                           background=seeCorLabel)
+                          **argsPadraoVisualizacao)
 
 
         frameStats = tk.Frame(visualizacao)
@@ -1475,286 +1135,158 @@ class View():
         frameStats.columnconfigure(4,
                                    weight=9)
 
-        statsLabelSize = 22
-
+        argsStatsVisualizacao = {
+              "font": ('Yu Gothic UI Semibold', 22),
+              "highlightthickness": 1,
+              "highlightbackground": "red",
+              "highlightcolor": "red",
+              "background": "white"
+        }
+        argsIvEvVisualizacao = {
+              "font": ('Yu Gothic UI Semibold', 22),
+              "background": "white"
+        }
         iv = tk.Label(frameStats,
                       text="IV's",
-                      font=(seeFont,
-                      statsLabelSize),
-                      background=seeCorLabel)
+                      **argsIvEvVisualizacao)
         ev = tk.Label(frameStats,
                       text="EV's",
-                      font=(seeFont,
-                      statsLabelSize),
-                      background=seeCorLabel)
-
+                      **argsIvEvVisualizacao)
 
         hp = tk.Label(frameStats,
                       text="Pontos de Vida",
-                      font=(seeFont,
-                            statsLabelSize),
-                      background=seeCorLabel)
+                      **argsIvEvVisualizacao)
         hp_I = tk.Label(frameStats,
-                        highlightthickness=1,
                         text="<<HP>>",
-                        font=(seeFont,
-                              statsLabelSize),
-                        width=4,
-                        highlightbackground="red",
-                        highlightcolor="red",
-                        background=seeCorLabel)
+                        **argsStatsVisualizacao,
+                        width=4)
         hpIV_I = tk.Label(frameStats,
-                          highlightthickness=1,
                           text="<<HP IV>>",
-                          font=(seeFont,
-                                statsLabelSize),
-                          width=4,
-                          highlightbackground="red",
-                          highlightcolor="red",
-                          background=seeCorLabel)
+                          **argsStatsVisualizacao,
+                          width=4)
         hpEV_I = tk.Label(frameStats,
-                          highlightthickness=1,
                           text="<<HP EV>>",
-                          font=(seeFont,
-                                statsLabelSize),
-                          width=4,
-                          highlightbackground="red",
-                          highlightcolor="red",
-                          background=seeCorLabel)
+                          **argsStatsVisualizacao,
+                          width=4)
         hpTotal = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<TOTAL>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=6,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=6)
 
         atk = tk.Label(frameStats,
                        text="Ataque",
-                       font=(seeFont,
-                             statsLabelSize),
-                       background=seeCorLabel)
+                       **argsIvEvVisualizacao)
         atk_I = tk.Label(frameStats,
-                         highlightthickness=1,
                          text="<<ATK>>",
-                         font=(seeFont,
-                               statsLabelSize),
-                         width=4,
-                         highlightbackground="red",
-                         highlightcolor="red",
-                         background=seeCorLabel)
-
+                         **argsStatsVisualizacao,
+                         width=4)
+        
         atkIV_I = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<<ATK IV>>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=4,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=4)
 
         atkEV_I = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<<ATK EV>>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=4,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=4)
         
         atkTotal = tk.Label(frameStats,
-                            highlightthickness=1,
                             text="<TOTAL>",
-                            font=(seeFont,
-                                  statsLabelSize),
-                            width=6,
-                            highlightbackground="red",
-                            highlightcolor="red",
-                            background=seeCorLabel)
+                            **argsStatsVisualizacao,
+                            width=4)
 
         defs = tk.Label(frameStats,
                         text="Defesa",
-                        font=(seeFont,
-                              statsLabelSize),
-                        background=seeCorLabel)
+                        **argsIvEvVisualizacao)
         defs_I = tk.Label(frameStats,
-                          highlightthickness=1,
                           text="<<DEFS>>",
-                          font=(seeFont,
-                                statsLabelSize),
-                          width=4,
-                          highlightbackground="red",
-                          highlightcolor="red",
-                          background=seeCorLabel)
+                          **argsStatsVisualizacao,
+                          width=4)
 
         defsIV_I = tk.Label(frameStats,
-                            highlightthickness=1,
                             text="<<DEFS IV>>",
-                            font=(seeFont,
-                                  statsLabelSize),
-                            width=4,
-                            highlightbackground="red",
-                            highlightcolor="red",
-                            background=seeCorLabel)
+                            **argsStatsVisualizacao,
+                            width=4)
 
         defsEV_I = tk.Label(frameStats,
-                            highlightthickness=1,
                             text="<<DEFS EV>>",
-                            font=(seeFont,
-                                  statsLabelSize),
-                            width=4,
-                            highlightbackground="red",
-                            highlightcolor="red",
-                            background=seeCorLabel)
+                            **argsStatsVisualizacao,
+                            width=4)
         
         defsTotal = tk.Label(frameStats,
-                             highlightthickness=1,
                              text="<TOTAL>",
-                             font=(seeFont,
-                                   statsLabelSize),
-                             width=6,
-                             highlightbackground="red",
-                             highlightcolor="red",
-                             background=seeCorLabel)
+                             **argsStatsVisualizacao,
+                             width=6)
 
         spAtk = tk.Label(frameStats,
                          text="Ataque Especial",
-                         font=(seeFont,
-                               statsLabelSize),
-                         background=seeCorLabel)
+                         **argsIvEvVisualizacao)
         spAtk_I = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<<SP.ATK>>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=4,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=4)
 
         spAtkIV_I = tk.Label(frameStats,
-                             highlightthickness=1,
                              text="<<SP.ATK IV>>",
-                             font=(seeFont,
-                                   statsLabelSize),
-                             width=4,
-                             highlightbackground="red",
-                             highlightcolor="red",
-                             background=seeCorLabel)
+                             **argsStatsVisualizacao,
+                             width=4)
 
         spAtkEV_I = tk.Label(frameStats,
-                             highlightthickness=1,
                              text="<<SP.ATK EV>>",
-                             font=(seeFont,
-                                   statsLabelSize),
-                             width=4,
-                             highlightbackground="red",
-                             highlightcolor="red",
-                             background=seeCorLabel)
+                             **argsStatsVisualizacao,
+                             width=4)
         
         spAtkTotal = tk.Label(frameStats,
-                              highlightthickness=1,
                               text="<TOTAL>",
-                              font=(seeFont,
-                                    statsLabelSize),
-                              width=6,
-                              highlightbackground="red",
-                              highlightcolor="red",
-                              background=seeCorLabel)
+                              **argsStatsVisualizacao,
+                              width=6)
 
         spDefs = tk.Label(frameStats,
                           text="Defesa Especial",
-                          font=(seeFont,
-                                statsLabelSize),
-                          background=seeCorLabel)
+                          **argsIvEvVisualizacao)
         spDefs_I = tk.Label(frameStats,
-                            highlightthickness=1,
                             text="<<SP.DEFS>>",
-                            font=(seeFont,
-                                  statsLabelSize),
-                            width=4,
-                            highlightbackground="red",
-                            highlightcolor="red",
-                            background=seeCorLabel)
+                            **argsStatsVisualizacao,
+                            width=4)
 
         spDefsIV_I = tk.Label(frameStats,
-                              highlightthickness=1,
                               text="<<SP.DEFS IV>>",
-                              font=(seeFont,
-                                    statsLabelSize),
-                              width=4,
-                              highlightbackground="red",
-                              highlightcolor="red",
-                              background=seeCorLabel)
+                              **argsStatsVisualizacao,
+                              width=4)
 
         spDefsEV_I = tk.Label(frameStats,
-                              highlightthickness=1,
                               text="<<SP.DEFS EV>>",
-                              font=(seeFont,
-                                    statsLabelSize),
-                              width=4,
-                              highlightbackground="red",
-                              highlightcolor="red",
-                              background=seeCorLabel)
+                              **argsStatsVisualizacao,
+                              width=4)
         
         spDefsTotal = tk.Label(frameStats,
-                               highlightthickness=1,
                                text="<TOTAL>",
-                               font=(seeFont,
-                                     statsLabelSize),
-                               width=6,
-                               highlightbackground="red",
-                               highlightcolor="red",
-                               background=seeCorLabel)
+                               **argsStatsVisualizacao,
+                               width=4)
 
         spd = tk.Label(frameStats,
                        text="Velocidade",
-                       font=(seeFont,
-                             statsLabelSize),
-                       background=seeCorLabel)
+                       **argsIvEvVisualizacao)
         spd_I = tk.Label(frameStats,
-                         highlightthickness=1,
                          text="<<SPD>>",
-                         font=(seeFont,
-                               statsLabelSize),
-                         width=4,
-                         highlightbackground="red",
-                         highlightcolor="red",
-                         background=seeCorLabel)
+                         **argsStatsVisualizacao,
+                         width=4)
 
         spdIV_I = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<<SPD IV>>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=4,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=4)
 
         spdEV_I = tk.Label(frameStats,
-                           highlightthickness=1,
                            text="<<SPD EV>>",
-                           font=(seeFont,
-                                 statsLabelSize),
-                           width=4,
-                           highlightbackground="red",
-                           highlightcolor="red",
-                           background=seeCorLabel)
+                           **argsStatsVisualizacao,
+                           width=4)
         
         spdTotal = tk.Label(frameStats,
-                            highlightthickness=1,
                             text="<TOTAL>",
-                            font=(seeFont,
-                                  statsLabelSize),
-                            width=6,
-                            highlightbackground="red",
-                            highlightcolor="red",
-                            background=seeCorLabel)
+                            **argsStatsVisualizacao,
+                            width=6)
 
         frameSalvar = tk.Frame(visualizacao)
         frameSalvar.grid(row=19,
@@ -1820,19 +1352,19 @@ class View():
         descHabilidade_I.pack(side="top",
                                 anchor="center")
 
-        nomePoder.pack(side="left",
+        nomeAcao.pack(side="left",
                        anchor="nw")
-        nomePoder_I.pack(side="left",
+        nomeAcao_I.pack(side="left",
                          anchor="nw")
 
-        danoPoder.pack(side="left",
+        danoAcao.pack(side="left",
                        anchor="nw")
-        danoPoder_I.pack(side="left",
+        danoAcao_I.pack(side="left",
                          anchor="nw")
 
-        tipoPoder.pack(side="left",
+        tipoAcao.pack(side="left",
                        anchor="nw")
-        tipoPoder_I.pack(side="left",
+        tipoAcao_I.pack(side="left",
                           anchor="nw")
 
         pp.pack(side="left",
@@ -1845,9 +1377,9 @@ class View():
         tipoDeDano_I.pack(side="left",
                            anchor="nw")
 
-        descPoder.pack(side="top",
+        descAcao.pack(side="top",
                        anchor="center")
-        descPoder_I.pack(side="top",
+        descAcao_I.pack(side="top",
                            anchor="center")
 
         tags.pack(side="left",
