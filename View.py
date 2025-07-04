@@ -14,11 +14,11 @@ class View():
 
         self.controller = Controller(self)
 
-        self.backgroundStr = "Imagens\\BackgroundClaro.png"
+        self.backgroundStr = "Imagens\\Backgrounds\\BackgroundClaro.png"
         self.background = Image.open(self.backgroundStr)
         self.tkBg = ImageTk.PhotoImage(self.background)
 
-        pokebola = "Imagens\\IconeNormal.png"
+        pokebola = "Imagens\\Icones\\IconeNormal.png"
         self.icone = ImageTk.PhotoImage(Image.open(pokebola))
         self.root.iconphoto(True, self.icone)
 
@@ -105,10 +105,9 @@ class View():
 
         return menu
 
-    #todo -> Personalizar as entrys e labels para coincidir com as cores do programa
+    #todo -> Personalizar os botões
     #TODO -> Pronto em relação ao model. Ainda precisa adicionar a funcionalidade de salvar, etc.
-    #TODO -> Adicionar mais de um acao
-    #TODO -> Adicionar precisão
+    #TODO -> Adicionar mais de uma ação
     def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
         insercao.grid(row=0,
@@ -122,7 +121,6 @@ class View():
                            relwidth=1,
                            relheight=1)
 
-        #TODO -> Transformar os parâmetros em um dict
         corLabel = "white"
         argsPadraoInsercao = {
               "font": ('Yu Gothic UI Semibold', 20),
@@ -177,9 +175,11 @@ class View():
         nivel_E = tk.Entry(frameNivel,
                            width=3,
                            **argsPadraoInsercao)
-
+        
+        generos = ["Agênero", "Feminino", "Masculino"]
         frameGenero = tk.Frame(insercao,
-                               background=corLabel)
+                               background="red",
+                               padx=1)
         frameGenero.grid(row=2,
                          column=0,
                          sticky="ne",
@@ -191,6 +191,7 @@ class View():
         genero_CB = ttk.Combobox(frameGenero,
                                  width=9,
                                  **argsFonte,
+                                 values=generos,
                                  state="readonly")
 
         frameNome = tk.Frame(insercao,
@@ -207,8 +208,13 @@ class View():
                           width=12,
                           **argsPadraoInsercao)
 
+        tipos = ["Normal", "Fogo", "Água", "Grama", "Voador", "Lutador",
+                 "Veneno", "Elétrico", "Terra", "Pedra", "Psíquico", "Gelo",
+                 "Inseto", "Fantasma", "Ferro", "Dragão", "Sombrio", "Fada"]
         frameTipoUm = tk.Frame(insercao,
-                               background=corLabel)
+                               background="red",
+                               padx=1,
+                               pady=1)
         frameTipoUm.grid(row=1,
                          column=0,
                          sticky="nw",
@@ -220,10 +226,12 @@ class View():
         tipoUm_CB = ttk.Combobox(frameTipoUm,
                                  width=8,
                                  **argsFonte,
+                                 values=tipos,
                                  state="readonly")
 
         frameTipoDois = tk.Frame(insercao,
-                                 background=corLabel)
+                                 background="red",
+                                 padx=1)
         frameTipoDois.grid(row=2,
                            column=0,
                            sticky="nw",
@@ -235,6 +243,7 @@ class View():
         tipoDois_CB = ttk.Combobox(frameTipoDois,
                                    width=8,
                                    **argsFonte,
+                                   values=tipos,
                                    state="readonly")
 
         frameNomeHabilidade = tk.Frame(insercao,
@@ -265,8 +274,20 @@ class View():
                           width=16,
                           **argsPadraoInsercao)
 
+        naturezas = ["Neutra",
+                     "Lonely: +ATK   -DEF", "Adamant: +ATK   -SP.ATK",
+                     "Naughty: +ATK   -SP.DEF", "Brave: +ATK   -SPEED",
+                     "Bold: +DEF   -ATK", "Impish: +DEF   -SP.ATK",
+                     "Lax: +DEF   -SP.DEF", "Relaxed: +DEF   -SPEED",
+                     "Modest: +SP.ATK   -ATK", "Mild: +SP.ATK    -DEF",
+                     "Rash: +SP.ATK    -SP.DEF", "Quiet: +SP.ATK    -SPEED",
+                     "Calm: +SP.DEF   -ATK", "Gentle: +SP.DEF   -DEF",
+                     "Careful: +SP.DEF   -SP.ATK", "Sassy: +SP.DEF   -SPEED",
+                     "Timid: +SPEED   -ATK", "Hasty: +SPEED   -DEF",
+                     "Jolly: +SPEED   -SP.ATK", "Naive: +SPEED   -SP.DEF"]
         frameNatureza = tk.Frame(insercao,
-                                 background=corLabel)
+                                 background="red",
+                                 padx=1)
         frameNatureza.grid(row=4,
                            column=0,
                            sticky="nw",
@@ -278,6 +299,7 @@ class View():
         natureza_CB = ttk.Combobox(frameNatureza,
                                    width=30,
                                    **argsFonte,
+                                   values=naturezas,
                                    state="readonly")
         argsDescHab = {
               "font": ('Yu Gothic UI Semibold', 10),
@@ -301,32 +323,29 @@ class View():
                                      **argsDescHab)
 
         frameAcao = tk.Frame(insercao,
-                              background=corLabel)
+                              background="red",
+                              padx=2,
+                              pady=1)
         frameAcao.grid(row=5,
-                        column=0,
-                        sticky="nw",
-                        padx=(60, 0))
+                       column=0,
+                       sticky="nw",
+                       padx=(60, 0))
         nomeAcao = tk.Label(frameAcao,
                              text="Nome da Ação",
                              **argsPadraoInsercao,
                              background=corLabel)
-        nomeAcao_E = tk.Entry(frameAcao,
-                               width=16,
-                               **argsPadraoInsercao)
+        nomeAcao_CB = ttk.Combobox(frameAcao,
+                                   width=16,
+                                   **argsFonte)
 
         frameAcaoStats = tk.Frame(insercao,
-                                   background=corLabel)
+                                  background="red",
+                                  padx=2,
+                                  pady=1)
         frameAcaoStats.grid(row=6,
-                             column=0,
-                             sticky="nw",
-                             padx=(60, 0))
-        danoAcao = tk.Label(frameAcaoStats,
-                             text="Dano",
-                             **argsPadraoInsercao,
-                             background=corLabel)
-        danoAcao_E = tk.Entry(frameAcaoStats,
-                               width=3,
-                               **argsPadraoInsercao)
+                            column=0,
+                            sticky="nw",
+                            padx=(60, 0))
 
         tipoAcao = tk.Label(frameAcaoStats,
                              text="Tipo",
@@ -335,6 +354,7 @@ class View():
         tipoAcao_CB = ttk.Combobox(frameAcaoStats,
                                     width=8,
                                     **argsFonte,
+                                    values=tipos,
                                     state="readonly")
 
         pp = tk.Label(frameAcaoStats,
@@ -344,21 +364,40 @@ class View():
         pp_E = tk.Entry(frameAcaoStats,
                         width=2,
                         **argsPadraoInsercao)
+        
+        precisao = tk.Label(frameAcaoStats,
+                            text="Precisão",
+                            **argsPadraoInsercao,
+                            background=corLabel)
+        precisao_E = tk.Entry(frameAcaoStats,
+                              width=3,
+                              **argsPadraoInsercao)
 
+        categorias = ["Atk", "Sp.Atk", "Status"]
         frameTipoDanoAcao = tk.Frame(insercao,
-                                      background=corLabel)
+                                      background="red",
+                                      padx=1)
         frameTipoDanoAcao.grid(row=7,
-                                column=0,
-                                sticky="nw",
-                                padx=(60, 0))
+                               column=0,
+                               sticky="nw",
+                               padx=(60, 0))
         tipoDeDano = tk.Label(frameTipoDanoAcao,
-                              text="ATK, SP.ATK ou Status?",
+                              text="Categoria",
                               **argsPadraoInsercao,
                               background=corLabel)
         tipoDeDano_CB = ttk.Combobox(frameTipoDanoAcao,
                                      width=6,
                                      **argsFonte,
+                                     values=categorias,
                                      state="readonly")
+                
+        danoAcao = tk.Label(frameTipoDanoAcao,
+                            text="Dano",
+                            **argsPadraoInsercao,
+                            background=corLabel)
+        danoAcao_E = tk.Entry(frameTipoDanoAcao,
+                              width=3,
+                              **argsPadraoInsercao)
         
         argsDescPod = {
               "font": ('Yu Gothic UI Semibold', 12),
@@ -368,21 +407,23 @@ class View():
         frameDescAcao = tk.Frame(insercao,
                                   background=corLabel)
         frameDescAcao.grid(row=8,
-                            column=0,
-                            rowspan=10,
-                            sticky="n",
-                            padx=(60, 0))
+                           column=0,
+                           rowspan=10,
+                           sticky="n",
+                           padx=(60, 0))
         descAcao = tk.Label(frameDescAcao,
-                             text="Descrição e Observações da Ação",
-                             **argsPadraoInsercao,
-                             background=corLabel)
+                            text="Descrição e Observações da Ação",
+                            **argsPadraoInsercao,
+                            background=corLabel)
         descAcao_Txt = tk.Text(frameDescAcao,
-                                width=50,
-                                height=9,
-                                **argsDescPod)
+                               width=50,
+                               height=9,
+                               **argsDescPod)
 
         frameTags = tk.Frame(insercao,
-                             background=corLabel)
+                             background="red",
+                             padx=2,
+                             pady=2)
         frameTags.grid(row=18,
                        column=0,
                        sticky="nw",
@@ -395,6 +436,7 @@ class View():
         tags_CB = ttk.Combobox(frameTags,
                                width=30,
                                **argsFonte,
+                               values=tipos,
                                state="readonly")
 
 
@@ -524,7 +566,43 @@ class View():
                          padx=(60, 0),
                          pady=(0, 30))
         salvarInfo = tk.Button(frameSalvar,
-                               text="Salvar Informações")
+                               text="Salvar Informações",
+                               command=lambda: self.salvar(apelido_E,
+                                                           nivel_E,
+                                                           genero_CB,
+                                                           nome_E,
+                                                           tipoUm_CB,
+                                                           tipoDois_CB,
+                                                           nomeHabilidade_E,
+                                                           item_E,
+                                                           natureza_CB,
+                                                           descHabilidade_Txt,
+                                                           nomeAcao_CB, #! Terá muito tratamento pra cada ação
+                                                           tipoAcao_CB,
+                                                           pp_E,
+                                                           precisao_E,
+                                                           tipoDeDano_CB,
+                                                           danoAcao_E,
+                                                           descAcao_Txt,
+                                                           tags_CB,
+                                                           hp_E,
+                                                           hpIV_E,
+                                                           hpEV_E,
+                                                           atk_E,
+                                                           atkIV_E,
+                                                           atkEV_E,
+                                                           defs_E,
+                                                           defsIV_E,
+                                                           defsEV_E,
+                                                           spAtk_E,
+                                                           spAtkIV_E,
+                                                           spAtkEV_E,
+                                                           spDefs_E,
+                                                           spDefsIV_E,
+                                                           spDefsEV_E,
+                                                           spd_E,
+                                                           spdIV_E,
+                                                           spdEV_E,))
 
         voltarMenu.grid(row=0,
                         column=0,
@@ -583,12 +661,7 @@ class View():
 
         nomeAcao.pack(side="left",
                        anchor="nw")
-        nomeAcao_E.pack(side="left",
-                         anchor="nw")
-
-        danoAcao.pack(side="left",
-                       anchor="nw")
-        danoAcao_E.pack(side="left",
+        nomeAcao_CB.pack(side="left",
                          anchor="nw")
 
         tipoAcao.pack(side="left",
@@ -600,11 +673,21 @@ class View():
                 anchor="nw")
         pp_E.pack(side="left",
                   anchor="nw")
+        
+        precisao.pack(side="left",
+                      anchor="nw")
+        precisao_E.pack(side="left",
+                        anchor="nw")
 
         tipoDeDano.pack(side="left",
                         anchor="nw")
         tipoDeDano_CB.pack(side="left",
                            anchor="nw")
+        
+        danoAcao.pack(side="left",
+                       anchor="nw")
+        danoAcao_E.pack(side="left",
+                         anchor="nw")
 
         descAcao.pack(side="top",
                        anchor="center")
@@ -971,7 +1054,7 @@ class View():
                           text="Tipo 1",
                           **argsPadraoVisualizacao)
         tipoUm_I = tk.Label(frameTipoUm,
-                             text="<<Tipo Um>>",
+                             text="<Tipo Um>",
                              **argsPadraoVisualizacao)
 
         frameTipoDois = tk.Frame(visualizacao)
@@ -983,7 +1066,7 @@ class View():
                             text="Tipo 2",
                             **argsPadraoVisualizacao)
         tipoDois_I = tk.Label(frameTipoDois,
-                                   text="<<Tipo Dois>>",
+                                   text="<Tipo Dois>",
                                    **argsPadraoVisualizacao)
 
         frameNomeHabilidade = tk.Frame(visualizacao)
@@ -1059,12 +1142,6 @@ class View():
                              column=0,
                              sticky="nw",
                              padx=(60, 0))
-        danoAcao = tk.Label(frameAcaoStats,
-                             text="Dano",
-                             **argsPadraoVisualizacao)
-        danoAcao_I = tk.Label(frameAcaoStats,
-                               text="<00>",
-                               **argsPadraoVisualizacao)
 
         tipoAcao = tk.Label(frameAcaoStats,
                              text="Tipo",
@@ -1079,6 +1156,13 @@ class View():
         pp_I = tk.Label(frameAcaoStats,
                         text="<PP>",
                         **argsPadraoVisualizacao)
+        
+        precisao = tk.Label(frameAcaoStats,
+                            text="Precisão",
+                            **argsPadraoVisualizacao)
+        precisao_I = tk.Label(frameAcaoStats,
+                            text="<00>",
+                            **argsPadraoVisualizacao)
 
         frameTipoDanoAcao = tk.Frame(visualizacao)
         frameTipoDanoAcao.grid(row=7,
@@ -1086,12 +1170,19 @@ class View():
                                sticky="nw",
                                padx=(60, 0))
         tipoDeDano = tk.Label(frameTipoDanoAcao,
-                              text="ATK, SP.ATK ou Status?",
+                              text="Categoria",
                               **argsPadraoVisualizacao)
         tipoDeDano_I = tk.Label(frameTipoDanoAcao,
-                                text="<<Escalamento de Dano>>",
+                                text="<<Categoria>>",
                                 **argsPadraoVisualizacao)
 
+        danoAcao = tk.Label(frameTipoDanoAcao,
+                            text="Dano",
+                            **argsPadraoVisualizacao)
+        danoAcao_I = tk.Label(frameTipoDanoAcao,
+                              text="<00>",
+                              **argsPadraoVisualizacao)
+        
         frameDescAcao = tk.Frame(visualizacao)
         frameDescAcao.grid(row=8,
                            column=0,
@@ -1357,11 +1448,6 @@ class View():
         nomeAcao_I.pack(side="left",
                          anchor="nw")
 
-        danoAcao.pack(side="left",
-                       anchor="nw")
-        danoAcao_I.pack(side="left",
-                         anchor="nw")
-
         tipoAcao.pack(side="left",
                        anchor="nw")
         tipoAcao_I.pack(side="left",
@@ -1371,11 +1457,21 @@ class View():
                 anchor="nw")
         pp_I.pack(side="left",
                   anchor="nw")
+        
+        precisao.pack(side="left",
+                      anchor="nw")
+        precisao_I.pack(side="left",
+                        anchor="nw")
 
         tipoDeDano.pack(side="left",
                         anchor="nw")
         tipoDeDano_I.pack(side="left",
                            anchor="nw")
+        
+        danoAcao.pack(side="left",
+                       anchor="nw")
+        danoAcao_I.pack(side="left",
+                         anchor="nw")
 
         descAcao.pack(side="top",
                        anchor="center")
@@ -1517,6 +1613,78 @@ class View():
     def levantarTela(self, tela):
         tela.tkraise()
         return None
-
-    def chamarController(self):
-        self.controller.responder()
+    
+    def salvar(self,
+               apelido_E,
+               nivel_E,
+               genero_CB,
+               nome_E,
+               tipoUm_CB,
+               tipoDois_CB,
+               nomeHabilidade_E,
+               item_E,
+               natureza_CB,
+               descHabilidade_Txt,
+               nomeAcao_CB,
+               tipoAcao_CB,
+               pp_E,
+               precisao_E,
+               tipoDeDano_CB,
+               danoAcao_E,
+               descAcao_Txt,
+               tags_CB,
+               hp_E,
+               hpIV_E,
+               hpEV_E,
+               atk_E,
+               atkIV_E,
+               atkEV_E,
+               defs_E,
+               defsIV_E,
+               defsEV_E,
+               spAtk_E,
+               spAtkIV_E,
+               spAtkEV_E,
+               spDefs_E,
+               spDefsIV_E,
+               spDefsEV_E,
+               spd_E,
+               spdIV_E,
+               spdEV_E):
+        
+        apelido = apelido_E.get()
+        nivel = nivel_E.get()
+        genero = genero_CB.get()
+        nome = nome_E.get()
+        tipoUm = tipoUm_CB.get()
+        tipoDois = tipoDois_CB.get()
+        nomeHabilidade = nomeHabilidade_E.get()
+        item = item_E.get()
+        natureza = natureza_CB.get()
+        descHabilidade = descHabilidade_Txt.get("1.0", "end")
+        nomeAcao = nomeAcao_CB.get()
+        tipoAcao = tipoAcao_CB.get()
+        pp = pp_E.get()
+        precisao = precisao_E.get()
+        tipoDeDano = tipoDeDano_CB.get()
+        danoAcao = danoAcao_E.get()
+        descAcao = descAcao_Txt.get("1.0", "end")
+        tags = tags_CB.get()
+        hp = hp_E.get()
+        hp = hpIV_E.get()
+        hp = hpEV_E.get()
+        atk = atk_E.get()
+        atk = atkIV_E.get()
+        atk = atkEV_E.get()
+        defs = defs_E.get()
+        defs = defsIV_E.get()
+        defs = defsEV_E.get()
+        spAtk = spAtk_E.get()
+        spAtk = spAtkIV_E.get()
+        spAtk = spAtkEV_E.get()
+        spDefs = spDefs_E.get()
+        spDefs = spDefsIV_E.get()
+        spDefs = spDefsEV_E.get()
+        spd = spd_E.get()
+        spd = spdIV_E.get()
+        spd = spdEV_E.get()
