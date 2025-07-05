@@ -106,6 +106,7 @@ class View():
         return menu
 
     #todo -> Personalizar os botões
+    #TODO -> Botão para abrir combobox para trocar entre 4 ações
     #TODO -> Pronto em relação ao model. Ainda precisa adicionar a funcionalidade de salvar, etc.
     #TODO -> Adicionar mais de uma ação
     def telaInsercao(self, root):
@@ -176,20 +177,20 @@ class View():
                            width=3,
                            **argsPadraoInsercao)
         
-        generos = ["Agênero", "Feminino", "Masculino"]
+        generos = ["Sem Gênero", "Feminino", "Masculino"]
         frameGenero = tk.Frame(insercao,
                                background="red",
                                padx=1)
         frameGenero.grid(row=2,
                          column=0,
                          sticky="ne",
-                         padx=30)
+                         padx=20)
         genero = tk.Label(frameGenero,
                           text="Gênero",
                           **argsPadraoInsercao,
                           background=corLabel)
         genero_CB = ttk.Combobox(frameGenero,
-                                 width=9,
+                                 width=10,
                                  **argsFonte,
                                  values=generos,
                                  state="readonly")
@@ -323,9 +324,9 @@ class View():
                                      **argsDescHab)
 
         frameAcao = tk.Frame(insercao,
-                              background="red",
-                              padx=2,
-                              pady=1)
+                             background="red",
+                             padx=2,
+                             pady=1)
         frameAcao.grid(row=5,
                        column=0,
                        sticky="nw",
@@ -337,7 +338,18 @@ class View():
         nomeAcao_CB = ttk.Combobox(frameAcao,
                                    width=16,
                                    **argsFonte)
-
+        frameAcaoEdicao = tk.Frame(frameAcao,
+                                   background="red")
+        editarAcao = tk.Button(frameAcaoEdicao,
+                               text="Editar Ação")
+        opcoes: list[int] = [1, 2, 3, 4]
+        acaoEdicao = ttk.Combobox(frameAcaoEdicao,
+                                  width=5,
+                                  justify="center",
+                                  state="readonly",
+                                  font=('Yu Gothic UI Semibold', 11),
+                                  values=opcoes)
+#TODO -> ACABAR ESSA FUNCIONALIDADE, ESTÁ NO AAAAAA NO ZAP
         frameAcaoStats = tk.Frame(insercao,
                                   background="red",
                                   padx=2,
@@ -419,7 +431,9 @@ class View():
                                width=50,
                                height=9,
                                **argsDescPod)
-
+        
+        tagsCB = tipos
+        tagsAtuais = []
         frameTags = tk.Frame(insercao,
                              background="red",
                              padx=2,
@@ -434,10 +448,16 @@ class View():
                         **argsPadraoInsercao,
                         background=corLabel)
         tags_CB = ttk.Combobox(frameTags,
-                               width=30,
+                               width=20,
                                **argsFonte,
-                               values=tipos,
-                               state="readonly")
+                               values=tagsCB)
+        adicionarTag = tk.Button(frameTags,
+                                 text="Adicionar +1 tag",
+                                 height=2,
+                                 command=lambda: self.addTagInsercao(tags_CB,
+                                                                     tagsCB,
+                                                                     tagsAtuais,
+                                                                     False))
 
 
         frameStats = tk.Frame(insercao,
@@ -453,6 +473,14 @@ class View():
                                    weight=3)
         frameStats.columnconfigure([2, 3],
                                    weight=2)
+        
+        argsPadraoStatsEntry = {
+              "font": ('Yu Gothic UI Semibold', 20),
+              "highlightthickness": 2,
+              "highlightbackground": "red",
+              "highlightcolor": "red",
+              "justify": "center"
+        }
 
         iv = tk.Label(frameStats,
                       text="IV's",
@@ -468,14 +496,14 @@ class View():
                       **argsPadraoInsercao,
                       background=corLabel)
         hp_E = tk.Entry(frameStats,
-                        **argsPadraoInsercao,
+                        **argsPadraoStatsEntry,
                         width=4)
         hpIV_E = tk.Entry(frameStats,
-                          **argsPadraoInsercao,
+                          **argsPadraoStatsEntry,
                           width=4)
 
         hpEV_E = tk.Entry(frameStats,
-                          **argsPadraoInsercao,
+                          **argsPadraoStatsEntry,
                           width=4)
 
         atk = tk.Label(frameStats,
@@ -483,15 +511,15 @@ class View():
                        **argsPadraoInsercao,
                        background=corLabel)
         atk_E = tk.Entry(frameStats,
-                         **argsPadraoInsercao,
+                         **argsPadraoStatsEntry,
                          width=4)
 
         atkIV_E = tk.Entry(frameStats,
-                           **argsPadraoInsercao,
+                           **argsPadraoStatsEntry,
                            width=4)
 
         atkEV_E = tk.Entry(frameStats,
-                           **argsPadraoInsercao,
+                           **argsPadraoStatsEntry,
                            width=4)
 
         defs = tk.Label(frameStats,
@@ -499,15 +527,15 @@ class View():
                         **argsPadraoInsercao,
                         background=corLabel)
         defs_E = tk.Entry(frameStats,
-                          **argsPadraoInsercao,
+                          **argsPadraoStatsEntry,
                           width=4)
 
         defsIV_E = tk.Entry(frameStats,
-                            **argsPadraoInsercao,
+                            **argsPadraoStatsEntry,
                             width=4)
 
         defsEV_E = tk.Entry(frameStats,
-                            **argsPadraoInsercao,
+                            **argsPadraoStatsEntry,
                             width=4)
 
         spAtk = tk.Label(frameStats,
@@ -515,15 +543,15 @@ class View():
                          **argsPadraoInsercao,
                          background=corLabel)
         spAtk_E = tk.Entry(frameStats,
-                           **argsPadraoInsercao,
+                           **argsPadraoStatsEntry,
                            width=4)
 
         spAtkIV_E = tk.Entry(frameStats,
-                             **argsPadraoInsercao,
+                             **argsPadraoStatsEntry,
                              width=4)
 
         spAtkEV_E = tk.Entry(frameStats,
-                             **argsPadraoInsercao,
+                             **argsPadraoStatsEntry,
                              width=4)
 
         spDefs = tk.Label(frameStats,
@@ -531,15 +559,15 @@ class View():
                           **argsPadraoInsercao,
                           background=corLabel)
         spDefs_E = tk.Entry(frameStats,
-                            **argsPadraoInsercao,
+                            **argsPadraoStatsEntry,
                             width=4)
 
         spDefsIV_E = tk.Entry(frameStats,
-                              **argsPadraoInsercao,
+                              **argsPadraoStatsEntry,
                               width=4)
 
         spDefsEV_E = tk.Entry(frameStats,
-                              **argsPadraoInsercao,
+                              **argsPadraoStatsEntry,
                               width=4)
 
         spd = tk.Label(frameStats,
@@ -547,15 +575,15 @@ class View():
                        **argsPadraoInsercao,
                        background=corLabel)
         spd_E = tk.Entry(frameStats,
-                         **argsPadraoInsercao,
+                         **argsPadraoStatsEntry,
                          width=4)
 
         spdIV_E = tk.Entry(frameStats,
-                           **argsPadraoInsercao,
+                           **argsPadraoStatsEntry,
                            width=4)
 
         spdEV_E = tk.Entry(frameStats,
-                           **argsPadraoInsercao,
+                           **argsPadraoStatsEntry,
                            width=4)
 
         frameSalvar = tk.Frame(insercao,
@@ -663,6 +691,11 @@ class View():
                        anchor="nw")
         nomeAcao_CB.pack(side="left",
                          anchor="nw")
+        
+        frameAcaoEdicao.pack(side="left",
+                             anchor="nw")
+        editarAcao.pack(side="top")
+        acaoEdicao.pack(side="bottom")
 
         tipoAcao.pack(side="left",
                        anchor="nw")
@@ -698,6 +731,8 @@ class View():
                   anchor="nw")
         tags_CB.pack(side="left",
                      anchor="nw")
+        adicionarTag.pack(side="left",
+                          anchor="center")
 
         iv.grid(row=0,
                 column=2,
@@ -788,7 +823,7 @@ class View():
 
         return insercao
 
-
+#! Vai ser uma listbox
     def telaListagem(self, root):
         listagem = tk.Frame(self.root)
         listagem.grid(row=0,
@@ -1688,3 +1723,13 @@ class View():
         spd = spd_E.get()
         spd = spdIV_E.get()
         spd = spdEV_E.get()
+
+    def addTagInsercao(self, combobox, tagsCB, tagsAtuais, salvar: bool):
+        valor = combobox.get()
+        combobox.set("")
+        novosValoresTags: dict = self.controller.addTagInsercao(valor,
+                                                                tagsCB,
+                                                                tagsAtuais,
+                                                                salvar)
+        combobox["values"] = novosValoresTags["tagsCB"]
+        tagsAtuais = novosValoresTags["tagsAtuais"]

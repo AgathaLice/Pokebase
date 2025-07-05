@@ -13,3 +13,15 @@ class Controller():
 
     def chamarRaise(self, tela):
         self.view.levantarTela(tela)
+    
+    def addTagInsercao(self,
+                       valor,
+                       tagsCB,
+                       tagsAtuais,
+                       salvar: bool
+                       ) -> None | dict:
+        novosValoresTags: dict = self.model.addTagInsercao(valor,
+                                                           tagsCB,
+                                                           tagsAtuais,
+                                                           salvar)
+        return novosValoresTags
