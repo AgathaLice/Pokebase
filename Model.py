@@ -10,19 +10,102 @@ class Model():
         pokemons = pokeBase["Pokemons"]
         tags = pokeBase["Tags"]
         
-        
-        
-        
-    """
-    #!-> pega o valor
-    #!-> verifica se o valor já não é uma das tags na lista de adicionadas 
-    #!-> se sim, dá um aviso e não adiciona nada (isso não ocorre qnd a função é chamada pelo botão de salvar)
-    #!-> se não:
-    #!->   verifica se não está na lista de tags da combobox
-    #!->   se sim, adiciona nas tags, mas não o adiciona na lista de opções
-    #!->   se não, adiciona em ambas as listas para uso posterior
-    #!->   limpa a opção da combobox
-    """
+    
+    
+    def salvar(self,
+               apelido,
+               nivel,
+               genero,
+               nome,
+               tipoUm,
+               tipoDois,
+               nomeHabilidade,
+               item,
+               natureza,
+               descHabilidade,
+               nomeAcao,
+               tipoAcao,
+               pp,
+               precisao,
+               categoria,
+               danoAcao,
+               descAcao,
+               tags,
+               hp,
+               hpIV,
+               hpEV,
+               atk,
+               atkIV,
+               atkEV,
+               defs,
+               defsIV,
+               defsEV,
+               spAtk,
+               spAtkIV,
+               spAtkEV,
+               spDefs,
+               spDefsIV,
+               spDefsEV,
+               spd,
+               spdIV,
+               spdEV):
+        pokemon = {
+            "Apelido": apelido,
+    "Nome": nome,
+    "Nível": nivel,
+    "Gênero": genero,
+    "Tipo Um": tipoUm,
+    "Tipo Dois": tipoDois,
+    "Nome Habilidade": nomeHabilidade,
+    "Descrição Habilidade": descHabilidade,
+    "Item": item,
+    "Natureza": natureza,
+    "Ação 1": {
+        "Nome": nomeAcao,
+        "Dano": danoAcao,
+        "Tipo": tipoAcao,
+        "Precisão": precisao,
+        "PP": pp,
+        "Categoria": categoria,
+        "Descrição Da Ação": descAcao
+        },
+    "Tags": tags,
+    "hp": hp,
+    "hpIV": hpIV,
+    "hpEV": hpEV,
+    "hpTotal": self.calcularStat(hp, hpIV, hpEV, nivel, natureza),
+    "atk": atk,
+    "atkIV": atkIV,
+    "atkEV": atkEV,
+    "atkTotal": self.calcularStat(atk, atkIV, atkEV, nivel, natureza),
+    "def": defs,
+    "defIV": defsIV,
+    "defEV": defsEV,
+    "defsTotal": self.calcularStat(defs, defsIV, defsEV, nivel, natureza),
+    "sp.atk": spAtk,
+    "sp.atkIV": spAtkIV,
+    "sp.atkEV": spAtkEV,
+    "sp.atkTotal": self.calcularStat(spAtk, spAtkIV, spAtkEV, nivel, natureza),
+    "sp.def": spDefs,
+    "sp.defIV": spDefsIV,
+    "sp.defEV": spDefsEV,
+    "sp.defsTotal": self.calcularStat(spDefs, spDefsIV, spDefsEV, nivel, natureza),
+    "spd": spd,
+    "spdIV": spdIV,
+    "spdEV": spdEV,
+    "spdTotal": self.calcularStat(spd, spdIV, spdEV, nivel, natureza)
+        }
+    
+        print(pokemon)
+    
+    def calcularStat(self,
+                     stat,
+                     statIV,
+                     statEV,
+                     nivel,
+                     natureza):
+        pass
+    
     def addTagInsercao(self,
                        valor,
                        tagsCB,
@@ -64,6 +147,35 @@ class Model():
             print("ERRO")
             return None
 
-    
+    def criarListaMoves(self,
+                        valorCB,
+                        movesCB,
+                        contador) -> None | dict:
+        if contador <= 4:
+            movesCB[contador - 1] += valorCB
+            contador += 1
+        dictValores = {
+            "valorCB": valorCB,
+            "movesCB": movesCB,
+            "contador": contador,
+            "readonly": False
+        }
+        if contador > 4:
+            dictValores["readonly"] = True
+            
+        return dictValores
+
+    def editarMoves(self,
+                    dadosPokemonMoves,
+                    contador,
+                    movesCB,
+                    acaoEdicao,
+                    opcoes):
+        contador = contador
+        movesCB[opcoes - 1] = f"{opcoes}- "
+        contador = opcoes
+
+
+
     def sair():
         sys.exit()

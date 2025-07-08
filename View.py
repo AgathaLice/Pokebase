@@ -11,6 +11,7 @@ class View():
 
     def __init__(self):
         self.root = tk.Tk()
+        self.root.title("Pokebase")
 
         self.controller = Controller(self)
 
@@ -335,21 +336,63 @@ class View():
                              text="Nome da Ação",
                              **argsPadraoInsercao,
                              background=corLabel)
-        nomeAcao_CB = ttk.Combobox(frameAcao,
-                                   width=16,
-                                   **argsFonte)
+        movesPokemonDb: dict = {"1- ": {
+                                  "tipo": "",
+                                  "pp": "",
+                                  "precisao": "",
+                                  "categoria": "",
+                                  "dano": "",
+                                  "desc": ""
+                                  },
+                                "2- ": {
+                                        "tipo": "",
+                                        "pp": "",
+                                        "precisao": "",
+                                        "categoria": "",
+                                        "dano": "",
+                                        "desc": ""
+                                        },
+                                "3- ": {
+                                        "tipo": "",
+                                        "pp": "",
+                                        "precisao": "",
+                                        "categoria": "",
+                                        "dano": "",
+                                        "desc": ""
+                                        },
+                                "4- ": {
+                                        "tipo": "",
+                                        "pp": "",
+                                        "precisao": "",
+                                        "categoria": "",
+                                        "dano": "",
+                                        "desc": ""
+                                        }
+                                }
+        self.movesCB: list[str] = ["", "", "", ""]
+        self.contador: int = 1
+        registroNomeAcaoCb = self.chamarRegister()
+        self.nomeAcao_CB = ttk.Combobox(frameAcao,
+                                        width=16,
+                                        **argsFonte,
+                                        values=self.movesCB)
+                                        #validate="focusout",
+                                        #validatecommand=registroNomeAcaoCb)
         frameAcaoEdicao = tk.Frame(frameAcao,
                                    background="red")
         editarAcao = tk.Button(frameAcaoEdicao,
-                               text="Editar Ação")
-        opcoes: list[int] = [1, 2, 3, 4]
-        acaoEdicao = ttk.Combobox(frameAcaoEdicao,
+                               text="Editar Ação",
+                               command=lambda:
+                                   self.chamarEditarMoves(movesPokemonDb,
+                                                          acaoEdicao_CB,
+                                                          opcoesCB))
+        opcoesCB: list[int] = [1, 2, 3, 4]
+        acaoEdicao_CB = ttk.Combobox(frameAcaoEdicao,
                                   width=5,
                                   justify="center",
                                   state="readonly",
                                   font=('Yu Gothic UI Semibold', 11),
-                                  values=opcoes)
-#TODO -> ACABAR ESSA FUNCIONALIDADE, ESTÁ NO AAAAAA NO ZAP
+                                  values=opcoesCB)
         frameAcaoStats = tk.Frame(insercao,
                                   background="red",
                                   padx=2,
@@ -397,7 +440,7 @@ class View():
                               text="Categoria",
                               **argsPadraoInsercao,
                               background=corLabel)
-        tipoDeDano_CB = ttk.Combobox(frameTipoDanoAcao,
+        categoria_CB = ttk.Combobox(frameTipoDanoAcao,
                                      width=6,
                                      **argsFonte,
                                      values=categorias,
@@ -605,11 +648,11 @@ class View():
                                                            item_E,
                                                            natureza_CB,
                                                            descHabilidade_Txt,
-                                                           nomeAcao_CB, #! Terá muito tratamento pra cada ação
+                                                           self.nomeAcao_CB,
                                                            tipoAcao_CB,
                                                            pp_E,
                                                            precisao_E,
-                                                           tipoDeDano_CB,
+                                                           categoria_CB,
                                                            danoAcao_E,
                                                            descAcao_Txt,
                                                            tags_CB,
@@ -689,13 +732,13 @@ class View():
 
         nomeAcao.pack(side="left",
                        anchor="nw")
-        nomeAcao_CB.pack(side="left",
+        self.nomeAcao_CB.pack(side="left",
                          anchor="nw")
         
         frameAcaoEdicao.pack(side="left",
                              anchor="nw")
         editarAcao.pack(side="top")
-        acaoEdicao.pack(side="bottom")
+        acaoEdicao_CB.pack(side="bottom")
 
         tipoAcao.pack(side="left",
                        anchor="nw")
@@ -714,7 +757,7 @@ class View():
 
         tipoDeDano.pack(side="left",
                         anchor="nw")
-        tipoDeDano_CB.pack(side="left",
+        categoria_CB.pack(side="left",
                            anchor="nw")
         
         danoAcao.pack(side="left",
@@ -1664,7 +1707,7 @@ class View():
                tipoAcao_CB,
                pp_E,
                precisao_E,
-               tipoDeDano_CB,
+               categoria_CB,
                danoAcao_E,
                descAcao_Txt,
                tags_CB,
@@ -1701,30 +1744,71 @@ class View():
         tipoAcao = tipoAcao_CB.get()
         pp = pp_E.get()
         precisao = precisao_E.get()
-        tipoDeDano = tipoDeDano_CB.get()
+        categoria = categoria_CB.get()
         danoAcao = danoAcao_E.get()
         descAcao = descAcao_Txt.get("1.0", "end")
         tags = tags_CB.get()
         hp = hp_E.get()
-        hp = hpIV_E.get()
-        hp = hpEV_E.get()
+        hpIV = hpIV_E.get()
+        hpEV = hpEV_E.get()
         atk = atk_E.get()
-        atk = atkIV_E.get()
-        atk = atkEV_E.get()
+        atkIV = atkIV_E.get()
+        atkEV = atkEV_E.get()
         defs = defs_E.get()
-        defs = defsIV_E.get()
-        defs = defsEV_E.get()
+        defsIV = defsIV_E.get()
+        defsEV = defsEV_E.get()
         spAtk = spAtk_E.get()
-        spAtk = spAtkIV_E.get()
-        spAtk = spAtkEV_E.get()
+        spAtkIV = spAtkIV_E.get()
+        spAtkEV = spAtkEV_E.get()
         spDefs = spDefs_E.get()
-        spDefs = spDefsIV_E.get()
-        spDefs = spDefsEV_E.get()
+        spDefsIV = spDefsIV_E.get()
+        spDefsEV = spDefsEV_E.get()
         spd = spd_E.get()
-        spd = spdIV_E.get()
-        spd = spdEV_E.get()
-
-    def addTagInsercao(self, combobox, tagsCB, tagsAtuais, salvar: bool):
+        spdIV = spdIV_E.get()
+        spdEV = spdEV_E.get()
+        
+        self.controller.salvar(apelido,
+                               nivel,
+                               genero,
+                               nome,
+                               tipoUm,
+                               tipoDois,
+                               nomeHabilidade,
+                               item,
+                               natureza,
+                               descHabilidade,
+                               nomeAcao,
+                               tipoAcao,
+                               pp,
+                               precisao,
+                               categoria,
+                               danoAcao,
+                               descAcao,
+                               tags,
+                               hp,
+                               hpIV,
+                               hpEV,
+                               atk,
+                               atkIV,
+                               atkEV,
+                               defs,
+                               defsIV,
+                               defsEV,
+                               spAtk,
+                               spAtkIV,
+                               spAtkEV,
+                               spDefs,
+                               spDefsIV,
+                               spDefsEV,
+                               spd,
+                               spdIV,
+                               spdEV)
+    
+    def addTagInsercao(self,
+                       combobox,
+                       tagsCB,
+                       tagsAtuais,
+                       salvar: bool) -> None:
         valor = combobox.get()
         combobox.set("")
         novosValoresTags: dict = self.controller.addTagInsercao(valor,
@@ -1733,3 +1817,63 @@ class View():
                                                                 salvar)
         combobox["values"] = novosValoresTags["tagsCB"]
         tagsAtuais = novosValoresTags["tagsAtuais"]
+
+    def chamarValidacaoAcaoCB(self, valorCB):
+        return self.controller.validacaoNomeAcaoCB(valorCB)
+    
+    def chamarRegister(self):
+        return self.controller.chamarRegister()
+    
+    def registerValidacaoCB(self):
+        return (self.root.register(self.chamarValidacaoAcaoCB), "%P")
+    
+    def validacaoNomeAcaoCB(self, valorCB):
+        valoresModel = self.criarListaMoves(valorCB,
+                                            self.movesCB,
+                                            self.contador)
+        
+        valorCB = valoresModel.get("valorCB")
+        self.nomeAcao_CB["values"] = valoresModel["movesCB"]
+        self.contador = valoresModel["contador"]
+        if valoresModel["readonly"] == True:
+            self.controller.configState(self.nomeAcao_CB, "readonly")
+        self.nomeAcao_CB.after_idle(lambda: self.nomeAcao_CB.set(valorCB))
+        return True
+    
+    def criarListaMoves(self, valorCB, movesCB, contador):
+        return self.controller.criarListaMoves(valorCB,
+                                               movesCB,
+                                               contador)
+    
+    def configState(self, combobox, text):
+        combobox.config(state=text)
+    
+    def chamarEditarMoves(self,
+                          dadosPokemonMoves,
+                          acaoEdicao_CB,
+                          opcoesCB):
+        self.controller.configState(self.nomeAcao_CB, "normal")
+        self.controller.chamarCurrentCB(self.nomeAcao_CB, opcoesCB)
+        self.controller.chamarEditarMoves(dadosPokemonMoves,
+                                          self.contador,
+                                          self.movesCB,
+                                          acaoEdicao_CB,
+                                          opcoesCB)
+        
+        self.controller.configState(self.nomeAcao_CB, "readonly")
+        return None
+    
+    def currentCB(self, combobox, index):
+        combobox.current(index)
+    
+    def chamarInsert(self, widget, text):
+        self.controller.chamarInsert(widget, text)
+    
+    def chamarDelete(self, widget):
+        self.controller.chamarDelete(widget)
+    
+    def setInsert(self, widget, text):
+        widget.insert(0, text)
+    
+    def setDelete(self, widget):
+        widget.delete(0, tk.END)
