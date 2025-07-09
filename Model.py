@@ -1,6 +1,7 @@
 
 import pymongo
 import sys
+from math import floor
 
 class Model():
     
@@ -73,7 +74,7 @@ class Model():
     "hp": hp,
     "hpIV": hpIV,
     "hpEV": hpEV,
-    "hpTotal": self.calcularStat(hp, hpIV, hpEV, nivel, natureza),
+    "hpTotal": self.calcularHp(hp, hpIV, hpEV, nivel),
     "atk": atk,
     "atkIV": atkIV,
     "atkEV": atkEV,
@@ -98,12 +99,26 @@ class Model():
     
         print(pokemon)
     
+    def calcularHp(self,
+                   hp,
+                   hpIV,
+                   hpEV,
+                   nivel) -> int:
+        hpEV = floor(hpEV / 4)
+        hp *= 2
+        hp = hp + hpIV + hpEV
+        hp *= nivel
+        nivel += 10
+        hp = floor(hp / 100)
+        hp += nivel
+        return hp
+
     def calcularStat(self,
                      stat,
                      statIV,
                      statEV,
                      nivel,
-                     natureza):
+                     natureza) -> int:
         pass
     
     def addTagInsercao(self,
@@ -152,6 +167,7 @@ class Model():
                         movesCB,
                         contador) -> None | dict:
         if contador <= 4:
+            # todo: Adicionar regex para verificar se não começa com "1- "
             movesCB[contador - 1] += valorCB
             contador += 1
         dictValores = {
