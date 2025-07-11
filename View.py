@@ -81,7 +81,8 @@ class View():
                              command=lambda: self.chamarRaise(self.insercao))
         ultimoPoke = tk.Button(menu,
                                text="Último Pokémon",
-                               command=lambda: self.chamarRaise(self.visualizacao))
+                               command=lambda:
+                                   self.chamarRaise(self.visualizacao))
         listaPoke = tk.Button(menu,
                               text="Lista dos Pokémons",
                               command=lambda: self.chamarRaise(self.listagem))
@@ -336,7 +337,7 @@ class View():
                              text="Nome da Ação",
                              **argsPadraoInsercao,
                              background=corLabel)
-        movesPokemonDb: dict = {"1- ": {
+        self.movesPokemonDb: dict = {"1- ": {
                                   "tipo": "",
                                   "pp": "",
                                   "precisao": "",
@@ -375,17 +376,22 @@ class View():
         self.nomeAcao_CB = ttk.Combobox(frameAcao,
                                         width=16,
                                         **argsFonte,
-                                        values=self.movesCB)
-                                        #validate="focusout",
-                                        #validatecommand=registroNomeAcaoCb)
+                                        values=self.movesCB,
+                                        validate="focusout",
+                                        validatecommand=registroNomeAcaoCb)
         frameAcaoEdicao = tk.Frame(frameAcao,
                                    background="red")
         editarAcao = tk.Button(frameAcaoEdicao,
                                text="Editar Ação",
                                command=lambda:
-                                   self.chamarEditarMoves(movesPokemonDb,
+                                   self.chamarEditarMoves(self.movesPokemonDb,
                                                           acaoEdicao_CB,
-                                                          opcoesCB))
+                                                          tipoAcao_CB,
+                                                          pp_E,
+                                                          precisao_E,
+                                                          categoria_CB,
+                                                          danoAcao_E,
+                                                          descAcao_Txt))
         opcoesCB: list[int] = [1, 2, 3, 4]
         acaoEdicao_CB = ttk.Combobox(frameAcaoEdicao,
                                   width=5,
@@ -497,10 +503,11 @@ class View():
         adicionarTag = tk.Button(frameTags,
                                  text="Adicionar +1 tag",
                                  height=2,
-                                 command=lambda: self.addTagInsercao(tags_CB,
-                                                                     tagsCB,
-                                                                     tagsAtuais,
-                                                                     False))
+                                 command=lambda:
+                                     self.addTagInsercao(tags_CB,
+                                                         tagsCB,
+                                                         tagsAtuais,
+                                                         False))
 
 
         frameStats = tk.Frame(insercao,
@@ -1849,19 +1856,66 @@ class View():
         combobox.config(state=text)
     
     def chamarEditarMoves(self,
-                          dadosPokemonMoves,
+                          movesDict,
                           acaoEdicao_CB,
-                          opcoesCB):
-        self.controller.configState(self.nomeAcao_CB, "normal")
-        self.controller.chamarCurrentCB(self.nomeAcao_CB, opcoesCB)
-        self.controller.chamarEditarMoves(dadosPokemonMoves,
-                                          self.contador,
+                          tipo,
+                          pp,
+                          precisao,
+                          categoria,
+                          dano,
+                          descricao):
+        opcao = int(acaoEdicao_CB.get())
+        self.controller.configState(self.nomeAcao_CB,
+                                    "normal")
+        self.controller.chamarCurrentCB(self.nomeAcao_CB,
+                                        opcao)
+        self.controller.chamarEditarMoves(self.contador,
                                           self.movesCB,
-                                          acaoEdicao_CB,
-                                          opcoesCB)
+                                          opcao)
         
         self.controller.configState(self.nomeAcao_CB, "readonly")
+        self.salvarMove(movesDict,
+                        acaoEdicao_CB,
+                        self.nomeAcao_CB,
+                        tipo,
+                        pp,
+                        precisao,
+                        categoria,
+                        dano,
+                        descricao)
         return None
+    
+    def salvarMove(self,
+                   movesDict,
+                   moveAtual,
+                   nome,
+                   tipo,
+                   pp,
+                   precisao,
+                   categoria,
+                   dano,
+                   descricao):
+        movesDict = movesDict.get()
+        moveAtual = moveAtual.get()
+        nome = nome.get()
+        tipo = tipo.get()
+        pp = pp.get()
+        precisao = precisao.get()
+        categoria = categoria.get()
+        dano = dano.get()
+        descricao = descricao.get()
+        
+        movesSalvos: dict = self.controller.salvarMove(movesDict,
+                                                       moveAtual,
+                                                       nome,
+                                                       tipo,
+                                                       pp,
+                                                       precisao,
+                                                       categoria,
+                                                       dano,
+                                                       descricao)
+        self.movesPokemonDb = movesSalvos
+        print(self.movesPokemonDb)
     
     def currentCB(self, combobox, index):
         combobox.current(index)

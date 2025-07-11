@@ -182,16 +182,32 @@ class Model():
         return dictValores
 
     def editarMoves(self,
-                    dadosPokemonMoves,
                     contador,
                     movesCB,
-                    acaoEdicao,
-                    opcoes):
-        contador = contador
-        movesCB[opcoes - 1] = f"{opcoes}- "
-        contador = opcoes
+                    opcao):
+        movesCB[opcao - 1] = f"{opcao}- "
+        contador = opcao - 1
 
-
+    def salvarMove(self,
+                   movesDict,
+                   moveAtual,
+                   nome,
+                   tipo,
+                   pp,
+                   precisao,
+                   categoria,
+                   dano,
+                   descricao):
+        movesDict[f"{moveAtual}- {nome}"] = movesDict[f"{moveAtual}- "]
+        del movesDict[f"{moveAtual}- "]
+        movesDict[f"{moveAtual}- "]["tipo"] = tipo
+        movesDict[f"{moveAtual}- "]["pp"] = pp
+        movesDict[f"{moveAtual}- "]["precisao"] = precisao
+        movesDict[f"{moveAtual}- "]["categoria"] = categoria
+        movesDict[f"{moveAtual}- "]["dano"] = dano
+        movesDict[f"{moveAtual}- "]["descricao"] = descricao
+        
+        return movesDict
 
     def sair():
         sys.exit()

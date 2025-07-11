@@ -44,17 +44,12 @@ class Controller():
         self.view.configState(combobox, text)
     
     def chamarEditarMoves(self,
-                          dadosPokemonMoves,
                           contador,
                           movesCB,
-                          acaoEdicao,
-                          opcoes):
-        self.model.editarMoves(dadosPokemonMoves,
-                               contador,
+                          opcao):
+        self.model.editarMoves(contador,
                                movesCB,
-    
-                               acaoEdicao,
-                               opcoes)
+                               opcao)
     
     def chamarCurrentCB(self, combobox, index):
         self.view.currentCB(combobox, index)
@@ -64,6 +59,26 @@ class Controller():
     
     def chamarDelete(self, widget):
         self.view.setDelete(widget)
+    
+    def salvarMove(self,
+                   movesDict,
+                   moveAtual,
+                   nome,
+                   tipo,
+                   pp,
+                   precisao,
+                   categoria,
+                   dano,
+                   descricao):
+        return self.controller.salvarMove(movesDict,
+                                          moveAtual,
+                                          nome,
+                                          tipo,
+                                          pp,
+                                          precisao,
+                                          categoria,
+                                          dano,
+                                          descricao)
     
     def salvar(self,
                apelido,
