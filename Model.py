@@ -10,10 +10,10 @@ class Model():
         pokeBase = dbMain["PokeBase"]
         pokemons = pokeBase["Pokemons"]
         tags = pokeBase["Tags"]
-        
-    def getInt(self, valor):
-        return int(valor)
-    
+        dblist = dbMain.list_database_names()
+        if "mydatabase" in dblist:
+            print("The database exists.")
+        else: print("AAAAAAAAAAAAAAAAAA")
     def salvar(self,
                apelido,
                nivel,
@@ -51,6 +51,7 @@ class Model():
                spd,
                spdIV,
                spdEV):
+        global pokemons
         pokemon = {
             "Apelido": apelido,
             "Nome": nome,
@@ -99,6 +100,12 @@ class Model():
         }
     
         print(pokemon)
+        
+        poke = pokemons.insert_one(pokemon)
+        print(poke)
+    
+    def getInt(self, valor):
+        return int(valor)
     
     def calcularHp(self,
                    hp: int,
@@ -145,6 +152,11 @@ class Model():
         if valor in tagsAtuais and salvar == False: #! testando caso salvar chame cm um valor nas atuais
             #todo
             print("Adicionar aviso e não fazer nada")
+            novosValoresTags = {
+                "tagsCB": tagsCB,
+                "tagsAtuais": tagsAtuais}
+            return novosValoresTags
+        elif valor in tagsAtuais and salvar == True:
             novosValoresTags = {
                 "tagsCB": tagsCB,
                 "tagsAtuais": tagsAtuais}

@@ -108,8 +108,6 @@ class View():
         return menu
 
     #todo -> Personalizar os botões
-    #TODO -> Botão para abrir combobox para trocar entre 4 ações
-    #TODO -> Pronto em relação ao model. Ainda precisa adicionar a funcionalidade de salvar, etc.
     #TODO -> Adicionar mais de uma ação
     def telaInsercao(self, root):
         insercao = tk.Frame(self.root)
@@ -148,7 +146,45 @@ class View():
 
         voltarMenu = tk.Button(insercao,
                                text="Voltar ao Menu",
-                               command=lambda: self.chamarRaise(self.menu))
+                               command=lambda:
+                                   self.voltarMenuInsercao(apelido_E,
+                                                           nivel_E,
+                                                           genero_CB,
+                                                           nome_E,
+                                                           tipoUm_CB,
+                                                           tipoDois_CB,
+                                                           nomeHabilidade_E,
+                                                           item_E,
+                                                           natureza_CB,
+                                                           descHabilidade_Txt,
+                                                           nomeAcaoUm_E,
+                                                           tipoAcao_CB,
+                                                           pp_E,
+                                                           precisao_E,
+                                                           categoria_CB,
+                                                           danoAcao_E,
+                                                           descAcao_Txt,
+                                                           self.tagsAtuais,
+                                                           tags_CB,
+                                                           self.tagsCB,
+                                                           hp_E,
+                                                           hpIV_E,
+                                                           hpEV_E,
+                                                           atk_E,
+                                                           atkIV_E,
+                                                           atkEV_E,
+                                                           defs_E,
+                                                           defsIV_E,
+                                                           defsEV_E,
+                                                           spAtk_E,
+                                                           spAtkIV_E,
+                                                           spAtkEV_E,
+                                                           spDefs_E,
+                                                           spDefsIV_E,
+                                                           spDefsEV_E,
+                                                           spd_E,
+                                                           spdIV_E,
+                                                           spdEV_E))
 
         frameApelido = tk.Frame(insercao,
                                 background=corLabel)
@@ -459,8 +495,8 @@ class View():
                                height=9,
                                **argsDescPod)
         
-        tagsCB = tipos
-        tagsAtuais = []
+        self.tagsCB = tipos
+        self.tagsAtuais = []
         frameTags = tk.Frame(insercao,
                              background="red",
                              padx=2,
@@ -477,14 +513,14 @@ class View():
         tags_CB = ttk.Combobox(frameTags,
                                width=20,
                                **argsFonte,
-                               values=tagsCB)
+                               values=self.tagsCB)
         adicionarTag = tk.Button(frameTags,
                                  text="Adicionar +1 tag",
                                  height=2,
                                  command=lambda:
                                      self.addTagInsercao(tags_CB,
-                                                         tagsCB,
-                                                         tagsAtuais,
+                                                         self.tagsCB,
+                                                         self.tagsAtuais,
                                                          False))
 
 
@@ -640,7 +676,9 @@ class View():
                                                            categoria_CB,
                                                            danoAcao_E,
                                                            descAcao_Txt,
+                                                           self.tagsAtuais,
                                                            tags_CB,
+                                                           self.tagsCB,
                                                            hp_E,
                                                            hpIV_E,
                                                            hpEV_E,
@@ -920,8 +958,8 @@ class View():
         tagsPoke = ttk.Combobox(listagem,
                                 font=(labelFont,
                                       labelFontSize),
-                                state="readonly",
-                                justify="center")
+                                justify="center",
+                                values=self.tagsCB)
         tagsPoke.set(value="Tags")
         tagsPoke.grid(row=0,
                       column=2,
@@ -942,7 +980,17 @@ class View():
                                    weight=21)
         listaPokes.columnconfigure(3,
                                    weight=3)
+        lista = tk.Listbox(listaPokes,
+                             width=70,
+                             background="white",
+                             font=("Yu Gothic UI Semibold", 35))
+        for value in pokemonsExemplo:
+            lista.insert(1, value)
+        lista.grid(row=0,
+                   column=0,
+                   columnspan=3)
 
+        '''
         rowAtual = 0
         #! EXEMPLO
         #TODO -> Modificar para relacionar com o BD o mais rápido possível
@@ -977,7 +1025,7 @@ class View():
             radiosPokeLista.grid(row=rowAtual,
                                  column=3,
                                  sticky="nsew")
-            rowAtual += 1
+            rowAtual += 1'''
 #?________________________________________________________________________________________
 
         botoesFrame = tk.Frame(listagem,
@@ -987,11 +1035,16 @@ class View():
                          columnspan=3,
                          sticky="nsew")
         delTag = tk.Button(botoesFrame,
-                               text="- Tag")
+                            text="- Tag")
         delTag.pack(side="left",
                     padx=(30, 15))
         addTag = tk.Button(botoesFrame,
-                           text="+ Tag")
+                           text="+ Tag",
+                           command=lambda:
+                               self.addTagInsercao(tagsPoke,
+                                                   self.tagsCB,
+                                                   self.tagsAtuais,
+                                                   False))
         addTag.pack(side="left",
                     padx=15)
 
@@ -1009,9 +1062,16 @@ class View():
 
         verPoke = tk.Button(botoesFrame,
                             text="Vizualizar Pokémon",
-                            command=lambda: self.chamarRaise(self.visualizacao))
+                            command=lambda: 
+                                self.chamarVerPoke(lista.get()))
         verPoke.pack(side="left",
                      padx=15)
+        
+        atualizarTela = tk.Button(botoesFrame,
+                                  text="Atualizar") #! todo
+        atualizarTela.pack(side="left",
+                           padx=15)
+
 
         return listagem
 
@@ -1689,7 +1749,9 @@ class View():
                categoria_CB,
                danoAcao_E,
                descAcao_Txt,
+               tagsAtuais,
                tags_CB,
+               tagsCB,
                hp_E,
                hpIV_E,
                hpEV_E,
@@ -1710,41 +1772,81 @@ class View():
                spdEV_E):
         
         apelido = apelido_E.get()
+        apelido_E.delete(0, tk.END)
         nivel = self.getInt(nivel_E)
+        nivel_E.delete(0, tk.END)
         genero = genero_CB.get()
+        genero_CB.set("")
         nome = nome_E.get()
+        nome_E.delete(0, tk.END)
         tipoUm = tipoUm_CB.get()
+        tipoUm_CB.set("")
         tipoDois = tipoDois_CB.get()
+        tipoDois_CB.set("")
         nomeHabilidade = nomeHabilidade_E.get()
+        nomeHabilidade_E.delete(0, tk.END)
         item = item_E.get()
+        item_E.delete(0, tk.END)
         natureza = natureza_CB.get()
+        natureza_CB.set("")
         descHabilidade = descHabilidade_Txt.get("1.0", "end")
+        descHabilidade_Txt.delete("1.0", "end")
         nomeAcao = nomeAcaoUm_E.get()
+        nomeAcaoUm_E.delete(0, tk.END)
         tipoAcao = tipoAcao_CB.get()
+        tipoAcao_CB.set("")
         pp = self.getInt(pp_E)
+        pp_E.delete(0, tk.END)
         precisao = self.getInt(precisao_E)
+        precisao_E.delete(0, tk.END)
         categoria = categoria_CB.get()
+        categoria_CB.set("")
         danoAcao = self.getInt(danoAcao_E)
+        danoAcao_E.delete(0, tk.END)
         descAcao = descAcao_Txt.get("1.0", "end")
-        tags = tags_CB.get()
+        descAcao_Txt.delete("1.0", "end")
+        self.addTagInsercao(tags_CB,
+                            self.tagsCB,
+                            self.tagsAtuais,
+                            True)
+        tags = self.tagsAtuais
+        tags_CB.set("")
         hp = self.getInt(hp_E)
+        hp_E.delete(0, tk.END)
         hpIV = self.getInt(hpIV_E)
+        hpIV_E.delete(0, tk.END)
         hpEV = self.getInt(hpEV_E)
+        hpEV_E.delete(0, tk.END)
         atk = self.getInt(atk_E)
+        atk_E.delete(0, tk.END)
         atkIV = self.getInt(atkIV_E)
+        atkIV_E.delete(0, tk.END)
         atkEV = self.getInt(atkEV_E)
+        atkEV_E.delete(0, tk.END)
         defs = self.getInt(defs_E)
+        defs_E.delete(0, tk.END)
         defsIV = self.getInt(defsIV_E)
+        defsIV_E.delete(0, tk.END)
         defsEV = self.getInt(defsEV_E)
+        defsEV_E.delete(0, tk.END)
         spAtk = self.getInt(spAtk_E)
+        spAtk_E.delete(0, tk.END)
         spAtkIV = self.getInt(spAtkIV_E)
+        spAtkIV_E.delete(0, tk.END)
         spAtkEV = self.getInt(spAtkEV_E)
+        spAtkEV_E.delete(0, tk.END)
         spDefs = self.getInt(spDefs_E)
+        spDefs_E.delete(0, tk.END)
         spDefsIV = self.getInt(spDefsIV_E)
+        spDefsIV_E.delete(0, tk.END)
         spDefsEV = self.getInt(spDefsEV_E)
+        spDefsEV_E.delete(0, tk.END)
         spd = self.getInt(spd_E)
+        spd_E.delete(0, tk.END)
         spdIV = self.getInt(spdIV_E)
+        spdIV_E.delete(0, tk.END)
         spdEV = self.getInt(spdEV_E)
+        spdEV_E.delete(0, tk.END)
         
         self.controller.salvar(apelido,
                                nivel,
@@ -1782,6 +1884,7 @@ class View():
                                spd,
                                spdIV,
                                spdEV)
+        
         self.levantarTela(self.menu)
     
     def getInt(self, widget):
@@ -1795,11 +1898,89 @@ class View():
         valor = combobox.get()
         combobox.set("")
         novosValoresTags: dict = self.controller.addTagInsercao(valor,
-                                                                tagsCB,
-                                                                tagsAtuais,
+                                                                self.tagsCB,
+                                                                self.tagsAtuais,
                                                                 salvar)
         combobox["values"] = novosValoresTags["tagsCB"]
-        tagsAtuais = novosValoresTags["tagsAtuais"]
+        self.tagsAtuais = novosValoresTags["tagsAtuais"]
+    
+    def voltarMenuInsercao(self,
+                           apelido_E,
+                           nivel_E,
+                           genero_CB,
+                           nome_E,
+                           tipoUm_CB,
+                           tipoDois_CB,
+                           nomeHabilidade_E,
+                           item_E,
+                           natureza_CB,
+                           descHabilidade_Txt,
+                           nomeAcaoUm_E,
+                           tipoAcao_CB,
+                           pp_E,
+                           precisao_E,
+                           categoria_CB,
+                           danoAcao_E,
+                           descAcao_Txt,
+                           tagsAtuais,
+                           tags_CB,
+                           tagsCB,
+                           hp_E,
+                           hpIV_E,
+                           hpEV_E,
+                           atk_E,
+                           atkIV_E,
+                           atkEV_E,
+                           defs_E,
+                           defsIV_E,
+                           defsEV_E,
+                           spAtk_E,
+                           spAtkIV_E,
+                           spAtkEV_E,
+                           spDefs_E,
+                           spDefsIV_E,
+                           spDefsEV_E,
+                           spd_E,
+                           spdIV_E,
+                           spdEV_E):
+        apelido_E.delete(0, tk.END)
+        nivel_E.delete(0, tk.END)
+        genero_CB.set("")
+        nome_E.delete(0, tk.END)
+        tipoUm_CB.set("")
+        tipoDois_CB.set("")
+        nomeHabilidade_E.delete(0, tk.END)
+        item_E.delete(0, tk.END)
+        natureza_CB.set("")
+        descHabilidade_Txt.delete("1.0", "end")
+        nomeAcaoUm_E.delete(0, tk.END)
+        tipoAcao_CB.set("")
+        pp_E.delete(0, tk.END)
+        precisao_E.delete(0, tk.END)
+        categoria_CB.set("")
+        danoAcao_E.delete(0, tk.END)
+        descAcao_Txt.delete("1.0", "end")
+        tags_CB.set("")
+        hp_E.delete(0, tk.END)
+        hpIV_E.delete(0, tk.END)
+        hpEV_E.delete(0, tk.END)
+        atk_E.delete(0, tk.END)
+        atkIV_E.delete(0, tk.END)
+        atkEV_E.delete(0, tk.END)
+        defs_E.delete(0, tk.END)
+        defsIV_E.delete(0, tk.END)
+        defsEV_E.delete(0, tk.END)
+        spAtk_E.delete(0, tk.END)
+        spAtkIV_E.delete(0, tk.END)
+        spAtkEV_E.delete(0, tk.END)
+        spDefs_E.delete(0, tk.END)
+        spDefsIV_E.delete(0, tk.END)
+        spDefsEV_E.delete(0, tk.END)
+        spd_E.delete(0, tk.END)
+        spdIV_E.delete(0, tk.END)
+        spdEV_E.delete(0, tk.END)
+        
+        self.chamarRaise(self.menu)
     
     def configState(self, combobox, text):
         combobox.config(state=text)
@@ -1818,3 +1999,8 @@ class View():
     
     def setDelete(self, widget):
         widget.delete(0, tk.END)
+    
+    def verPoke(self, listbox):
+        poke = listbox.get()
+        
+        
