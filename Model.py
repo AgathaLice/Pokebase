@@ -8,12 +8,9 @@ class Model():
     def __init__(self):
         dbMain = pymongo.MongoClient("mongodb://localhost:27017/")
         pokeBase = dbMain["PokeBase"]
-        pokemons = pokeBase["Pokemons"]
-        tags = pokeBase["Tags"]
-        dblist = dbMain.list_database_names()
-        if "mydatabase" in dblist:
-            print("The database exists.")
-        else: print("AAAAAAAAAAAAAAAAAA")
+        self.pokemons = pokeBase["Pokemons"]
+        self.tags = pokeBase["Tags"]
+    
     def salvar(self,
                apelido,
                nivel,
@@ -51,7 +48,7 @@ class Model():
                spd,
                spdIV,
                spdEV):
-        global pokemons
+        
         pokemon = {
             "Apelido": apelido,
             "Nome": nome,
@@ -98,11 +95,8 @@ class Model():
             "spdEV": spdEV,
             "spdTotal": self.calcularStat(spd, spdIV, spdEV, nivel, natureza)
         }
-    
-        print(pokemon)
         
-        poke = pokemons.insert_one(pokemon)
-        print(poke)
+        poke = self.pokemons.insert_one(pokemon)
     
     def getInt(self, valor):
         return int(valor)
@@ -181,6 +175,39 @@ class Model():
         else: 
             print("ERRO")
             return None
+    
+    def pokemonsLista(self) -> None | dict:
+        todos = self.pokemons.find({}, {"Nome":1, "Apelido":1, "Tags":1,"_id":0})        
+        nomes = [i["Nome"] for i in todos]
+        apelidos = [i["Apelido"] for i in todos]
+        tags = [i["Tags"] for i in todos]
+        dictRetorno: dict = {"Nomes": nomes,
+                             "Apelido": apelidos,
+                             "Tags": tags}
+        
+        return dictRetorno
+    
+    def verPoke(self, valor):
+        poke = self.pokemons.find_one({ "Nome":valor })
+        print(poke)
+        return poke
 
+    def ultimoPoke(self):
+        last = self.pokemons.find_one(sort=[('_id', pymongo.DESCENDING)])
+        return last
+    '''
+    def delTag(self, tags, valor):
+        print(tags)
+        i = 0
+        while i < len(tags):
+            if tags[i] == valor:
+                tags.pop(i)
+        else:
+            print("ERRO")
+        i += 1
+        if i >= 100:
+            return tags
+        return tags'''
+    
     def sair():
         sys.exit()

@@ -82,7 +82,7 @@ class View():
         ultimoPoke = tk.Button(menu,
                                text="Último Pokémon",
                                command=lambda:
-                                   self.chamarRaise(self.visualizacao))
+                                   self.ultimoPoke())
         listaPoke = tk.Button(menu,
                               text="Lista dos Pokémons",
                               command=lambda: self.chamarRaise(self.listagem))
@@ -360,40 +360,6 @@ class View():
                                      width=110,
                                      height=8,
                                      **argsDescHab)
-#!_________________________________________________________________________________________________________________________
-        movesPokemonDb: dict = {"1- ": {
-                                "tipo": "",
-                                "pp": "",
-                                "precisao": "",
-                                "categoria": "",
-                                "dano": "",
-                                "desc": ""
-                                },
-                              "2- ": {
-                                      "tipo": "",
-                                      "pp": "",
-                                      "precisao": "",
-                                      "categoria": "",
-                                      "dano": "",
-                                      "desc": ""
-                                      },
-                              "3- ": {
-                                      "tipo": "",
-                                      "pp": "",
-                                      "precisao": "",
-                                      "categoria": "",
-                                      "dano": "",
-                                      "desc": ""
-                                      },
-                              "4- ": {
-                                      "tipo": "",
-                                      "pp": "",
-                                      "precisao": "",
-                                      "categoria": "",
-                                      "dano": "",
-                                      "desc": ""
-                                      }
-                                }
         
         frameAcaoUm = tk.Frame(insercao,
                                background="red",
@@ -898,9 +864,8 @@ class View():
                            relwidth=1,
                            relheight=1)
 
-        pokemonsExemplo = [["Charmander", "João", "Fogo"],
-                           ["Pikachu", "Jonas", "Amarelo"],
-                           ["Rayquasa", "Jamaica", "Lendário"]]
+        retorno: dict = self.pokemonsLista()
+        pokes:list = retorno["Nomes"]
 
         listagem.rowconfigure(0,
                               weight=1)
@@ -984,49 +949,11 @@ class View():
                              width=70,
                              background="white",
                              font=("Yu Gothic UI Semibold", 35))
-        for value in pokemonsExemplo:
+        for value in pokes:
             lista.insert(1, value)
         lista.grid(row=0,
                    column=0,
                    columnspan=3)
-
-        '''
-        rowAtual = 0
-        #! EXEMPLO
-        #TODO -> Modificar para relacionar com o BD o mais rápido possível
-        #TODO -> Modificar a aparência, a funcionalidade sem o Model está ok
-        for pokemon in pokemonsExemplo:
-            nomePokeLista = tk.Label(listaPokes,
-                                     text=pokemon[0],
-                                     justify="center",
-                                     font=(labelFont,
-                                           20))
-            nomePokeLista.grid(row=rowAtual,
-                               column=0,
-                               sticky="nsew")
-            apelidoPokeLista = tk.Label(listaPokes,
-                                        text=pokemon[1],
-                                        justify="center",
-                                        font=(labelFont,
-                                           20))
-            apelidoPokeLista.grid(row=rowAtual,
-                                  column=1,
-                                  sticky="nsew")
-            tagsPokeLista = tk.Label(listaPokes,
-                                     text=pokemon[2],
-                                     justify="center",
-                                     font=(labelFont,
-                                           20))
-            tagsPokeLista.grid(row=rowAtual,
-                               column=2,
-                               sticky="nsew")
-
-            radiosPokeLista = tk.Radiobutton(listaPokes)
-            radiosPokeLista.grid(row=rowAtual,
-                                 column=3,
-                                 sticky="nsew")
-            rowAtual += 1'''
-#?________________________________________________________________________________________
 
         botoesFrame = tk.Frame(listagem,
                                background=labelBg)
@@ -1035,9 +962,11 @@ class View():
                          columnspan=3,
                          sticky="nsew")
         delTag = tk.Button(botoesFrame,
-                            text="- Tag")
+                            text="- Tag",
+                            command=lambda:
+                                self.delTag(tagsPoke))
         delTag.pack(side="left",
-                    padx=(30, 15))
+                    padx=(30, 15),)
         addTag = tk.Button(botoesFrame,
                            text="+ Tag",
                            command=lambda:
@@ -1063,15 +992,9 @@ class View():
         verPoke = tk.Button(botoesFrame,
                             text="Vizualizar Pokémon",
                             command=lambda: 
-                                self.chamarVerPoke(lista.get()))
+                                self.verPoke(lista.get(lista.curselection())))
         verPoke.pack(side="left",
                      padx=15)
-        
-        atualizarTela = tk.Button(botoesFrame,
-                                  text="Atualizar") #! todo
-        atualizarTela.pack(side="left",
-                           padx=15)
-
 
         return listagem
 
@@ -1122,7 +1045,7 @@ class View():
         apelido = tk.Label(frameApelido,
                            text="Apelido",
                            **argsPadraoVisualizacao)
-        apelido_I = tk.Label(frameApelido,
+        self.apelido_I = tk.Label(frameApelido,
                              text="<<Apelido>>",
                              **argsPadraoVisualizacao)
 
@@ -1135,7 +1058,7 @@ class View():
         nivel = tk.Label(frameNivel,
                          text="Nível",
                          **argsPadraoVisualizacao)
-        nivel_I = tk.Label(frameNivel,
+        self.nivel_I = tk.Label(frameNivel,
                            text="<00>",
                            **argsPadraoVisualizacao)
 
@@ -1147,7 +1070,7 @@ class View():
         genero = tk.Label(frameGenero,
                           text="Gênero",
                           **argsPadraoVisualizacao)
-        genero_I = tk.Label(frameGenero,
+        self.genero_I = tk.Label(frameGenero,
                                  text="<<Gênero>>",
                                  **argsPadraoVisualizacao)
 
@@ -1159,7 +1082,7 @@ class View():
         nome = tk.Label(frameNome,
                         text="Nome",
                         **argsPadraoVisualizacao)
-        nome_I = tk.Label(frameNome,
+        self.nome_I = tk.Label(frameNome,
                           text="<<Nome>>",
                           **argsPadraoVisualizacao)
 
@@ -1171,7 +1094,7 @@ class View():
         tipoUm = tk.Label(frameTipoUm,
                           text="Tipo 1",
                           **argsPadraoVisualizacao)
-        tipoUm_I = tk.Label(frameTipoUm,
+        self.tipoUm_I = tk.Label(frameTipoUm,
                              text="<Tipo Um>",
                              **argsPadraoVisualizacao)
 
@@ -1183,7 +1106,7 @@ class View():
         tipoDois = tk.Label(frameTipoDois,
                             text="Tipo 2",
                             **argsPadraoVisualizacao)
-        tipoDois_I = tk.Label(frameTipoDois,
+        self.tipoDois_I = tk.Label(frameTipoDois,
                                    text="<Tipo Dois>",
                                    **argsPadraoVisualizacao)
 
@@ -1195,7 +1118,7 @@ class View():
         nomeHabilidade = tk.Label(frameNomeHabilidade,
                                   text="Nome da Habilidade",
                                   **argsPadraoVisualizacao)
-        nomeHabilidade_I = tk.Label(frameNomeHabilidade,
+        self.nomeHabilidade_I = tk.Label(frameNomeHabilidade,
                                     text="<<Nome da Habilidade>>",
                                     **argsPadraoVisualizacao)
 
@@ -1207,7 +1130,7 @@ class View():
         item = tk.Label(frameItem,
                         text="Item",
                         **argsPadraoVisualizacao)
-        item_I = tk.Label(frameItem,
+        self.item_I = tk.Label(frameItem,
                           text="<<Item>>",
                           **argsPadraoVisualizacao)
 
@@ -1219,7 +1142,7 @@ class View():
         natureza = tk.Label(frameNatureza,
                             text="Natureza",
                             **argsPadraoVisualizacao)
-        natureza_I = tk.Label(frameNatureza,
+        self.natureza_I = tk.Label(frameNatureza,
                               text="<<Natureza>>",
                               **argsPadraoVisualizacao)
 
@@ -1238,7 +1161,7 @@ class View():
         descHabilidade = tk.Label(frameDescHabilidade,
                                   text="Descrição da Habilidade",
                                   **argsPadraoVisualizacao)
-        descHabilidade_I = tk.Label(frameDescHabilidade,
+        self.descHabilidade_I = tk.Label(frameDescHabilidade,
                                      text="<<Descrição da Habilidade>>",
                                      height=8,
                                      **argsDescVisualizacao) #TODO -> label de múltiplas linhas
@@ -1251,7 +1174,7 @@ class View():
         nomeAcao = tk.Label(frameAcao,
                              text="Nome da Ação",
                              **argsPadraoVisualizacao)
-        nomeAcao_I = tk.Label(frameAcao,
+        self.nomeAcao_I = tk.Label(frameAcao,
                                text="<<Nome da Ação>>",
                                **argsPadraoVisualizacao)
 
@@ -1264,21 +1187,21 @@ class View():
         tipoAcao = tk.Label(frameAcaoStats,
                              text="Tipo",
                              **argsPadraoVisualizacao)
-        tipoAcao_I = tk.Label(frameAcaoStats,
+        self.tipoAcao_I = tk.Label(frameAcaoStats,
                                text="<Tipo>",
                                **argsPadraoVisualizacao)
 
         pp = tk.Label(frameAcaoStats,
                       text="PP",
                       **argsPadraoVisualizacao)
-        pp_I = tk.Label(frameAcaoStats,
+        self.pp_I = tk.Label(frameAcaoStats,
                         text="<PP>",
                         **argsPadraoVisualizacao)
         
         precisao = tk.Label(frameAcaoStats,
                             text="Precisão",
                             **argsPadraoVisualizacao)
-        precisao_I = tk.Label(frameAcaoStats,
+        self.precisao_I = tk.Label(frameAcaoStats,
                             text="<00>",
                             **argsPadraoVisualizacao)
 
@@ -1290,14 +1213,14 @@ class View():
         tipoDeDano = tk.Label(frameTipoDanoAcao,
                               text="Categoria",
                               **argsPadraoVisualizacao)
-        tipoDeDano_I = tk.Label(frameTipoDanoAcao,
+        self.tipoDeDano_I = tk.Label(frameTipoDanoAcao,
                                 text="<<Categoria>>",
                                 **argsPadraoVisualizacao)
 
         danoAcao = tk.Label(frameTipoDanoAcao,
                             text="Dano",
                             **argsPadraoVisualizacao)
-        danoAcao_I = tk.Label(frameTipoDanoAcao,
+        self.danoAcao_I = tk.Label(frameTipoDanoAcao,
                               text="<00>",
                               **argsPadraoVisualizacao)
         
@@ -1310,7 +1233,7 @@ class View():
         descAcao = tk.Label(frameDescAcao,
                             text="Descrição e Observações da Ação",
                             **argsPadraoVisualizacao)
-        descAcao_I = tk.Label(frameDescAcao,
+        self.descAcao_I = tk.Label(frameDescAcao,
                               text="<<Nome>>",
                               height=9,
                               **argsPadraoVisualizacao)
@@ -1324,7 +1247,7 @@ class View():
         tags = tk.Label(frameTags,
                         text="Tags",
                         **argsPadraoVisualizacao)
-        tags_I = tk.Label(frameTags,
+        self.tags_I = tk.Label(frameTags,
                           text="<<Tags>>",
                           **argsPadraoVisualizacao)
 
@@ -1365,19 +1288,19 @@ class View():
         hp = tk.Label(frameStats,
                       text="Pontos de Vida",
                       **argsIvEvVisualizacao)
-        hp_I = tk.Label(frameStats,
+        self.hp_I = tk.Label(frameStats,
                         text="<<HP>>",
                         **argsStatsVisualizacao,
                         width=4)
-        hpIV_I = tk.Label(frameStats,
+        self.hpIV_I = tk.Label(frameStats,
                           text="<<HP IV>>",
                           **argsStatsVisualizacao,
                           width=4)
-        hpEV_I = tk.Label(frameStats,
+        self.hpEV_I = tk.Label(frameStats,
                           text="<<HP EV>>",
                           **argsStatsVisualizacao,
                           width=4)
-        hpTotal = tk.Label(frameStats,
+        self.hpTotal = tk.Label(frameStats,
                            text="<TOTAL>",
                            **argsStatsVisualizacao,
                            width=6)
@@ -1385,22 +1308,22 @@ class View():
         atk = tk.Label(frameStats,
                        text="Ataque",
                        **argsIvEvVisualizacao)
-        atk_I = tk.Label(frameStats,
+        self.atk_I = tk.Label(frameStats,
                          text="<<ATK>>",
                          **argsStatsVisualizacao,
                          width=4)
         
-        atkIV_I = tk.Label(frameStats,
+        self.atkIV_I = tk.Label(frameStats,
                            text="<<ATK IV>>",
                            **argsStatsVisualizacao,
                            width=4)
 
-        atkEV_I = tk.Label(frameStats,
+        self.atkEV_I = tk.Label(frameStats,
                            text="<<ATK EV>>",
                            **argsStatsVisualizacao,
                            width=4)
         
-        atkTotal = tk.Label(frameStats,
+        self.atkTotal = tk.Label(frameStats,
                             text="<TOTAL>",
                             **argsStatsVisualizacao,
                             width=4)
@@ -1408,22 +1331,22 @@ class View():
         defs = tk.Label(frameStats,
                         text="Defesa",
                         **argsIvEvVisualizacao)
-        defs_I = tk.Label(frameStats,
+        self.defs_I = tk.Label(frameStats,
                           text="<<DEFS>>",
                           **argsStatsVisualizacao,
                           width=4)
 
-        defsIV_I = tk.Label(frameStats,
+        self.defsIV_I = tk.Label(frameStats,
                             text="<<DEFS IV>>",
                             **argsStatsVisualizacao,
                             width=4)
 
-        defsEV_I = tk.Label(frameStats,
+        self.defsEV_I = tk.Label(frameStats,
                             text="<<DEFS EV>>",
                             **argsStatsVisualizacao,
                             width=4)
         
-        defsTotal = tk.Label(frameStats,
+        self.defsTotal = tk.Label(frameStats,
                              text="<TOTAL>",
                              **argsStatsVisualizacao,
                              width=6)
@@ -1431,22 +1354,22 @@ class View():
         spAtk = tk.Label(frameStats,
                          text="Ataque Especial",
                          **argsIvEvVisualizacao)
-        spAtk_I = tk.Label(frameStats,
+        self.spAtk_I = tk.Label(frameStats,
                            text="<<SP.ATK>>",
                            **argsStatsVisualizacao,
                            width=4)
 
-        spAtkIV_I = tk.Label(frameStats,
+        self.spAtkIV_I = tk.Label(frameStats,
                              text="<<SP.ATK IV>>",
                              **argsStatsVisualizacao,
                              width=4)
 
-        spAtkEV_I = tk.Label(frameStats,
+        self.spAtkEV_I = tk.Label(frameStats,
                              text="<<SP.ATK EV>>",
                              **argsStatsVisualizacao,
                              width=4)
         
-        spAtkTotal = tk.Label(frameStats,
+        self.spAtkTotal = tk.Label(frameStats,
                               text="<TOTAL>",
                               **argsStatsVisualizacao,
                               width=6)
@@ -1454,22 +1377,22 @@ class View():
         spDefs = tk.Label(frameStats,
                           text="Defesa Especial",
                           **argsIvEvVisualizacao)
-        spDefs_I = tk.Label(frameStats,
+        self.spDefs_I = tk.Label(frameStats,
                             text="<<SP.DEFS>>",
                             **argsStatsVisualizacao,
                             width=4)
 
-        spDefsIV_I = tk.Label(frameStats,
+        self.spDefsIV_I = tk.Label(frameStats,
                               text="<<SP.DEFS IV>>",
                               **argsStatsVisualizacao,
                               width=4)
 
-        spDefsEV_I = tk.Label(frameStats,
+        self.spDefsEV_I = tk.Label(frameStats,
                               text="<<SP.DEFS EV>>",
                               **argsStatsVisualizacao,
                               width=4)
         
-        spDefsTotal = tk.Label(frameStats,
+        self.spDefsTotal = tk.Label(frameStats,
                                text="<TOTAL>",
                                **argsStatsVisualizacao,
                                width=4)
@@ -1477,22 +1400,22 @@ class View():
         spd = tk.Label(frameStats,
                        text="Velocidade",
                        **argsIvEvVisualizacao)
-        spd_I = tk.Label(frameStats,
+        self.spd_I = tk.Label(frameStats,
                          text="<<SPD>>",
                          **argsStatsVisualizacao,
                          width=4)
 
-        spdIV_I = tk.Label(frameStats,
+        self.spdIV_I = tk.Label(frameStats,
                            text="<<SPD IV>>",
                            **argsStatsVisualizacao,
                            width=4)
 
-        spdEV_I = tk.Label(frameStats,
+        self.spdEV_I = tk.Label(frameStats,
                            text="<<SPD EV>>",
                            **argsStatsVisualizacao,
                            width=4)
         
-        spdTotal = tk.Label(frameStats,
+        self.spdTotal = tk.Label(frameStats,
                             text="<TOTAL>",
                             **argsStatsVisualizacao,
                             width=6)
@@ -1514,91 +1437,91 @@ class View():
 
         apelido.pack(side="left",
                      anchor="nw")
-        apelido_I.pack(side="left",
+        self.apelido_I.pack(side="left",
                        anchor="nw")
 
         nivel.pack(side="left",
                    anchor="ne")
-        nivel_I.pack(side="left",
+        self.nivel_I.pack(side="left",
                      anchor="ne")
 
         nome.pack(side="left",
                   anchor="ne")
-        nome_I.pack(side="left",
+        self.nome_I.pack(side="left",
                     anchor="ne")
 
         tipoUm.pack(side="left",
                     anchor="w")
-        tipoUm_I.pack(side="left",
+        self.tipoUm_I.pack(side="left",
                        anchor="w")
         tipoDois.pack(side="left",
                       anchor="w")
-        tipoDois_I.pack(side="left",
+        self.tipoDois_I.pack(side="left",
                          anchor="w")
 
         genero.pack(side="left",
                     anchor="nw")
-        genero_I.pack(side="left",
+        self.genero_I.pack(side="left",
                        anchor="nw")
 
         nomeHabilidade.pack(side="left",
                             anchor="ne")
-        nomeHabilidade_I.pack(side="left",
+        self.nomeHabilidade_I.pack(side="left",
                               anchor="ne")
 
         item.pack(side="left",
                   anchor="w")
-        item_I.pack(side="left",
+        self.item_I.pack(side="left",
                     anchor="w")
 
         natureza.pack(side="left",
                       anchor="w")
-        natureza_I.pack(side="left",
+        self.natureza_I.pack(side="left",
                          anchor="w")
 
         descHabilidade.pack(side="top",
                             anchor="center")
-        descHabilidade_I.pack(side="top",
+        self.descHabilidade_I.pack(side="top",
                                 anchor="center")
 
         nomeAcao.pack(side="left",
                        anchor="nw")
-        nomeAcao_I.pack(side="left",
+        self.nomeAcao_I.pack(side="left",
                          anchor="nw")
 
         tipoAcao.pack(side="left",
                        anchor="nw")
-        tipoAcao_I.pack(side="left",
+        self.tipoAcao_I.pack(side="left",
                           anchor="nw")
 
         pp.pack(side="left",
                 anchor="nw")
-        pp_I.pack(side="left",
+        self.pp_I.pack(side="left",
                   anchor="nw")
         
         precisao.pack(side="left",
                       anchor="nw")
-        precisao_I.pack(side="left",
+        self.precisao_I.pack(side="left",
                         anchor="nw")
 
         tipoDeDano.pack(side="left",
                         anchor="nw")
-        tipoDeDano_I.pack(side="left",
+        self.tipoDeDano_I.pack(side="left",
                            anchor="nw")
         
         danoAcao.pack(side="left",
                        anchor="nw")
-        danoAcao_I.pack(side="left",
+        self.danoAcao_I.pack(side="left",
                          anchor="nw")
 
         descAcao.pack(side="top",
                        anchor="center")
-        descAcao_I.pack(side="top",
+        self.descAcao_I.pack(side="top",
                            anchor="center")
 
         tags.pack(side="left",
                   anchor="nw")
-        tags_I.pack(side="left",
+        self.tags_I.pack(side="left",
                      anchor="nw")
 
         iv.grid(row=0,
@@ -1611,96 +1534,96 @@ class View():
         hp.grid(row=1,
                 column=0,
                 sticky="nsew")
-        hp_I.grid(row=1,
+        self.hp_I.grid(row=1,
                   column=1,
                   sticky="nsew")
-        hpIV_I.grid(row=1,
+        self.hpIV_I.grid(row=1,
                     column=2,
                     sticky="nsew")
-        hpEV_I.grid(row=1,
+        self.hpEV_I.grid(row=1,
                     column=3,
                     sticky="nsew")
-        hpTotal.grid(row=1,
+        self.hpTotal.grid(row=1,
                      column=4,
                      sticky="nsew")
 
         atk.grid(row=2,
                  column=0,
                  sticky="nsew")
-        atk_I.grid(row=2,
+        self.atk_I.grid(row=2,
                    column=1,
                    sticky="nsew")
-        atkIV_I.grid(row=2,
+        self.atkIV_I.grid(row=2,
                      column=2,
                      sticky="nsew")
-        atkEV_I.grid(row=2,
+        self.atkEV_I.grid(row=2,
                      column=3,
                      sticky="nsew")
-        atkTotal.grid(row=2,
+        self.atkTotal.grid(row=2,
                       column=4,
                       sticky="nsew")
 
         defs.grid(row=3,
                   column=0,
                   sticky="nsew")
-        defs_I.grid(row=3,
+        self.defs_I.grid(row=3,
                     column=1,
                     sticky="nsew")
-        defsIV_I.grid(row=3,
+        self.defsIV_I.grid(row=3,
                       column=2,
                       sticky="nsew")
-        defsEV_I.grid(row=3,
+        self.defsEV_I.grid(row=3,
                       column=3,
                       sticky="nsew")
-        defsTotal.grid(row=3,
+        self.defsTotal.grid(row=3,
                        column=4,
                        sticky="nsew")
 
         spAtk.grid(row=4,
                    column=0,
                    sticky="nsew")
-        spAtk_I.grid(row=4,
+        self.spAtk_I.grid(row=4,
                      column=1,
                      sticky="nsew")
-        spAtkIV_I.grid(row=4,
+        self.spAtkIV_I.grid(row=4,
                        column=2,
                        sticky="nsew")
-        spAtkEV_I.grid(row=4,
+        self.spAtkEV_I.grid(row=4,
                        column=3,
                        sticky="nsew")
-        spAtkTotal.grid(row=4,
+        self.spAtkTotal.grid(row=4,
                         column=4,
                         sticky="nsew")
 
         spDefs.grid(row=5,
                     column=0,
                     sticky="nsew")
-        spDefs_I.grid(row=5,
+        self.spDefs_I.grid(row=5,
                       column=1,
                       sticky="nsew")
-        spDefsIV_I.grid(row=5,
+        self.spDefsIV_I.grid(row=5,
                         column=2,
                         sticky="nsew")
-        spDefsEV_I.grid(row=5,
+        self.spDefsEV_I.grid(row=5,
                         column=3,
                         sticky="nsew")
-        spDefsTotal.grid(row=5,
+        self.spDefsTotal.grid(row=5,
                          column=4,
                          sticky="nsew")
 
         spd.grid(row=6,
                  column=0,
                  sticky="nsew")
-        spd_I.grid(row=6,
+        self.spd_I.grid(row=6,
                    column=1,
                    sticky="nsew")
-        spdIV_I.grid(row=6,
+        self.spdIV_I.grid(row=6,
                      column=2,
                      sticky="nsew")
-        spdEV_I.grid(row=6,
+        self.spdEV_I.grid(row=6,
                      column=3,
                      sticky="nsew")
-        spdTotal.grid(row=6,
+        self.spdTotal.grid(row=6,
                       column=4,
                       sticky="nsew")
 
@@ -1721,7 +1644,19 @@ class View():
                            y=0,
                            relwidth=1,
                            relheight=1)
-
+        
+        texto = tk.Text(tutorial, 
+                        font=("Yu Gothic UI Semibold", 20), 
+                        width=50, 
+                        height=15,
+                        padx=10,
+                        pady=10)
+        
+        textoTutorial = "Esse programa tem a funcionalidade de inserir dados de um pokémon, calcular seus stats com base nos dados inseridos, e apresentá-los. Cada tela tem uma funcionalidade diferente. No menu, você tem até quatro opções de qual tela entrar, na inserção é aonda os dados serão inseridos. Para teste e maior controle para o usuário, existem poucas verificações de dados, apenas para as contas matemáticas. Na tela de 'Última inserção', terá o último pokémon inserido no banco de dados. Finalmente, na tela de Listagem, você poderá escolher entre pokémons inseridos no banco de dados."
+        
+        texto.insert("1.0", textoTutorial)
+        texto.place(x=300, y=80)
+        
         return tutorial
 
     def chamarRaise(self, tela):
@@ -1999,8 +1934,224 @@ class View():
     
     def setDelete(self, widget):
         widget.delete(0, tk.END)
+
+    def pokemonsLista(self):
+        return self.controller.pokemonsLista()
     
-    def verPoke(self, listbox):
-        poke = listbox.get()
+    def verPoke(self, valor):
+        retornoVerPoke = self.controller.verPoke(valor)
+        self.mudarApelido(retornoVerPoke["Apelido"])
+        self.mudarNivel(retornoVerPoke["Nível"])
+        self.mudarGenero(retornoVerPoke["Gênero"])
+        self.mudarNome(retornoVerPoke["Nome"])
+        self.mudarTipoUm(retornoVerPoke["Tipo Um"])
+        self.mudarTipoDois(retornoVerPoke["Tipo Dois"])
+        self.mudarNomeHabilidade(retornoVerPoke["Nome Habilidade"])
+        self.mudarItem(retornoVerPoke["Item"])
+        self.mudarNatureza(retornoVerPoke["Natureza"])
+        self.mudarDescHabilidade(retornoVerPoke["Descrição Habilidade"])
+        self.mudarNomeAcao(retornoVerPoke["Ação 1"]["Nome"])
+        self.mudarTipoAcao(retornoVerPoke["Ação 1"]["Tipo"])
+        self.mudarPp(retornoVerPoke["Ação 1"]["PP"])
+        self.mudarPrecisao(retornoVerPoke["Ação 1"]["Precisão"])
+        self.mudarCategoria(retornoVerPoke["Ação 1"]["Categoria"])
+        self.mudarDanoAcao(retornoVerPoke["Ação 1"]["Dano"])
+        self.mudarDescAcao(retornoVerPoke["Ação 1"]["Descrição Da Ação"])
+        self.mudarTags(retornoVerPoke["Tags"])
+        self.mudarHp(retornoVerPoke["hp"],
+                          retornoVerPoke["hpIV"],
+                          retornoVerPoke["hpEV"],
+                          retornoVerPoke["hpTotal"])
+        self.mudarAtk(retornoVerPoke["atk"],
+                          retornoVerPoke["atkIV"],
+                          retornoVerPoke["atkEV"],
+                          retornoVerPoke["atkTotal"])
+        self.mudarDefs(retornoVerPoke["def"],
+                          retornoVerPoke["defIV"],
+                          retornoVerPoke["defEV"],
+                          retornoVerPoke["defsTotal"])
+        self.mudarSpAtk(retornoVerPoke["sp.atk"],
+                          retornoVerPoke["sp.atkIV"],
+                          retornoVerPoke["sp.atkEV"],
+                          retornoVerPoke["sp.atkTotal"])
+        self.mudarSpDefs(retornoVerPoke["sp.def"],
+                          retornoVerPoke["sp.defIV"],
+                          retornoVerPoke["sp.defEV"],
+                          retornoVerPoke["sp.defsTotal"])
+        self.mudarSpd(retornoVerPoke["spd"],
+                          retornoVerPoke["spdIV"],
+                          retornoVerPoke["spdEV"],
+                          retornoVerPoke["spdTotal"])
         
+        self.levantarTela(self.visualizacao)
         
+    
+    def ultimoPoke(self):
+        retornoUltimoPoke = self.controller.ultimoPoke()
+        self.mudarApelido(retornoUltimoPoke["Apelido"])
+        self.mudarNivel(retornoUltimoPoke["Nível"])
+        self.mudarGenero(retornoUltimoPoke["Gênero"])
+        self.mudarNome(retornoUltimoPoke["Nome"])
+        self.mudarTipoUm(retornoUltimoPoke["Tipo Um"])
+        self.mudarTipoDois(retornoUltimoPoke["Tipo Dois"])
+        self.mudarNomeHabilidade(retornoUltimoPoke["Nome Habilidade"])
+        self.mudarItem(retornoUltimoPoke["Item"])
+        self.mudarNatureza(retornoUltimoPoke["Natureza"])
+        self.mudarDescHabilidade(retornoUltimoPoke["Descrição Habilidade"])
+        self.mudarNomeAcao(retornoUltimoPoke["Ação 1"]["Nome"])
+        self.mudarTipoAcao(retornoUltimoPoke["Ação 1"]["Tipo"])
+        self.mudarPp(retornoUltimoPoke["Ação 1"]["PP"])
+        self.mudarPrecisao(retornoUltimoPoke["Ação 1"]["Precisão"])
+        self.mudarCategoria(retornoUltimoPoke["Ação 1"]["Categoria"])
+        self.mudarDanoAcao(retornoUltimoPoke["Ação 1"]["Dano"])
+        self.mudarDescAcao(retornoUltimoPoke["Ação 1"]["Descrição Da Ação"])
+        self.mudarTags(retornoUltimoPoke["Tags"])
+        self.mudarHp(retornoUltimoPoke["hp"],
+                          retornoUltimoPoke["hpIV"],
+                          retornoUltimoPoke["hpEV"],
+                          retornoUltimoPoke["hpTotal"])
+        self.mudarAtk(retornoUltimoPoke["atk"],
+                          retornoUltimoPoke["atkIV"],
+                          retornoUltimoPoke["atkEV"],
+                          retornoUltimoPoke["atkTotal"])
+        self.mudarDefs(retornoUltimoPoke["def"],
+                          retornoUltimoPoke["defIV"],
+                          retornoUltimoPoke["defEV"],
+                          retornoUltimoPoke["defsTotal"])
+        self.mudarSpAtk(retornoUltimoPoke["sp.atk"],
+                          retornoUltimoPoke["sp.atkIV"],
+                          retornoUltimoPoke["sp.atkEV"],
+                          retornoUltimoPoke["sp.atkTotal"])
+        self.mudarSpDefs(retornoUltimoPoke["sp.def"],
+                          retornoUltimoPoke["sp.defIV"],
+                          retornoUltimoPoke["sp.defEV"],
+                          retornoUltimoPoke["sp.defsTotal"])
+        self.mudarSpd(retornoUltimoPoke["spd"],
+                          retornoUltimoPoke["spdIV"],
+                          retornoUltimoPoke["spdEV"],
+                          retornoUltimoPoke["spdTotal"])
+        
+        self.levantarTela(self.visualizacao)
+    
+    def chamarReView(self, texto):
+        self.controller.chamarReView(texto)
+    
+    def mudarApelido(self, texto):
+        self.apelido_I.config(text = texto)
+        return None
+    
+    def mudarNivel(self, texto):
+        self.nivel_I.config(text = texto)
+        return None
+    
+    def mudarGenero(self, texto):
+        self.genero_I.config(text = texto)
+        return None
+    
+    def mudarNome(self, texto):
+        self.nome_I.config(text = texto)
+        return None
+    
+    def mudarTipoUm(self, texto):
+        self.tipoUm_I.config(text = texto)
+        return None
+    
+    def mudarTipoDois(self, texto):
+        self.tipoDois_I.config(text = texto)
+        return None
+    
+    def mudarNomeHabilidade(self, texto):
+        self.nomeHabilidade_I.config(text = texto)
+        return None
+    
+    def mudarItem(self, texto):
+        self.item_I.config(text = texto)
+        return None
+    
+    def mudarNatureza(self, texto):
+        self.natureza_I.config(text = texto)
+        return None
+    
+    def mudarDescHabilidade(self, texto):
+        self.descHabilidade_I.config(text = texto)
+        return None
+    
+    def mudarNomeAcao(self, texto):
+        self.nomeAcao_I.config(text = texto)
+        return None
+    
+    def mudarTipoAcao(self, texto):
+        self.tipoAcao_I.config(text = texto)
+        return None
+    
+    def mudarPp(self, texto):
+        self.pp_I.config(text = texto)
+        return None
+    
+    def mudarPrecisao(self, texto):
+        self.precisao_I.config(text = texto)
+        return None
+    
+    def mudarCategoria(self, texto):
+        self.tipoDeDano_I.config(text = texto)
+        return None
+    
+    def mudarDanoAcao(self, texto):
+        self.danoAcao_I.config(text = texto)
+        return None
+    
+    def mudarDescAcao(self, texto):
+        self.descAcao_I.config(text = texto)
+        return None
+    
+    def mudarTags(self, texto):
+        self.tags_I.config(text = texto)
+        return None
+    
+    def mudarHp(self, hp, hpIV, hpEV, hpTotal):
+        self.hp_I.config(text = hp)
+        self.hpIV_I.config(text = hpIV)
+        self.hpEV_I.config(text = hpEV)
+        self.hpTotal.config(text = hpTotal)
+        return None
+    
+    def mudarAtk(self, atk, atkIV, atkEV, atkTotal):
+        self.atk_I.config(text = atk)
+        self.atkIV_I.config(text = atkIV)
+        self.atkEV_I.config(text = atkEV)
+        self.atkTotal.config(text = atkTotal)
+        return None
+    
+    def mudarDefs(self, defs, defsIV, defsEV, defsTotal):
+        self.defs_I.config(text = defs)
+        self.defsIV_I.config(text = defsIV)
+        self.defsEV_I.config(text = defsEV)
+        self.defsTotal.config(text = defsTotal)
+        return None
+    
+    def mudarSpAtk(self, spAtk, spAtkIV, spAtkEV, spAtkTotal):
+        self.spAtk_I.config(text = spAtk)
+        self.spAtkIV_I.config(text = spAtkIV)
+        self.spAtkEV_I.config(text = spAtkEV)
+        self.spAtkTotal.config(text = spAtkTotal)
+        return None
+    
+    def mudarSpDefs(self, spDefs, spDefsIV, spDefsEV, spDefsTotal):
+        self.spDefs_I.config(text = spDefs)
+        self.spDefsIV_I.config(text = spDefsIV)
+        self.spDefsEV_I.config(text = spDefsEV)
+        self.spDefsTotal.config(text = spDefsTotal)
+        return None
+    
+    def mudarSpd(self, spd, spdIV, spdEV, spdTotal):
+        self.spd_I.config(text = spd)
+        self.spdIV_I.config(text = spdIV)
+        self.spdEV_I.config(text = spdEV)
+        self.spdTotal.config(text = spdTotal)
+        return None
+    
+    def delTag(self, combobox):
+        '''lista = self.controller.delTag(self.tagsCB, combobox.get())
+        self.tagsCB = lista
+        combobox.set(value="Tags")'''
+        pass
