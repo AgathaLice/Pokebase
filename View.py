@@ -324,139 +324,117 @@ class View():
                                      width=110,
                                      height=8,
                                      **argsDescHab)
-
-        frameAcao = tk.Frame(insercao,
-                             background="red",
-                             padx=2,
-                             pady=1)
-        frameAcao.grid(row=5,
-                       column=0,
-                       sticky="nw",
-                       padx=(60, 0))
-        nomeAcao = tk.Label(frameAcao,
+#!_________________________________________________________________________________________________________________________
+        movesPokemonDb: dict = {"1- ": {
+                                "tipo": "",
+                                "pp": "",
+                                "precisao": "",
+                                "categoria": "",
+                                "dano": "",
+                                "desc": ""
+                                },
+                              "2- ": {
+                                      "tipo": "",
+                                      "pp": "",
+                                      "precisao": "",
+                                      "categoria": "",
+                                      "dano": "",
+                                      "desc": ""
+                                      },
+                              "3- ": {
+                                      "tipo": "",
+                                      "pp": "",
+                                      "precisao": "",
+                                      "categoria": "",
+                                      "dano": "",
+                                      "desc": ""
+                                      },
+                              "4- ": {
+                                      "tipo": "",
+                                      "pp": "",
+                                      "precisao": "",
+                                      "categoria": "",
+                                      "dano": "",
+                                      "desc": ""
+                                      }
+                                }
+        
+        frameAcaoUm = tk.Frame(insercao,
+                               background="red",
+                               padx=2,
+                               pady=1)
+        frameAcaoUm.grid(row=5,
+                         column=0,
+                         sticky="nw",
+                         padx=(60, 0))
+        nomeAcaoUm = tk.Label(frameAcaoUm,
                              text="Nome da Ação",
                              **argsPadraoInsercao,
                              background=corLabel)
-        self.movesPokemonDb: dict = {"1- ": {
-                                  "tipo": "",
-                                  "pp": "",
-                                  "precisao": "",
-                                  "categoria": "",
-                                  "dano": "",
-                                  "desc": ""
-                                  },
-                                "2- ": {
-                                        "tipo": "",
-                                        "pp": "",
-                                        "precisao": "",
-                                        "categoria": "",
-                                        "dano": "",
-                                        "desc": ""
-                                        },
-                                "3- ": {
-                                        "tipo": "",
-                                        "pp": "",
-                                        "precisao": "",
-                                        "categoria": "",
-                                        "dano": "",
-                                        "desc": ""
-                                        },
-                                "4- ": {
-                                        "tipo": "",
-                                        "pp": "",
-                                        "precisao": "",
-                                        "categoria": "",
-                                        "dano": "",
-                                        "desc": ""
-                                        }
-                                }
-        self.movesCB: list[str] = ["", "", "", ""]
+        
         self.contador: int = 1
-        registroNomeAcaoCb = self.chamarRegister()
-        self.nomeAcao_CB = ttk.Combobox(frameAcao,
-                                        width=16,
-                                        **argsFonte,
-                                        values=self.movesCB,
-                                        validate="focusout",
-                                        validatecommand=registroNomeAcaoCb)
-        frameAcaoEdicao = tk.Frame(frameAcao,
-                                   background="red")
-        editarAcao = tk.Button(frameAcaoEdicao,
-                               text="Editar Ação",
-                               command=lambda:
-                                   self.chamarEditarMoves(self.movesPokemonDb,
-                                                          acaoEdicao_CB,
-                                                          tipoAcao_CB,
-                                                          pp_E,
-                                                          precisao_E,
-                                                          categoria_CB,
-                                                          danoAcao_E,
-                                                          descAcao_Txt))
-        opcoesCB: list[int] = [1, 2, 3, 4]
-        acaoEdicao_CB = ttk.Combobox(frameAcaoEdicao,
-                                  width=5,
-                                  justify="center",
-                                  state="readonly",
-                                  font=('Yu Gothic UI Semibold', 11),
-                                  values=opcoesCB)
-        frameAcaoStats = tk.Frame(insercao,
+        
+        nomeAcaoUm_E = tk.Entry(frameAcaoUm,
+                                width=22,
+                                **argsPadraoInsercao)
+        frameAcaoStatsUm = tk.Frame(insercao,
                                   background="red",
                                   padx=2,
                                   pady=1)
-        frameAcaoStats.grid(row=6,
+        frameAcaoStatsUm.grid(row=6,
                             column=0,
                             sticky="nw",
                             padx=(60, 0))
 
-        tipoAcao = tk.Label(frameAcaoStats,
+        tipoAcao = tk.Label(frameAcaoStatsUm,
                              text="Tipo",
                              **argsPadraoInsercao,
                              background=corLabel)
-        tipoAcao_CB = ttk.Combobox(frameAcaoStats,
+        tipoAcao_CB = ttk.Combobox(frameAcaoStatsUm,
                                     width=8,
                                     **argsFonte,
                                     values=tipos,
                                     state="readonly")
 
-        pp = tk.Label(frameAcaoStats,
+        pp = tk.Label(frameAcaoStatsUm,
                       text="PP",
                       **argsPadraoInsercao,
                       background=corLabel)
-        pp_E = tk.Entry(frameAcaoStats,
+        pp_E = tk.Entry(frameAcaoStatsUm,
                         width=2,
                         **argsPadraoInsercao)
         
-        precisao = tk.Label(frameAcaoStats,
+        precisao = tk.Label(frameAcaoStatsUm,
                             text="Precisão",
                             **argsPadraoInsercao,
                             background=corLabel)
-        precisao_E = tk.Entry(frameAcaoStats,
+        precisao_E = tk.Entry(frameAcaoStatsUm,
                               width=3,
                               **argsPadraoInsercao)
 
         categorias = ["Atk", "Sp.Atk", "Status"]
-        frameTipoDanoAcao = tk.Frame(insercao,
+        frameTipoDanoAcaoUm = tk.Frame(insercao,
                                       background="red",
                                       padx=1)
-        frameTipoDanoAcao.grid(row=7,
+        frameTipoDanoAcaoUm.grid(row=7,
                                column=0,
                                sticky="nw",
                                padx=(60, 0))
-        tipoDeDano = tk.Label(frameTipoDanoAcao,
+        tipoDeDano = tk.Label(frameTipoDanoAcaoUm,
                               text="Categoria",
                               **argsPadraoInsercao,
                               background=corLabel)
-        categoria_CB = ttk.Combobox(frameTipoDanoAcao,
+        categoria_CB = ttk.Combobox(frameTipoDanoAcaoUm,
                                      width=6,
                                      **argsFonte,
                                      values=categorias,
                                      state="readonly")
                 
-        danoAcao = tk.Label(frameTipoDanoAcao,
+        danoAcao = tk.Label(frameTipoDanoAcaoUm,
                             text="Dano",
                             **argsPadraoInsercao,
                             background=corLabel)
-        danoAcao_E = tk.Entry(frameTipoDanoAcao,
+        danoAcao_E = tk.Entry(frameTipoDanoAcaoUm,
                               width=3,
                               **argsPadraoInsercao)
         
@@ -465,18 +443,18 @@ class View():
               "highlightthickness": 2,
               "highlightbackground": "red",
               "highlightcolor": "red"}
-        frameDescAcao = tk.Frame(insercao,
+        frameDescAcaoUm = tk.Frame(insercao,
                                   background=corLabel)
-        frameDescAcao.grid(row=8,
+        frameDescAcaoUm.grid(row=8,
                            column=0,
                            rowspan=10,
                            sticky="n",
                            padx=(60, 0))
-        descAcao = tk.Label(frameDescAcao,
+        descAcao = tk.Label(frameDescAcaoUm,
                             text="Descrição e Observações da Ação",
                             **argsPadraoInsercao,
                             background=corLabel)
-        descAcao_Txt = tk.Text(frameDescAcao,
+        descAcao_Txt = tk.Text(frameDescAcaoUm,
                                width=50,
                                height=9,
                                **argsDescPod)
@@ -655,7 +633,7 @@ class View():
                                                            item_E,
                                                            natureza_CB,
                                                            descHabilidade_Txt,
-                                                           self.nomeAcao_CB,
+                                                           nomeAcaoUm_E,
                                                            tipoAcao_CB,
                                                            pp_E,
                                                            precisao_E,
@@ -737,15 +715,10 @@ class View():
         descHabilidade_Txt.pack(side="top",
                                 anchor="center")
 
-        nomeAcao.pack(side="left",
+        nomeAcaoUm.pack(side="left",
                        anchor="nw")
-        self.nomeAcao_CB.pack(side="left",
-                         anchor="nw")
-        
-        frameAcaoEdicao.pack(side="left",
-                             anchor="nw")
-        editarAcao.pack(side="top")
-        acaoEdicao_CB.pack(side="bottom")
+        nomeAcaoUm_E.pack(side="left",
+                          anchor="nw")
 
         tipoAcao.pack(side="left",
                        anchor="nw")
@@ -1691,7 +1664,6 @@ class View():
 
         return tutorial
 
-
     def chamarRaise(self, tela):
         self.controller.chamarRaise(tela)
 
@@ -1710,7 +1682,7 @@ class View():
                item_E,
                natureza_CB,
                descHabilidade_Txt,
-               nomeAcao_CB,
+               nomeAcaoUm_E,
                tipoAcao_CB,
                pp_E,
                precisao_E,
@@ -1738,7 +1710,7 @@ class View():
                spdEV_E):
         
         apelido = apelido_E.get()
-        nivel = nivel_E.get()
+        nivel = self.getInt(nivel_E)
         genero = genero_CB.get()
         nome = nome_E.get()
         tipoUm = tipoUm_CB.get()
@@ -1747,32 +1719,32 @@ class View():
         item = item_E.get()
         natureza = natureza_CB.get()
         descHabilidade = descHabilidade_Txt.get("1.0", "end")
-        nomeAcao = nomeAcao_CB.get()
+        nomeAcao = nomeAcaoUm_E.get()
         tipoAcao = tipoAcao_CB.get()
-        pp = pp_E.get()
-        precisao = precisao_E.get()
+        pp = self.getInt(pp_E)
+        precisao = self.getInt(precisao_E)
         categoria = categoria_CB.get()
-        danoAcao = danoAcao_E.get()
+        danoAcao = self.getInt(danoAcao_E)
         descAcao = descAcao_Txt.get("1.0", "end")
         tags = tags_CB.get()
-        hp = hp_E.get()
-        hpIV = hpIV_E.get()
-        hpEV = hpEV_E.get()
-        atk = atk_E.get()
-        atkIV = atkIV_E.get()
-        atkEV = atkEV_E.get()
-        defs = defs_E.get()
-        defsIV = defsIV_E.get()
-        defsEV = defsEV_E.get()
-        spAtk = spAtk_E.get()
-        spAtkIV = spAtkIV_E.get()
-        spAtkEV = spAtkEV_E.get()
-        spDefs = spDefs_E.get()
-        spDefsIV = spDefsIV_E.get()
-        spDefsEV = spDefsEV_E.get()
-        spd = spd_E.get()
-        spdIV = spdIV_E.get()
-        spdEV = spdEV_E.get()
+        hp = self.getInt(hp_E)
+        hpIV = self.getInt(hpIV_E)
+        hpEV = self.getInt(hpEV_E)
+        atk = self.getInt(atk_E)
+        atkIV = self.getInt(atkIV_E)
+        atkEV = self.getInt(atkEV_E)
+        defs = self.getInt(defs_E)
+        defsIV = self.getInt(defsIV_E)
+        defsEV = self.getInt(defsEV_E)
+        spAtk = self.getInt(spAtk_E)
+        spAtkIV = self.getInt(spAtkIV_E)
+        spAtkEV = self.getInt(spAtkEV_E)
+        spDefs = self.getInt(spDefs_E)
+        spDefsIV = self.getInt(spDefsIV_E)
+        spDefsEV = self.getInt(spDefsEV_E)
+        spd = self.getInt(spd_E)
+        spdIV = self.getInt(spdIV_E)
+        spdEV = self.getInt(spdEV_E)
         
         self.controller.salvar(apelido,
                                nivel,
@@ -1810,6 +1782,10 @@ class View():
                                spd,
                                spdIV,
                                spdEV)
+        self.levantarTela(self.menu)
+    
+    def getInt(self, widget):
+        return self.controller.getInt(widget.get())
     
     def addTagInsercao(self,
                        combobox,
@@ -1824,98 +1800,9 @@ class View():
                                                                 salvar)
         combobox["values"] = novosValoresTags["tagsCB"]
         tagsAtuais = novosValoresTags["tagsAtuais"]
-
-    def chamarValidacaoAcaoCB(self, valorCB):
-        return self.controller.validacaoNomeAcaoCB(valorCB)
-    
-    def chamarRegister(self):
-        return self.controller.chamarRegister()
-    
-    def registerValidacaoCB(self):
-        return (self.root.register(self.chamarValidacaoAcaoCB), "%P")
-    
-    def validacaoNomeAcaoCB(self, valorCB):
-        valoresModel = self.criarListaMoves(valorCB,
-                                            self.movesCB,
-                                            self.contador)
-        
-        valorCB = valoresModel.get("valorCB")
-        self.nomeAcao_CB["values"] = valoresModel["movesCB"]
-        self.contador = valoresModel["contador"]
-        if valoresModel["readonly"] == True:
-            self.controller.configState(self.nomeAcao_CB, "readonly")
-        self.nomeAcao_CB.after_idle(lambda: self.nomeAcao_CB.set(valorCB))
-        return True
-    
-    def criarListaMoves(self, valorCB, movesCB, contador):
-        return self.controller.criarListaMoves(valorCB,
-                                               movesCB,
-                                               contador)
     
     def configState(self, combobox, text):
         combobox.config(state=text)
-    
-    def chamarEditarMoves(self,
-                          movesDict,
-                          acaoEdicao_CB,
-                          tipo,
-                          pp,
-                          precisao,
-                          categoria,
-                          dano,
-                          descricao):
-        opcao = int(acaoEdicao_CB.get())
-        self.controller.configState(self.nomeAcao_CB,
-                                    "normal")
-        self.controller.chamarCurrentCB(self.nomeAcao_CB,
-                                        opcao)
-        self.controller.chamarEditarMoves(self.contador,
-                                          self.movesCB,
-                                          opcao)
-        
-        self.controller.configState(self.nomeAcao_CB, "readonly")
-        self.salvarMove(movesDict,
-                        acaoEdicao_CB,
-                        self.nomeAcao_CB,
-                        tipo,
-                        pp,
-                        precisao,
-                        categoria,
-                        dano,
-                        descricao)
-        return None
-    
-    def salvarMove(self,
-                   movesDict,
-                   moveAtual,
-                   nome,
-                   tipo,
-                   pp,
-                   precisao,
-                   categoria,
-                   dano,
-                   descricao):
-        movesDict = movesDict.get()
-        moveAtual = moveAtual.get()
-        nome = nome.get()
-        tipo = tipo.get()
-        pp = pp.get()
-        precisao = precisao.get()
-        categoria = categoria.get()
-        dano = dano.get()
-        descricao = descricao.get()
-        
-        movesSalvos: dict = self.controller.salvarMove(movesDict,
-                                                       moveAtual,
-                                                       nome,
-                                                       tipo,
-                                                       pp,
-                                                       precisao,
-                                                       categoria,
-                                                       dano,
-                                                       descricao)
-        self.movesPokemonDb = movesSalvos
-        print(self.movesPokemonDb)
     
     def currentCB(self, combobox, index):
         combobox.current(index)

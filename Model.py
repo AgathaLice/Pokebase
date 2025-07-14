@@ -11,7 +11,8 @@ class Model():
         pokemons = pokeBase["Pokemons"]
         tags = pokeBase["Tags"]
         
-    
+    def getInt(self, valor):
+        return int(valor)
     
     def salvar(self,
                apelido,
@@ -52,58 +53,58 @@ class Model():
                spdEV):
         pokemon = {
             "Apelido": apelido,
-    "Nome": nome,
-    "Nível": nivel,
-    "Gênero": genero,
-    "Tipo Um": tipoUm,
-    "Tipo Dois": tipoDois,
-    "Nome Habilidade": nomeHabilidade,
-    "Descrição Habilidade": descHabilidade,
-    "Item": item,
-    "Natureza": natureza,
-    "Ação 1": {
-        "Nome": nomeAcao,
-        "Dano": danoAcao,
-        "Tipo": tipoAcao,
-        "Precisão": precisao,
-        "PP": pp,
-        "Categoria": categoria,
-        "Descrição Da Ação": descAcao
-        },
-    "Tags": tags,
-    "hp": hp,
-    "hpIV": hpIV,
-    "hpEV": hpEV,
-    "hpTotal": self.calcularHp(hp, hpIV, hpEV, nivel),
-    "atk": atk,
-    "atkIV": atkIV,
-    "atkEV": atkEV,
-    "atkTotal": self.calcularStat(atk, atkIV, atkEV, nivel, natureza),
-    "def": defs,
-    "defIV": defsIV,
-    "defEV": defsEV,
-    "defsTotal": self.calcularStat(defs, defsIV, defsEV, nivel, natureza),
-    "sp.atk": spAtk,
-    "sp.atkIV": spAtkIV,
-    "sp.atkEV": spAtkEV,
-    "sp.atkTotal": self.calcularStat(spAtk, spAtkIV, spAtkEV, nivel, natureza),
-    "sp.def": spDefs,
-    "sp.defIV": spDefsIV,
-    "sp.defEV": spDefsEV,
-    "sp.defsTotal": self.calcularStat(spDefs, spDefsIV, spDefsEV, nivel, natureza),
-    "spd": spd,
-    "spdIV": spdIV,
-    "spdEV": spdEV,
-    "spdTotal": self.calcularStat(spd, spdIV, spdEV, nivel, natureza)
+            "Nome": nome,
+            "Nível": nivel,
+            "Gênero": genero,
+            "Tipo Um": tipoUm,
+            "Tipo Dois": tipoDois,
+            "Nome Habilidade": nomeHabilidade,
+            "Descrição Habilidade": descHabilidade,
+            "Item": item,
+            "Natureza": natureza,
+            "Ação 1": {
+                "Nome": nomeAcao,
+                "Dano": danoAcao,
+                "Tipo": tipoAcao,
+                "Precisão": precisao,
+                "PP": pp,
+                "Categoria": categoria,
+                "Descrição Da Ação": descAcao
+                },
+            "Tags": tags,
+            "hp": hp,
+            "hpIV": hpIV,
+            "hpEV": hpEV,
+            "hpTotal": self.calcularHp(hp, hpIV, hpEV, nivel) if nome != "Shedinja" else 1,
+            "atk": atk,
+            "atkIV": atkIV,
+            "atkEV": atkEV,
+            "atkTotal": self.calcularStat(atk, atkIV, atkEV, nivel, natureza),
+            "def": defs,
+            "defIV": defsIV,
+            "defEV": defsEV,
+            "defsTotal": self.calcularStat(defs, defsIV, defsEV, nivel, natureza),
+            "sp.atk": spAtk,
+            "sp.atkIV": spAtkIV,
+            "sp.atkEV": spAtkEV,
+            "sp.atkTotal": self.calcularStat(spAtk, spAtkIV, spAtkEV, nivel, natureza),
+            "sp.def": spDefs,
+            "sp.defIV": spDefsIV,
+            "sp.defEV": spDefsEV,
+            "sp.defsTotal": self.calcularStat(spDefs, spDefsIV, spDefsEV, nivel, natureza),
+            "spd": spd,
+            "spdIV": spdIV,
+            "spdEV": spdEV,
+            "spdTotal": self.calcularStat(spd, spdIV, spdEV, nivel, natureza)
         }
     
         print(pokemon)
     
     def calcularHp(self,
-                   hp,
-                   hpIV,
-                   hpEV,
-                   nivel) -> int:
+                   hp: int,
+                   hpIV: int,
+                   hpEV: int,
+                   nivel: int) -> int:
         hpEV = floor(hpEV / 4)
         hp *= 2
         hp = hp + hpIV + hpEV
@@ -113,13 +114,20 @@ class Model():
         hp += nivel
         return hp
 
-    def calcularStat(self,
-                     stat,
-                     statIV,
-                     statEV,
-                     nivel,
+    def calcularStat(self: int,
+                     stat: int,
+                     statIV: int,
+                     statEV: int,
+                     nivel: int,
                      natureza) -> int:
-        pass
+        statEV = floor(statEV / 4)
+        stat *= 2
+        stat = stat + statIV + statEV
+        stat *= nivel
+        stat = floor(stat / 100)
+        stat += 5
+        #todo: adicionar natureza
+        return stat
     
     def addTagInsercao(self,
                        valor,
@@ -161,53 +169,6 @@ class Model():
         else: 
             print("ERRO")
             return None
-
-    def criarListaMoves(self,
-                        valorCB,
-                        movesCB,
-                        contador) -> None | dict:
-        if contador <= 4:
-            # todo: Adicionar regex para verificar se não começa com "1- "
-            movesCB[contador - 1] += valorCB
-            contador += 1
-        dictValores = {
-            "valorCB": valorCB,
-            "movesCB": movesCB,
-            "contador": contador,
-            "readonly": False
-        }
-        if contador > 4:
-            dictValores["readonly"] = True
-            
-        return dictValores
-
-    def editarMoves(self,
-                    contador,
-                    movesCB,
-                    opcao):
-        movesCB[opcao - 1] = f"{opcao}- "
-        contador = opcao - 1
-
-    def salvarMove(self,
-                   movesDict,
-                   moveAtual,
-                   nome,
-                   tipo,
-                   pp,
-                   precisao,
-                   categoria,
-                   dano,
-                   descricao):
-        movesDict[f"{moveAtual}- {nome}"] = movesDict[f"{moveAtual}- "]
-        del movesDict[f"{moveAtual}- "]
-        movesDict[f"{moveAtual}- "]["tipo"] = tipo
-        movesDict[f"{moveAtual}- "]["pp"] = pp
-        movesDict[f"{moveAtual}- "]["precisao"] = precisao
-        movesDict[f"{moveAtual}- "]["categoria"] = categoria
-        movesDict[f"{moveAtual}- "]["dano"] = dano
-        movesDict[f"{moveAtual}- "]["descricao"] = descricao
-        
-        return movesDict
 
     def sair():
         sys.exit()
